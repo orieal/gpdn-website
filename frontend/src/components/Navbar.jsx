@@ -11,10 +11,10 @@ const Navbar = () => {
         <div className='w-full flex justify-between items-center'>
             {/* ----- Logo and Navlinks------- */}
             <div className='flex justify-between items-center gap-16'>
-                <div className='w-32'>
+                <div className='w-32 2xl:w-48'>
                     <Image className='w-full' src={logoGpdn}/>
                 </div>
-                <div className='font-normal text-[#0C0E12] text-lg justify-between gap-8 hidden md:flex'>
+                <div className='font-normal text-[#0C0E12] text-lg 2xl:text-2xl justify-between gap-8 2xl:gap-20 hidden md:flex'>
                     <Link href={'/'}>
                         <button className=''>Home</button>
                     </Link>
@@ -31,7 +31,7 @@ const Navbar = () => {
             </div>
 
             {/* ---Get Started button--- */}
-            <button className='bg-primary text-white text-xs font-poppins py-3.5 px-5 rounded-md hidden md:block'>Get Started</button>
+            <button className='bg-primary text-white text-xs 2xl:text-xl font-poppins py-3.5 px-5 rounded-md hidden md:block'>Get Started</button>
 
             {/* ----Mobile Menu Icon--- */}
             <div className='md:hidden'>

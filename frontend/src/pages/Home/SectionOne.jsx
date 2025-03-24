@@ -9,25 +9,25 @@ import { PiArrowUpRightLight } from "react-icons/pi";
 
 const SectionOne = () => {
   return (
-    <div className="w-full h-full flex justify-center items-center py-5 md:py-10">
-      <div className="w-full h-full flex flex-col md:grid md:grid-cols-[75%_25%]">
+    <div className="w-full h-auto lg:h-full  flex justify-center items-center py-5 lg:py-14">
+      <div className="w-full h-auto  lg:h-full flex flex-col lg:grid lg:grid-cols-[75%_25%]">
         {/* -----Left Side----- */}
-        <div className=" w-full h-full flex flex-col-reverse md:grid md:grid-cols-[50%_50%]">
+        <div className=" w-full h-auto lg:h-full flex flex-col-reverse justify-between gap-8 lg:gap-0 lg:grid lg:grid-cols-[50%_50%]">
           <div className="relative w-full h-full">
-            <div className="md:absolute flex md:items-center top-0 left-0 w-full h-full">
-              <div className="flex flex-col md:justify-between">
-                <h1 className="text-4xl md:text-[6.6vw] font-light leading-[1.1] w-full md:w-[125%] text-[#1E1E1E]">
+            <div className="lg:absolute flex lg:items-center top-[8vh] left-0 w-full h-auto">
+              <div className="flex flex-col gap-4 lg:gap-0 lg:justify-between">
+                <h1 className="text-4xl lg:text-[6vw] xl:text-[6.7vw] font-light lg:leading-none xl:leading-[1.1] w-full lg:w-[125%] text-[#1E1E1E]">
                   Global Care for a{" "}
                   <span className="font-medium">Brighter Tomorrow</span>
                 </h1>
                 <div className="flex flex-col w-full gap-4">
-                  <p className="font-normal">
+                  <p className="font-normal text-base 2xl:text-xl">
                     Our global network of dedicated palliative care doctors
                     fosters collaboration, knowledge-sharing, and peer support
                     to enhance patient care across borders.
                   </p>
                   <div>
-                    <button className="bg-primary  text-white text-base font-poppins py-3.5 px-5 rounded-md ">
+                    <button className="bg-primary  text-white text-base 2xl:text-xl font-poppins py-3.5 px-5 rounded-md ">
                       Join the Network
                     </button>
                   </div>
@@ -36,7 +36,7 @@ const SectionOne = () => {
             </div>
           </div>
           {/* ---Desktop Slider---- */}
-          <div className="hidden md:flex w-full h-full justify-center relative ">
+          <div className="hidden lg:flex w-full h-full justify-center relative ">
             <svg
               preserveAspectRatio="none"
               viewBox="0 0 505 680"
@@ -64,7 +64,7 @@ const SectionOne = () => {
           </div>
 
           {/* ---Mobile Slider---  */}
-          <div className=" md:hidden w-full h-[70vh] justify-center relative ">
+          <div className=" lg:hidden w-full h-[50vh] justify-center relative ">
             <div className="w-full h-full rounded-2xl">
               <Image
                 src={slideImage1}
@@ -78,51 +78,51 @@ const SectionOne = () => {
         </div>
 
         {/* -----Right Side----- */}
-        <div className="w-full md:h-full md:grid md:grid-rows-[40%_60%] md:pl-4">
+        <div className="w-full lg:h-full lg:grid lg:grid-rows-[40%_60%] lg:pl-4 py-10 lg:py-0">
           <div className="w-full h-full flex justify-center items-center">
-            <div className="flex flex-col justify-around h-full">
-              <div className="flex flex-col">
-                <h2 className="text-secondary text-base font-bold">
+            <div className="flex flex-col justify-center gap-2 2xl:gap-8 h-full">
+              <div className="flex flex-col text-sm lg:text-base">
+                <h2 className="text-secondary  font-bold">
                   468{" "}
                   <span className="text-[#252525] font-medium uppercase">
                     Expert Doctors
                   </span>
                 </h2>
-                <h2 className="text-secondary text-base font-bold">
+                <h2 className="text-secondary font-bold">
                   83+{" "}
                   <span className="text-[#252525] font-medium uppercase">
                     Countries
                   </span>
                 </h2>
               </div>
-              <div className="grid grid-cols-4 gap-1.5">
-                <div className=" h-full flex justify-center items-center">
+              <div className="grid grid-flow-col lg:grid-cols-4 auto-cols-max justify-start items-center lg:gap-x-0 gap-x-4">
+                <div className="h-14 2xl:h-full w-14 2xl:w-full flex justify-center items-center">
                   <Image
                     alt="Doctor profile image"
                     className="rounded-full w-full h-full"
                     src={doctorImage1}
                   />
                 </div>
-                <div className="h-full flex justify-center items-center">
+                <div className="h-14 2xl:h-full w-14 2xl:w-full  flex justify-center items-center">
                   <Image
                     alt="Doctor profile image"
                     className="rounded-full w-full h-full"
                     src={doctorImage2}
                   />
                 </div>
-                <div className="h-full flex justify-center items-center">
+                <div className="h-14 2xl:h-full w-14 2xl:w-full flex justify-center items-center">
                   <Image
                     alt="Doctor profile image"
                     className="rounded-full w-full h-full"
                     src={doctorImage3}
                   />
                 </div>
-                <div className="rounded-full border border-[#CACACA] w-full h-full flex justify-center justify-self-end items-center">
-                  <PiArrowUpRightLight className="text-[#CACACA] text-2xl" />
+                <div className="rounded-full border border-[#CACACA] h-16 2xl:h-full w-16 2xl:w-full flex justify-center justify-self-end items-center">
+                  <PiArrowUpRightLight className="text-[#CACACA] text-2xl 2xl:text-4xl" />
                 </div>
               </div>
 
-              <p className="font-normal text-sm w-full">
+              <p className="font-normal text-sm overflow-hidden w-full">
                 Our dedicated network of palliative care doctors collaborates
                 globally to enhance patient care, share expertise, and support
                 one another in complex cases.
@@ -130,7 +130,7 @@ const SectionOne = () => {
             </div>
           </div>
 
-          <div className="hidden md:block h-full w-full relative rounded-[2rem]">
+          <div className="hidden lg:block h-full w-full relative rounded-[2rem]">
             <Image
               layout="fill"
               objectFit="cover"
