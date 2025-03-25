@@ -1,6 +1,9 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import slideImage1 from "../../app/assets/HOMEPAGE/SectionOne/slide-image-1.png";
+import slideImage2 from "../../app/assets/HOMEPAGE/SectionOne/slide-image-2.png";
+import slideImage3 from "../../app/assets/HOMEPAGE/SectionOne/slide-image-3.png";
 import doctorImage1 from "../../app/assets/HOMEPAGE/SectionOne/doctor-image-1.png";
 import doctorImage2 from "../../app/assets/HOMEPAGE/SectionOne/doctor-image-2.png";
 import doctorImage3 from "../../app/assets/HOMEPAGE/SectionOne/doctor-image-3.png";
@@ -8,6 +11,19 @@ import connectionsImage from "../../app/assets/HOMEPAGE/SectionOne/connection.pn
 import { PiArrowUpRightLight } from "react-icons/pi";
 
 const SectionOne = () => {
+
+  const sliderImages = [slideImage1,slideImage2,slideImage3];
+
+  const [currentImage,setCurrentImage] = useState(0) 
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % sliderImages.length);
+    }, 3000); 
+
+    return () => clearInterval(interval); 
+  }, []);
+
   return (
     <section className="w-full h-auto lg:h-full  flex justify-center items-center py-5 lg:py-14">
       <div className="w-full h-auto  lg:h-full flex flex-col lg:grid lg:grid-cols-[75%_25%]">
@@ -37,6 +53,9 @@ const SectionOne = () => {
           </div>
           {/* ---Desktop Slider---- */}
           <div className="hidden lg:flex w-full h-full justify-center relative ">
+            <div className="absolute bottom-8 right-20 flex justify-center items-center z-10">
+            <h4 className="font-poppins font-normal text-3xl text-white">0{currentImage+1}<span className="text-xs">/0{sliderImages.length}</span></h4>
+            </div>
             <svg
               preserveAspectRatio="none"
               viewBox="0 0 505 680"
@@ -53,7 +72,7 @@ const SectionOne = () => {
               >
                 <div className="w-full h-full ">
                   <Image
-                    src={slideImage1}
+                    src={sliderImages[currentImage]}
                     alt="Caring"
                     layout="fill"
                     objectFit="cover"
@@ -65,9 +84,12 @@ const SectionOne = () => {
 
           {/* ---Mobile Slider---  */}
           <div className=" lg:hidden w-full h-[50vh] justify-center relative ">
+          <div className="absolute bottom-8 right-20 flex justify-center items-center z-10">
+            <h4 className="font-poppins font-normal text-3xl text-white">0{currentImage+1}<span className="text-xs">/0{sliderImages.length}</span></h4>
+            </div>
             <div className="w-full h-full rounded-2xl">
               <Image
-                src={slideImage1}
+                src={sliderImages[currentImage]}
                 alt="Caring"
                 layout="fill"
                 objectFit="cover"
