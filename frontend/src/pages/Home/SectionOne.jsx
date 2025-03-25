@@ -9,14 +9,14 @@ import { PiArrowUpRightLight } from "react-icons/pi";
 
 const SectionOne = () => {
   return (
-    <div className="w-full h-auto lg:h-full  flex justify-center items-center py-5 lg:py-14">
+    <section className="w-full h-auto lg:h-full  flex justify-center items-center py-5 lg:py-14">
       <div className="w-full h-auto  lg:h-full flex flex-col lg:grid lg:grid-cols-[75%_25%]">
         {/* -----Left Side----- */}
         <div className=" w-full h-auto lg:h-full flex flex-col-reverse justify-between gap-8 lg:gap-0 lg:grid lg:grid-cols-[50%_50%]">
           <div className="relative w-full h-full">
             <div className="lg:absolute flex lg:items-center top-[8vh] left-0 w-full h-auto">
               <div className="flex flex-col gap-4 lg:gap-0 lg:justify-between">
-                <h1 className="text-4xl lg:text-[6vw] xl:text-[6.7vw] font-light lg:leading-none xl:leading-[1.1] w-full lg:w-[125%] text-[#1E1E1E]">
+                <h1 className="text-4xl md:text-7xl lg:text-[6vw] xl:text-[6.7vw] font-light lg:leading-none xl:leading-[1.1] w-full lg:w-[125%] text-[#1E1E1E]">
                   Global Care for a{" "}
                   <span className="font-medium">Brighter Tomorrow</span>
                 </h1>
@@ -81,7 +81,7 @@ const SectionOne = () => {
         <div className="w-full lg:h-full lg:grid lg:grid-rows-[40%_60%] lg:pl-4 py-10 lg:py-0">
           <div className="w-full h-full flex justify-center items-center">
             <div className="flex flex-col justify-center gap-2 2xl:gap-8 h-full">
-              <div className="flex flex-col text-sm lg:text-base">
+              <div className="flex flex-col text-sm md:text-base">
                 <h2 className="text-secondary  font-bold">
                   468{" "}
                   <span className="text-[#252525] font-medium uppercase">
@@ -141,7 +141,7 @@ const SectionOne = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
