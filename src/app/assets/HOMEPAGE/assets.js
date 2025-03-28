@@ -1,12 +1,12 @@
-import excellenceIcon1 from '../../assets/HOMEPAGE/SectionTwo/Icons/icon-1.png'
-import excellenceIcon2 from '../../assets/HOMEPAGE/SectionTwo/Icons/icon-2.png'
-import excellenceIcon3 from '../../assets/HOMEPAGE/SectionTwo/Icons/icon-3.png'
-import excellenceIcon4 from '../../assets/HOMEPAGE/SectionTwo/Icons/icon-4.png'
-import excellenceIcon5 from '../../assets/HOMEPAGE/SectionTwo/Icons/icon-5.png'
-import excellenceIcon6 from '../../assets/HOMEPAGE/SectionTwo/Icons/icon-6.png'
-import blogImage1 from '../../assets/HOMEPAGE/SectionFive/blog-image-1.png'
-import blogImage2 from '../../assets/HOMEPAGE/SectionFive/blog-image-2.png'
-import blogImage3 from '../../assets/HOMEPAGE/SectionFive/blog-image-3.png'
+import excellenceIcon1 from './SectionTwo/Icons/icon-1.png'
+import excellenceIcon2 from './SectionTwo/Icons/icon-2.png'
+import excellenceIcon3 from './SectionTwo/Icons/icon-3.png'
+import excellenceIcon4 from './SectionTwo/Icons/icon-4.png'
+import excellenceIcon5 from './SectionTwo/Icons/icon-5.png'
+import excellenceIcon6 from './SectionTwo/Icons/icon-6.png'
+import blogImage1 from './SectionFive/blog-image-1.png'
+import blogImage2 from './SectionFive/blog-image-2.png'
+import blogImage3 from './SectionFive/blog-image-3.png'
 
 
 
