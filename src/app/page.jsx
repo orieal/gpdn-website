@@ -10,7 +10,7 @@ import Footer from "@/pages/Home/Footer";
 export default function Home() {
   return (
     <main className="flex  flex-col items-center justify-between  ">
-      <div className="flex  flex-col items-center justify-between px-7 md:px-16 lg:px-20">
+      <div className="flex  flex-col items-center justify-between gap-10 lg:gap-0 px-7 md:px-16 lg:px-20">
       <div className="h-auto lg:h-screen w-full flex flex-col justify-between pt-8 ">
       <Navbar/>
       <SectionOne/>

@@ -9,9 +9,9 @@ const FAQSection = () => {
   const [activeFaq, setActiveFaq] = useState(1);
 
   return (
-    <section className="w-full h-auto lg:h-screen  flex justify-center items-center py-5 lg:py-14">
+    <section className="w-full h-auto  flex justify-center items-center py-5 lg:py-14">
       <div className="w-full h-full  flex flex-col gap-3">
-        <h1 className="text-[2rem] lg:text-[4rem] text-secondary font-semibold">
+        <h1 className="text-[2rem] md:text-[2.5rem] xl:text-[4rem] text-secondary font-semibold">
           Frequently Asked <br />
           Questions
         </h1>
