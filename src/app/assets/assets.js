@@ -8,6 +8,10 @@ import blogImage1 from "./HOMEPAGE/SectionFive/blog-image-1.jpeg";
 import blogImage2 from "./HOMEPAGE/SectionFive/blog-image-2.jpeg";
 import blogImage3 from "./HOMEPAGE/SectionFive/blog-image-3.jpeg";
 import blogImage4 from "./HOMEPAGE/SectionFive/blog-image-4.png";
+import memeberProfile1 from "./ABOUT/TeamMembers/member1.png"
+import memeberProfile2 from "./ABOUT/TeamMembers/member2.png"
+import memeberProfile3 from "./ABOUT/TeamMembers/member3.png"
+import memeberProfile4 from "./ABOUT/TeamMembers/member4.png"
 
 export const excellenceData = [
   {
@@ -153,6 +157,50 @@ export const faqData = [
     a: "No, our platform is free to join and offers a range of resources and services to support your professional growth and patient care.",
   },
 ];
+
+
+export const teamMembersData = [
+  {
+    name : "Mujeeb Rahman",
+    qualification: "Founder & CEO Graperoject",
+    profileImage: memeberProfile1
+  },
+  {
+    name : "Shafika Banoo",
+    qualification: "MD Gen Med (MGMC, Puducherry)",
+    profileImage: memeberProfile2
+  },
+  {
+    name : "Beatriz Dorsey Rivera",
+    qualification: "MD, MsC",
+    profileImage: memeberProfile3
+  },
+  {
+    name : "Preeya Desh",
+    qualification: "MD",
+    profileImage: memeberProfile4
+  },
+  {
+    name : "Mujeeb Rahman",
+    qualification: "Founder & CEO Graperoject",
+    profileImage: memeberProfile1
+  },
+  {
+    name : "Shafika Banoo",
+    qualification: "MD Gen Med (MGMC, Puducherry)",
+    profileImage: memeberProfile2
+  },
+  {
+    name : "Beatriz Dorsey Rivera",
+    qualification: "MD, MsC",
+    profileImage: memeberProfile3
+  },
+  {
+    name : "Preeya Desh",
+    qualification: "MD",
+    profileImage: memeberProfile4
+  },
+]
 
 export const footerLinksData = [
   {

@@ -18,7 +18,11 @@ const SectionFive = () => {
                         <p className='hidden lg:block text-tertiary text-base font-normal'>{data.date}</p>
                     </div>
                     <div className='flex flex-col justify-between p-0 md:p-2 lg:p-4  gap-2.5 md:gap-0   md:border-t border-neutral-200'>
-                        <p className='font-normal text-xs xl:text-base 2xl:text-lg text-tertiary w-full'>{data.description}</p>
+                        <p className='font-normal text-xs xl:text-base 2xl:text-lg text-tertiary w-full'>
+                        {data.description.length > 300 
+                ? data.description.slice(0, 300).split(" ").slice(0,-1).join(" ") + " ..."
+                : data.description}
+                        </p>
                         <p className=' lg:hidden text-tertiary text-xs font-normal'>{data.date}</p>
                         <div className='flex justify-start'>
                             <a className='border border-neutral-200 text-[#0C0E12] rounded-full flex gap-1 items-center px-4 py-1.5'>

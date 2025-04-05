@@ -14,7 +14,7 @@ const SearchSection = () => {
       <div className="w-full h-full flex flex-col items-center justify-around">
         {/* ---SEARCH SECT---- */}
         <div className="w-full flex items-center justify-center h-[40vh]">
-          <div className="flex flex-col items-center gap-3 lg:gap-8 w-full lg:w-[40%]">
+          <div className="flex flex-col items-center gap-3 lg:gap-4 xl:gap-8 w-full lg:w-[40%]">
             <h2 className="text-secondary font-semibold text-[2rem] md:text-[2.5rem] lg:text-5xl leading-none">
               GPDN Blog
             </h2>
@@ -51,8 +51,8 @@ const SearchSection = () => {
         </div>
 
         {/* ---FIRST BLOG SECT---- */}
-        <div className="w-full flex flex-col justify-around h-[50vh]">
-          <div className="w-full">
+        <div className="w-full flex flex-col justify-around h-[40vh]">
+          <div className="w-full h-full">
             <div className=" w-full h-full grid grid-flow-row md:grid-flow-col gap-y-2 md:gap-y-0 gap-x-6  md:grid-cols-[0.8fr_1fr] ">
               <div className="h-full w-full flex justify-center items-center  rounded-2xl relative">
                 <Image
