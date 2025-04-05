@@ -1,4 +1,4 @@
-import { blogsData } from '@/app/assets/HOMEPAGE/assets';
+import { blogsData } from '@/app/assets/assets';
 import Image from 'next/image'
 import React from 'react'
 import { CgArrowRight } from "react-icons/cg";
@@ -8,7 +8,7 @@ const SectionFive = () => {
   return (
     <section className="w-full h-auto lg:h-screen  flex justify-center items-center py-5 lg:py-14">
         <div className='w-full h-full grid grid-rows-3 justify-between gap-5'>
-            {blogsData.map((data,index)=>(
+            {blogsData.slice(0,3).map((data,index)=>(
                 <div key={index} className=' w-full h-full grid grid-flow-row md:grid-flow-col gap-y-2 md:gap-y-0  md:grid-cols-[0.5fr_1fr_1fr] '>
                     <div className='h-[12rem]  md:h-full w-full rounded-2xl overflow-hidden'>
                         <Image alt='blog image' src={data.image} className='w-full h-full object-cover object-center rounded-2xl'/>
@@ -26,8 +26,8 @@ const SectionFive = () => {
                                 <CgArrowRight className='text-base xl:text-xl'/>
                             </a>
                         </div>
-                    </div>
-                </div>
+                    </div> 
+                </div> 
             ))}
         </div>
     </section>

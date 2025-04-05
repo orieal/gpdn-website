@@ -1,5 +1,5 @@
 "use client";
-import { faqData } from "@/app/assets/HOMEPAGE/assets";
+import { faqData } from "@/app/assets/assets";
 import React, { useState } from "react";
 import { FaChevronRight } from "react-icons/fa6";
 import { FaChevronDown } from "react-icons/fa6";
