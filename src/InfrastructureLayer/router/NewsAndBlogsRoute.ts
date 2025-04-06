@@ -47,22 +47,22 @@ const newsAndblogsController = new NewsAndBlogsController(newsAndBlogsUsecase);
 const route = express.Router();
   
 
-route.post("/FetchNewsAndBlogs", (req, res, next) => {
+route.get("/FetchNewsAndBlogs", (req, res, next) => {
   newsAndblogsController.FetchNewsAndBlogs(req, res, next);
 });
 route.post("/AddNewsAndBlogs", (req, res, next) => {
   newsAndblogsController.AddNewsAndBlogs(req, res, next);
 });
-route.post("/EditNewsAndBlogs", (req, res, next) => {
+route.patch("/EditNewsAndBlogs", (req, res, next) => {
   newsAndblogsController.EditNewsAndBlogs(req, res, next);
 });
 route.post("/DeleteNewsAndBlogs", (req, res, next) => {
   newsAndblogsController.DeleteNewsAndBlogs(req, res, next);
 });
-route.post("/NewsAndBlogsLike", (req, res, next) => {
+route.patch("/NewsAndBlogsLike", (req, res, next) => {
   newsAndblogsController.NewsAndBlogsLike(req, res, next);
 });
-route.post("/NewsAndBlogsDislike", (req, res, next) => {
+route.patch("/NewsAndBlogsDislike", (req, res, next) => {
   newsAndblogsController.NewsAndBlogsDislike(req, res, next);
 });
 
