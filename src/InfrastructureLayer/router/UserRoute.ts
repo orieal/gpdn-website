@@ -16,7 +16,8 @@ import EncryptPassword from "../services/BcryptPassword";
 import SendEmail from "../services/SendEmail";
 import {AppWriteOtp} from "../services/AppWriteOtp"; 
 import JWTToken from "../services/GenerateToken";
- 
+import upload from "../services/upload";
+
 const generateOtp = new GenerateOtp();
 const encryptPassword = new EncryptPassword();
 const sendEmail = new SendEmail();
@@ -38,9 +39,11 @@ const userController = new UserController(userUsecase);
 
 const route = express.Router();
 
+
 //  Register, Login, Logout, Password Reset.
 
-route.post("/Register", (req, res, next) => {
+
+route.post("/upload",upload.single("file"), (req, res, next) => {
     userController.Register(req, res, next);
   });
 
