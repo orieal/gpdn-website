@@ -7,14 +7,14 @@ import { CgArrowRight } from "react-icons/cg";
 const BlogsSection = () => {
   return (
     <section className="w-full h-auto  flex justify-center items-center py-10">
-      <div className="w-full h-auto grid grid-cols-3 gap-10 grid-flow-row ">
+      <div className="w-full h-auto flex flex-col gap-20 md:gap-10 md:grid  md:grid-cols-2 lg:grid-cols-3  grid-flow-row ">
         {blogsData.slice(0, blogsData.length - 1).map((data, index) => (
           <div key={index} className=" w-full h-auto  flex flex-col justify-between gap-5">
-            <div className="w-full relative rounded-3xl">
+            <div className="w-full h-[25vh] md:h-auto relative rounded-3xl">
               <Image
                 alt="blog image"
                 src={data.image}
-                className="w-full aspect-square object-cover object-center rounded-3xl"
+                className="w-full h-full md:h-auto md:aspect-square object-cover object-center rounded-3xl"
               />
             </div>
 

@@ -5,7 +5,14 @@ import { CgArrowRight } from "react-icons/cg";
 import { LuSearch } from "react-icons/lu";
 
 const SearchSection = () => {
-  const topics = ["All","Diabetes", "Cancer", "Virus", "Healthy Food", "Lifestyle"];
+  const topics = [
+    "All",
+    "Diabetes",
+    "Cancer",
+    "Virus",
+    "Healthy Food",
+    "Lifestyle",
+  ];
 
   const latestBlogData = blogsData[blogsData.length - 1];
 
@@ -13,8 +20,8 @@ const SearchSection = () => {
     <section className="w-full h-full  flex justify-center items-center">
       <div className="w-full h-full flex flex-col items-center justify-around">
         {/* ---SEARCH SECT---- */}
-        <div className="w-full flex items-center justify-center h-[40vh]">
-          <div className="flex flex-col items-center gap-3 lg:gap-4 xl:gap-8 w-full lg:w-[40%]">
+        <div className="w-full flex items-center justify-center h-[35vh] md:h-[40vh]">
+          <div className="flex flex-col items-center gap-3 lg:gap-4 xl:gap-8 w-full md:w-[80%] lg:w-[40%]">
             <h2 className="text-secondary font-semibold text-[2rem] md:text-[2.5rem] lg:text-5xl leading-none">
               GPDN Blog
             </h2>
@@ -51,10 +58,10 @@ const SearchSection = () => {
         </div>
 
         {/* ---FIRST BLOG SECT---- */}
-        <div className="w-full flex flex-col justify-around h-[40vh]">
-          <div className="w-full h-full">
-            <div className=" w-full h-full grid grid-flow-row md:grid-flow-col gap-y-2 md:gap-y-0 gap-x-6  md:grid-cols-[0.8fr_1fr] ">
-              <div className="h-full w-full flex justify-center items-center  rounded-2xl relative">
+        <div className="w-full flex justify-center items-center h-[50vh]  lg:h-[40vh]">
+          <div className="w-full h-full flex justify-center items-center ">
+            <div className=" w-full h-full flex flex-col gap-6 md:gap-0 justify-around  lg:grid  lg:grid-flow-col  lg:gap-x-6  lg:grid-cols-[0.8fr_1fr]">
+              <div className="h-[60vh] lg:h-full w-full flex justify-center items-center  rounded-2xl relative">
                 <Image
                   alt="blog image"
                   src={latestBlogData.image}
@@ -62,29 +69,27 @@ const SearchSection = () => {
                   className="h-full w-full object-cover object-center rounded-2xl"
                 />
               </div>
-              <div className="flex flex-col  h-full">
-                <div className="flex flex-col lg:w-[80%]  h-full p-0 md:p-2 lg:p-4 gap-3">
+              <div className="flex flex-col gap-0 md:gap-3 lg:gap-0 lg:w-[80%] w-full  h-full p-0 md:p-2 lg:p-4 justify-around md:justify-center lg:justify-around">
                 <div className="flex items-center gap-3">
-                    <a className="flex items-center justify-center font-poppins font-medium text-sm  text-primary">
-                      Cancer
-                    </a>
-                    <p className=" text-tertiary text-base font-normal">
-                      {latestBlogData.date}
-                    </p>
-                  </div>
-                  <h2 className="text-lg xl:text-3xl 2xl:text-4xl font-semibold">
-                    {latestBlogData.heading}
-                  </h2>
-                  <p className="font-normal text-xs xl:text-base 2xl:text-lg text-tertiary w-full">
-                    {latestBlogData.description}
+                  <a className="flex items-center justify-center font-poppins font-medium text-sm  text-primary">
+                    Cancer
+                  </a>
+                  <p className=" text-tertiary text-base font-normal">
+                    {latestBlogData.date}
                   </p>
-                 
-                  <div className="flex justify-start">
-                    <a className="border border-neutral-200 text-[#0C0E12] rounded-full flex gap-1 items-center px-4 py-1.5">
-                      <p className="text-xs xl:text-base">Read More</p>
-                      <CgArrowRight className="text-base xl:text-xl" />
-                    </a>
-                  </div>
+                </div>
+                <h2 className="text-lg xl:text-3xl 2xl:text-4xl font-semibold">
+                  {latestBlogData.heading}
+                </h2>
+                <p className="font-normal text-xs xl:text-base 2xl:text-lg text-tertiary w-full">
+                  {latestBlogData.description}
+                </p>
+
+                <div className="flex justify-start">
+                  <a className="border border-neutral-200 text-[#0C0E12] rounded-full flex gap-1 items-center px-4 py-1.5">
+                    <p className="text-xs xl:text-base">Read More</p>
+                    <CgArrowRight className="text-base xl:text-xl" />
+                  </a>
                 </div>
               </div>
             </div>

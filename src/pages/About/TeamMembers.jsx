@@ -5,13 +5,13 @@ import React from 'react'
 const TeamMembers = () => {
   return (
     <section className="w-full h-auto  flex justify-center items-center py-10">
-      <div className='w-full h-auto flex flex-col gap-10 items-start'>
-        <h3 className='text-5xl text-secondary font-semibold'>Meet our Dedicated Team</h3>
+      <div className='w-full h-auto flex flex-col gap-5 md:gap-8 lg:gap-10 items-start'>
+        <h3 className='w-full text-4xl md:text-5xl text-secondary font-semibold'>Meet our<br className='md:hidden'/> Dedicated Team</h3>
         <div className='flex justify-start items-center'>
-        <p className='text-lg font-normal text-tertiary w-[60%]'>Get to know the faces behind our company's success, their stories, expertise, and unwavering commitment to excellence.</p>
+        <p className='text-base md:text-lg font-normal text-tertiary w-full md:w-[80%] lg:w-[60%]'>Get to know the faces behind our company's success, their stories, expertise, and unwavering commitment to excellence.</p>
         </div>
 
-        <div className='w-full h-auto grid grid-cols-4 grid-flow-row gap-x-4 gap-y-12'>
+        <div className='w-full h-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-flow-row gap-x-4 gap-y-12'>
           {
             teamMembersData.map((memberData,index)=>(
               <div key={index} className='w-full h-auto flex flex-col gap-4 '>

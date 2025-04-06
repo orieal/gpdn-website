@@ -1,13 +1,28 @@
+"use client";
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import logoGpdn from '../../public/logo-gpdn.png'
 import Link from 'next/link'
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
+import MobileMenu from './MobileMenu';
+import { CgClose } from "react-icons/cg";
+
 
 
 const Navbar = () => {
+
+    const [isShowMenu, setIsShowMenu] = useState(false);
+
+        useEffect(() => {
+            if (isShowMenu) {
+              document.body.classList.add('overflow-hidden');
+            } else {
+              document.body.classList.remove('overflow-hidden');
+            }
+          }, [isShowMenu]);
+    
   return (
-    <div className='w-full '>
+    <div className='w-full relative'>
         <div className='w-full flex justify-between items-center'>
             {/* ----- Logo and Navlinks------- */}
             <div className='flex justify-between items-center gap-16'>
@@ -33,11 +48,16 @@ const Navbar = () => {
             {/* ---Get Started button--- */}
             <button className='bg-primary text-white text-xs 2xl:text-xl font-poppins py-3.5 px-5 rounded-md hidden md:block'>Get Started</button>
 
-            {/* ----Mobile Menu Icon--- */}
+            {/* ----Mobile Menu Icon and close icon--- */}
             <div className='md:hidden'>
-                <HiOutlineMenuAlt2 className='text-4xl '/>
+                {isShowMenu ? <CgClose onClick={()=>setIsShowMenu(!isShowMenu)} className='text-4xl'/> :
+                <HiOutlineMenuAlt2 onClick={()=>setIsShowMenu(!isShowMenu)} className='text-4xl '/>
+  }
             </div>
         </div>
+
+        {/* -----Mobile Menu------- */}
+        <MobileMenu isShowMenu={isShowMenu} setIsShowMenu={setIsShowMenu}/>
     </div>
   )
 }

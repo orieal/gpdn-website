@@ -10,7 +10,7 @@ const RelatedBlogs = ({ blogId }) => {
       <div className="flex flex-col items-start gap-4 w-full">
         <h2 className="font-semibold text-[2.5rem]">Related Articles</h2>
         <div className="overflow-x-scroll">
-          <div className="w-full h-auto grid grid-cols-3 gap-10 grid-flow-row ">
+          <div className="w-full h-auto grid grid-cols-1 md:grid-cols-3 gap-10 grid-flow-row ">
             {blogsData.slice(0, 3).map((data, index) => (
               <div
                 key={index}
