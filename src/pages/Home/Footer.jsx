@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import logo from "../../app/assets/HOMEPAGE/Footer/logo.png";
 import { CgArrowRight } from "react-icons/cg";
-import { footerLinksData } from "@/app/assets/HOMEPAGE/assets";
+import { footerLinksData } from "@/app/assets/assets";
 import { RiTwitterXLine } from "react-icons/ri";
 import { RiFacebookCircleFill } from "react-icons/ri";
 import { RiLinkedinBoxFill } from "react-icons/ri";

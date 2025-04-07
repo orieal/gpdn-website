@@ -118,21 +118,21 @@ const SectionOne = () => {
                 </h2>
               </div>
               <div className="grid grid-flow-col lg:grid-cols-4 auto-cols-max justify-start items-center lg:gap-x-0 gap-x-4">
-                <div className="h-14 2xl:h-full w-14 2xl:w-full flex justify-center items-center">
+                <div className="h-14 2xl:h-full w-14 2xl:w-full flex justify-center items-center p-2">
                   <Image
                     alt="Doctor profile image"
                     className="rounded-full w-full h-full"
                     src={doctorImage1}
                   />
                 </div>
-                <div className="h-14 2xl:h-full w-14 2xl:w-full  flex justify-center items-center">
+                <div className="h-14 2xl:h-full w-14 2xl:w-full  flex justify-center items-center p-2">
                   <Image
                     alt="Doctor profile image"
                     className="rounded-full w-full h-full"
                     src={doctorImage2}
                   />
                 </div>
-                <div className="h-14 2xl:h-full w-14 2xl:w-full flex justify-center items-center">
+                <div className="h-14 2xl:h-full w-14 2xl:w-full flex justify-center items-center p-2">
                   <Image
                     alt="Doctor profile image"
                     className="rounded-full w-full h-full"
