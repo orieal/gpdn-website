@@ -59,6 +59,9 @@ route.patch("/EditNewsAndBlogs", (req, res, next) => {
 route.post("/DeleteNewsAndBlogs", (req, res, next) => {
   newsAndblogsController.DeleteNewsAndBlogs(req, res, next);
 });
+route.get("/SearchNewsAndBlogs", (req, res, next) => {
+  newsAndblogsController.SearchNewsAndBlogs(req, res, next);
+});
 route.patch("/NewsAndBlogsLike", (req, res, next) => {
   newsAndblogsController.NewsAndBlogsLike(req, res, next);
 });

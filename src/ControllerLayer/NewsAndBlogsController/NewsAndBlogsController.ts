@@ -69,6 +69,24 @@ class NewsAndBlogsController {
     }
   }
 
+  
+  async SearchNewsAndBlogs(req: Request, res: Response, next: NextFunction){
+    try{
+
+      const {searchInp} = req.body;
+
+      const searchNewsAndBlogs = await this.NewsAndBlogsUsecase.SearchNewsAndBlogsForm(searchInp)
+      return res.json({
+        success: searchNewsAndBlogs?.success,
+        status: searchNewsAndBlogs?.status,
+        data: searchNewsAndBlogs?.data,
+      });       
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+
   async NewsAndBlogsLike(req: Request, res: Response, next: NextFunction){
     try{
       

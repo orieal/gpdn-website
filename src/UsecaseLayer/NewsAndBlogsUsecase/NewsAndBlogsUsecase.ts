@@ -112,6 +112,7 @@ class NewsAndBlogsUsecase {
    async DeleteNewsAndBlogsForm(BlogId:string){
     try{
         const deleteNewsAndBlogs =await  this.NewsAndBlogsRepository.deleteNewsAndBlogs(BlogId);
+        
         if(!deleteNewsAndBlogs){
           return {
             success: false,
@@ -132,6 +133,30 @@ class NewsAndBlogsUsecase {
     }
    }
 
+
+   
+   async SearchNewsAndBlogsForm(searchInp:string){
+    try{
+        const searchNewsAndBlogs =await  this.NewsAndBlogsRepository.searchNewsAndBlogs(searchInp);
+        if(!searchNewsAndBlogs){
+          return {
+            success: false,
+            status: 400,
+            data:{
+              message:"Failed to search newsandblogs! ,Please try later."
+            },
+          };
+        }else{
+          return {
+            success: true,
+            status: 200,
+            data:searchNewsAndBlogs,
+          };
+        }
+    }catch(error){
+      console.log(error)
+    }
+   }
    
 
    async NewsAndBlogsLikeForm(BlogId:string , userId:string){

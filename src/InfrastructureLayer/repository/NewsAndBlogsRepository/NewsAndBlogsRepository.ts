@@ -6,7 +6,7 @@ import BlogSchema from "../../database/BlogSchema";
 class NewsAndBlogsRepository implements NewsAndBlogsRepo {
 
     
-    async fetchNewsAndBlogs(): Promise<string | any> {
+    async fetchNewsAndBlogs(): Promise<IBlog | any> {
         try {
           const NewsAndBlogs = await BlogSchema.find();
           return NewsAndBlogs;
@@ -17,7 +17,7 @@ class NewsAndBlogsRepository implements NewsAndBlogsRepo {
       }
 
       
-      async addNewsAndBlogs(NewsAndBlogs:IBlog): Promise<string | any> {
+      async addNewsAndBlogs(NewsAndBlogs:IBlog): Promise<IBlog | any> {
         try {
           const newNewsAndBlogs = new BlogSchema(NewsAndBlogs);
           const savedNewsAndBlogs = await newNewsAndBlogs.save();
@@ -29,13 +29,14 @@ class NewsAndBlogsRepository implements NewsAndBlogsRepo {
       }
       
 
-      async editNewsAndBlogs(NewsAndBlogs:IBlog): Promise<string | any> {
+      async editNewsAndBlogs(NewsAndBlogs:IBlog): Promise<IBlog | any> {
         try {
-          const editNewsAndBlogs = await BlogSchema.findOneAndUpdate(
-            { _id: NewsAndBlogs._id }, 
-            { $set: { ...NewsAndBlogs } },      
-            { new: true }                       
+          const editNewsAndBlogs = await BlogSchema.findByIdAndUpdate(
+            NewsAndBlogs._id,
+            { $set: NewsAndBlogs },
+            { new: true }
           );
+          
          return editNewsAndBlogs;
         } catch (error) {
           console.log(error);
@@ -44,7 +45,7 @@ class NewsAndBlogsRepository implements NewsAndBlogsRepo {
       }
       
 
-      async deleteNewsAndBlogs(BlogId:string): Promise<string | any> {
+      async deleteNewsAndBlogs(BlogId:string): Promise<IBlog | any> {
         try {
           const savedNewsAndBlogs = await BlogSchema.findOneAndDelete({_id:BlogId});
           return savedNewsAndBlogs;
@@ -54,7 +55,24 @@ class NewsAndBlogsRepository implements NewsAndBlogsRepo {
         }
       }
 
-      async findNewsAndBlogsById(BlogId:string ): Promise<string | any> {
+      
+
+      async searchNewsAndBlogs(searchInp:string): Promise<IBlog | any> {
+        try {
+          const searchNewsAndBlogs = await BlogSchema.find ({
+            $or: [
+              { title: { $regex: searchInp, $options: "i" } },
+              { content: { $regex: searchInp, $options: "i" } },
+            ]
+          });
+          return searchNewsAndBlogs;
+        } catch (error) {
+          console.log(error);
+          return error;
+        }
+      }
+
+      async findNewsAndBlogsById(BlogId:string ): Promise<IBlog | any> {
         try {
           const NewsAndBlogs = await BlogSchema.findOne({ _id : BlogId });
           return NewsAndBlogs;
