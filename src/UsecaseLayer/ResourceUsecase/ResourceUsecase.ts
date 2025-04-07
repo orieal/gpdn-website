@@ -9,7 +9,6 @@ import {account} from "../../InfrastructureLayer/services/AppWriteOtp";
 import JWTToken from "../../InfrastructureLayer/services/GenerateToken";
 
 
-import { Client, Account, ID } from "appwrite";
 
 // import IUser from "../../domainLayer/userDomain";
 // import UserModel from "../../infrastructureLayer/database/UserModel";
