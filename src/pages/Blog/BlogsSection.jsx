@@ -27,7 +27,7 @@ const BlogsSection = () => {
                   {data.date}
                 </p>
               </div>
-              <h2 className="text-xl font-semibold">
+              <h2 className="text-xl font-semibold text-black">
                 {data.heading}
               </h2>
               <p className="font-normal text-sm  text-tertiary w-full">
