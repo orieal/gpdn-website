@@ -8,7 +8,6 @@ import {account} from "../../InfrastructureLayer/services/AppWriteOtp";
 import JWTToken from "../../InfrastructureLayer/services/GenerateToken";
 
 
-import { Client, Account, ID } from "appwrite";
 
 // import IUser from "../../domainLayer/userDomain";
 // import UserModel from "../../infrastructureLayer/database/UserModel";
@@ -86,9 +85,9 @@ class NewsAndBlogsUsecase {
    }
 
    
-   async EditNewsAndBlogsForm(title:string , content:string , authorId:string){
+   async EditNewsAndBlogsForm(title:string , content:string , _id:string){
     try{
-        const editNewsAndBlogs = {title , content , authorId}
+        const editNewsAndBlogs = {title , content , _id}
         const EditNewsAndBlogs =await  this.NewsAndBlogsRepository.editNewsAndBlogs(editNewsAndBlogs);
         if(!EditNewsAndBlogs){
           return {
@@ -147,16 +146,15 @@ class NewsAndBlogsUsecase {
             },
           };
         }
-    
+     
         const userObjectId = new mongoose.Types.ObjectId(userId);
     
         const likeIndex = NewsAndBlogs.likes?.findIndex((id:any) => id.equals(userObjectId));
         const dislikeIndex = NewsAndBlogs.dislikes?.findIndex((id:any) => id.equals(userObjectId));
-    
-        if (likeIndex !== -1) {
-          NewsAndBlogs.like?.splice(likeIndex, 1);
+         if (likeIndex !== -1) {
+           NewsAndBlogs.likes?.splice(likeIndex, 1);
         } else {
-          NewsAndBlogs.like?.push(userObjectId);
+           NewsAndBlogs.likes?.push(userObjectId);
           
           if (dislikeIndex !== -1) {
             NewsAndBlogs.dislikes?.splice(dislikeIndex, 1);
@@ -194,11 +192,11 @@ class NewsAndBlogsUsecase {
         const dislikeIndex = NewsAndBlogs.dislikes?.findIndex((id:any) => id.equals(userObjectId));
     
         if (dislikeIndex !== -1) {
-          NewsAndBlogs.dislike?.splice(dislikeIndex, 1);
+          NewsAndBlogs.dislikes?.splice(dislikeIndex, 1);
         } else {
-          NewsAndBlogs.dislike?.push(userObjectId);
+          NewsAndBlogs.dislikes?.push(userObjectId);
           
-          if (dislikeIndex !== -1) {
+          if (likeIndex !== -1) {
             NewsAndBlogs.likes?.splice(likeIndex, 1);
           }
         }

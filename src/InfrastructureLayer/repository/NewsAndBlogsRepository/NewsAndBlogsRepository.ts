@@ -31,10 +31,10 @@ class NewsAndBlogsRepository implements NewsAndBlogsRepo {
 
       async editNewsAndBlogs(NewsAndBlogs:IBlog): Promise<string | any> {
         try {
-          const editNewsAndBlogs = await BlogSchema.findByIdAndUpdate(
-            NewsAndBlogs._id,
-            { $set: { ...NewsAndBlogs } },
-            { new: true }
+          const editNewsAndBlogs = await BlogSchema.findOneAndUpdate(
+            { _id: NewsAndBlogs._id }, 
+            { $set: { ...NewsAndBlogs } },      
+            { new: true }                       
           );
          return editNewsAndBlogs;
         } catch (error) {
@@ -46,7 +46,7 @@ class NewsAndBlogsRepository implements NewsAndBlogsRepo {
 
       async deleteNewsAndBlogs(BlogId:string): Promise<string | any> {
         try {
-          const savedNewsAndBlogs = await BlogSchema.findByIdAndDelete(BlogId);
+          const savedNewsAndBlogs = await BlogSchema.findOneAndDelete({_id:BlogId});
           return savedNewsAndBlogs;
         } catch (error) {
           console.log(error);

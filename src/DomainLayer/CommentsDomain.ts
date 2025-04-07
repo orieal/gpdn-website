@@ -7,6 +7,11 @@ import mongoose from "mongoose";
     blogId?:string;
     authorId: string;  
     content: string;
+    reply?:{
+      userId: mongoose.Types.ObjectId;
+      content: string;
+      createdAt?: Date;
+    }[];
     likes?: mongoose.Types.ObjectId[]; 
     dislikes?: mongoose.Types.ObjectId[]; 
     createdAt?: Date;

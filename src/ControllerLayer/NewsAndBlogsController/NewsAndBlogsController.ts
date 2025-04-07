@@ -41,9 +41,9 @@ class NewsAndBlogsController {
   async EditNewsAndBlogs(req: Request, res: Response, next: NextFunction){
     try{
       
-      const { title , content , authorId ,} = req.body;
+      const {_id , title , content } = req.body;
 
-      const editNewsAndBlogs =await this.NewsAndBlogsUsecase.EditNewsAndBlogsForm( title , content , authorId  )
+      const editNewsAndBlogs =await this.NewsAndBlogsUsecase.EditNewsAndBlogsForm( title , content , _id  )
       return res.json({
         success: editNewsAndBlogs?.success,
         status: editNewsAndBlogs?.status,

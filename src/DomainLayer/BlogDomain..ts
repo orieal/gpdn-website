@@ -2,7 +2,7 @@
     _id?: string;
     title: string;
     content: string;
-    authorId: string; 
+    authorId?: string; 
     approvalStatus?: boolean;
     likes?: number;
     dislikes?:number;

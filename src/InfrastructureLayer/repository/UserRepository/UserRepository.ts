@@ -6,6 +6,8 @@ import IOtp from "../../../DomainLayer/OtpDomain";
 import OtpSchema from "../../database/OtpSchema";
 
 class UserRepository implements UserRepo {
+
+
   async findByEmail(email: string): Promise<IUser | any> {
     try {
       const User = await UserSchema.findOne({ email: email });

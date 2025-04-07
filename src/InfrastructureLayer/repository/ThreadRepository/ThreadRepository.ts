@@ -77,6 +77,7 @@ class ThreadRepository implements ThreadRepo {
 
   async deleteThread(threadId: string): Promise<string | any> {
     try {
+      const deleteComment = await CommentSchema.deleteMany({ threadId: threadId });
       const deleteThread = await ThreadSchema.deleteOne({ _id: threadId });
       return deleteThread;
     } catch (error) {

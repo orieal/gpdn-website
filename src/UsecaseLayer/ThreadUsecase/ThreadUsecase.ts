@@ -10,7 +10,6 @@ import JWTToken from "../../InfrastructureLayer/services/GenerateToken";
 
 import { v4 as uuidv4 } from 'uuid';
 
-import { Client, Account, ID } from "appwrite";
     
 
 class ThreadUsecase {

@@ -1,5 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import UserUsecase from "../../UsecaseLayer/UserUsecase/UserUsecase";
+import { Client, Storage, ID } from "node-appwrite";
+ 
+import fs from 'fs';
+import  storage  from "../../InfrastructureLayer/services/AppwriteImage";  
 
 
 class UserController {
@@ -8,6 +12,8 @@ class UserController {
   constructor(UserUsecase: UserUsecase) {
     this.UserUsecase = UserUsecase;
   }
+
+  
 
   async Register(req: Request, res: Response, next: NextFunction) {
     try {
@@ -27,32 +33,35 @@ class UserController {
         specialInterestsInPalliativeCare,
         role,
         password,
-        registrationStatus,
+        registrationStatus
       } = req.body;
 
-      if (
-        !fullName ||
-        !email ||
-        !phoneNumber ||
-        !photo ||
-        !bio ||
-        !countryOfPractice ||
-        !medicalQualification ||
-        !yearOfGraduation ||
-        !hasFormalTrainingInPalliativeCare ||
-        !medicalRegistrationAuthority ||
-        !medicalRegistrationNumber ||
-        !affiliatedPalliativeAssociations ||
-        !specialInterestsInPalliativeCare ||
-        !role ||
-        !password ||
-        !registrationStatus
-      ) {
-        return res.status(400).json({
-          success: false,
-          message: "Missing required fields.",
-        });
-      }
+      // if (
+        
+      
+      // ) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     status:400,
+      //     message: "Missing required fields.",
+      //   });
+      // }
+      
+      const file = req.file?.buffer;
+console.log(req.file?.buffer,req.file,photo)
+if (!file) {
+  return res.status(400).json({ error: "No file uploaded" });
+}
+// const fileStream = fs.createReadStream(file.path);
+// console.log("file test :" , fileStream)
+return 
+
+// const result = await storage.createFile(
+//   'your-bucket-id',
+//   ID.unique(),
+//   fileStream,
+//   file.originalname // Pass the name explicitly
+// );
 
       const registrationForm = await this.UserUsecase.registrationForm(
         fullName,

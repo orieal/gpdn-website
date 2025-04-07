@@ -1,4 +1,4 @@
-import { Client, Account, ID } from "appwrite";
+import { Client, Account, ID } from "node-appwrite";
 import AppWriteOtpSend from "../../UsecaseLayer/Interface/AppWriteOtp";
 
 const client = new Client();
