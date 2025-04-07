@@ -1,7 +1,7 @@
 import React from "react";
 import teamImage from '../../app/assets/HOMEPAGE/SectionTwo/team.png'
 import Image from "next/image";
-import { excellenceData } from "@/app/assets/HOMEPAGE/assets";
+import { excellenceData } from "@/app/assets/assets";
 
 const SectionTwo = () => {
   return (
