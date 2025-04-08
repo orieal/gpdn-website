@@ -25,7 +25,7 @@ const SectionFive = () => {
                         </p>
                         <p className=' lg:hidden text-tertiary text-xs font-normal'>{data.date}</p>
                         <div className='flex justify-start'>
-                            <a className='border border-neutral-200 text-[#0C0E12] rounded-full flex gap-1 items-center px-4 py-1.5'>
+                            <a className='border border-neutral-200 bg-white hover:bg-neutral-200 transition-all duration-300 ease-in cursor-pointer  text-[#0C0E12] rounded-full flex gap-1 items-center px-4 py-1.5'>
                                 <p className='text-xs xl:text-base'>Read More</p>
                                 <CgArrowRight className='text-base xl:text-xl'/>
                             </a>

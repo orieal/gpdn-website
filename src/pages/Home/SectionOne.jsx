@@ -11,6 +11,7 @@ import connectionsImage from "../../app/assets/HOMEPAGE/SectionOne/connection.pn
 import { PiArrowUpRightLight } from "react-icons/pi";
 import { GoChevronRight } from "react-icons/go";
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 
 
 const SectionOne = () => {
@@ -47,7 +48,7 @@ const SectionOne = () => {
                   </p>
                   <div>
                    <div className="flex ">
-                   <div className="bg-primary  hover:bg-[#029e94] cursor-pointer transition-all duration-300 text-white text-base 2xl:text-xl font-poppins py-3.5 px-5 rounded-xl flex items-center justify-around">
+                   <div className="bg-primary  hover:bg-[#039187] cursor-pointer transition-all duration-300 ease-in text-white text-base 2xl:text-xl font-poppins py-3.5 px-5 rounded-xl flex items-center justify-around">
                       <p>Join the Network</p>
                       <GoChevronRight/>
                     </div>
@@ -179,9 +180,12 @@ const SectionOne = () => {
                     src={doctorImage3}
                   />
                 </div>
-                <div className="rounded-full hover:bg-[#CACACA] text-[#CACACA] hover:text-primary border border-[#CACACA] h-16 2xl:h-full w-16 2xl:w-full flex justify-center justify-self-end items-center">
+                <Link href={'/about'}>
+                <div className="rounded-full hover:bg-[#CACACA] text-[#CACACA] transition-all duration-300 ease-in cursor-pointer hover:text-primary border border-[#CACACA] h-16 2xl:h-full w-16 2xl:w-full flex justify-center justify-self-end items-center">
                   <PiArrowUpRightLight className=" text-5xl " />
                 </div>
+                </Link>
+                
               </div>
 
               <p className="font-normal text-sm overflow-hidden w-full">

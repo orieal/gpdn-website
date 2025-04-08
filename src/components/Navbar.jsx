@@ -47,7 +47,7 @@ const Navbar = () => {
             </div>
 
             {/* ---Get Started button--- */}
-            <div className='bg-primary hover:bg-[#029e94] cursor-pointer transition-all duration-300 text-white text-sm 2xl:text-xl font-poppins py-3 px-5 rounded-xl hidden items-center justify-around md:flex '>
+            <div className='bg-primary hover:bg-[#039187] cursor-pointer transition-all duration-300 ease-in text-white text-sm 2xl:text-xl font-poppins py-3 px-5 rounded-xl hidden items-center justify-around md:flex '>
                 <p>Explore</p>
                 <GoChevronRight/>
             </div>

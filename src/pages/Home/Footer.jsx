@@ -119,13 +119,13 @@ const Footer = () => {
         <div className="w-full border-t  border-t-white border-opacity-30  flex justify-center items-center py-6 pb-12 md:pb-6">
           <div className="flex w-full justify-between px-7 md:px-20">
             <div className="hidden md:flex justify-between gap-4 text-white ">
-              <a href="" className=" text-xs lg:text-base  font-normal">
+              <a href="" className=" text-xs lg:text-base hover:opacity-65 transition-all duration-300 ease-in  font-normal">
                 Privacy Policy
               </a>
-              <a href="" className=" text-xs lg:text-base font-normal">
+              <a href="" className=" text-xs lg:text-base hover:opacity-65 transition-all duration-300 ease-in font-normal">
                 Terms & Condition
               </a>
-              <a href="" className=" text-xs lg:text-base font-normal">
+              <a href="" className=" text-xs lg:text-base hover:opacity-65 transition-all duration-300 ease-in font-normal">
                 Cookies
               </a>
             </div>

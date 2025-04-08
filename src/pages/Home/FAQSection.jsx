@@ -18,24 +18,25 @@ const FAQSection = () => {
         <div className="h-full w-full  flex flex-col gap-3">
           {faqData.map((data, index) => (
             <div
+            onClick={() => {
+              if (activeFaq == index + 1) {
+                setActiveFaq(0);
+              } else {
+                setActiveFaq(index + 1);
+              }
+            }}
               key={index}
-              className={`w-full h-auto rounded-lg flex flex-col gap-3 p-5 lg:p-8 ${
+              className={`w-full h-auto cursor-pointer rounded-lg flex flex-col gap-3 p-5 lg:p-8 ${
                 activeFaq == index + 1 ? "shadow-faqActive" : "shadow-faqNormal"
               }`}
             >
-              <div className="flex items-center justify-between">
+              <div  className="flex items-center justify-between">
                 <h2 className="text-[#252525] font-medium font-poppins text-sm md:text-[1rem] lg:text-[1.4rem]">
                   {data.q}
                 </h2>
                <div className="flex items-center justify-center">
                <div
-                  onClick={() => {
-                    if (activeFaq == index + 1) {
-                      setActiveFaq(0);
-                    } else {
-                      setActiveFaq(index + 1);
-                    }
-                  }}
+                  
                   className={`${
                     activeFaq == index + 1 ? "bg-secondary" : "bg-white"
                   } cursor-pointer rounded-full shadow-faqRound w-10 h-10 flex items-center justify-center`}
@@ -54,9 +55,8 @@ const FAQSection = () => {
                   activeFaq === index + 1 ? { height: "auto" } : { height: 0 }
                 }
                 transition={{
-                  delay: 0.1,
                   duration: 0.5,
-                  ease: "easeInOut",
+                  ease: "easeIn",
                 }}
                 className={`text-tertiary text-[0.65rem] md:text-[0.8rem] lg:text-lg font-sans font-normal transition-all overflow-hidden`}
               >

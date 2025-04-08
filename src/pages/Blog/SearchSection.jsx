@@ -31,7 +31,7 @@ const SearchSection = () => {
               partnerships to get insight into the world’s work marketplace.
             </p>
            </div>
-            <div className="flex items-center w-full border-2 border-secondary rounded-3xl py-2.5 px-2 cursor-text">
+            <div className="flex items-center w-full border-2 border-secondary rounded-3xl py-2.5  cursor-text">
               <label
                 className="flex justify-center items-center px-7 cursor-text"
                 htmlFor="searchText"
@@ -39,7 +39,7 @@ const SearchSection = () => {
                 <LuSearch className="text-tertiary text-xl" />
               </label>
               <input
-                className="outline-none w-full text-base placeholder:text-base placeholder:text-tertiary text-tertiary placeholder:font-poppins font-poppins placeholder:font-normal font-normal"
+                className="outline-none rounded-3xl w-full text-base placeholder:text-base placeholder:text-tertiary text-tertiary placeholder:font-poppins font-poppins placeholder:font-normal font-normal"
                 type="text"
                 name=""
                 id="searchText"
@@ -71,8 +71,9 @@ const SearchSection = () => {
                   className="h-full w-full object-cover object-center rounded-2xl"
                 />
               </div>
-              <div className="flex flex-col gap-0 md:gap-3 lg:gap-0 lg:w-[80%] w-full  h-full p-0 md:p-2 lg:p-4 justify-around md:justify-center lg:justify-around">
-                <div className="flex items-center gap-3">
+              <div className="flex flex-col gap-0 md:gap-3 lg:gap-0 lg:w-[80%] w-full  h-full px-0 md:px-2 lg:px-4  justify-around md:justify-center lg:justify-between">
+               <div className="flex flex-col gap-0 md:gap-3 lg:gap-3 ">
+               <div className="flex items-center gap-3">
                   <a className="flex items-center justify-center font-poppins font-medium text-sm  text-primary">
                     Cancer
                   </a>
@@ -86,9 +87,10 @@ const SearchSection = () => {
                 <p className="font-normal text-xs xl:text-base 2xl:text-lg text-tertiary w-full">
                   {latestBlogData.description}
                 </p>
+               </div>
 
                 <div className="flex justify-start">
-                  <a className="border border-neutral-200 text-[#0C0E12] rounded-full flex gap-1 items-center px-4 py-1.5">
+                  <a className="border border-neutral-200 bg-white hover:bg-neutral-200 transition-all duration-300 ease-in cursor-pointer text-[#0C0E12] rounded-full flex gap-1 items-center px-4 py-1.5">
                     <p className="text-xs xl:text-base">Read More</p>
                     <CgArrowRight className="text-base xl:text-xl" />
                   </a>
