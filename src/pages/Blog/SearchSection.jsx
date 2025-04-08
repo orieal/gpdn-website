@@ -21,14 +21,16 @@ const SearchSection = () => {
       <div className="w-full h-full flex flex-col items-center justify-around">
         {/* ---SEARCH SECT---- */}
         <div className="w-full flex items-center justify-center h-[35vh] md:h-[40vh]">
-          <div className="flex flex-col items-center gap-3 lg:gap-4 xl:gap-8 w-full md:w-[80%] lg:w-[40%]">
-            <h2 className="text-secondary font-semibold text-[2rem] md:text-[2.5rem] lg:text-5xl leading-none">
+          <div className="flex flex-col items-center gap-3 lg:gap-4 xl:gap-14 w-full md:w-[80%] lg:w-[40%]">
+           <div className="flex flex-col items-center gap-1 lg:gap-2">
+           <h2 className="text-secondary font-semibold text-[2rem] md:text-[2.5rem] lg:text-5xl leading-none">
               GPDN Blog
             </h2>
             <p className="font-medium text-sm lg:text-base leading-normal text-[#525252] text-center">
               Read updates on GPDN Blog , corporate initiatives, and
               partnerships to get insight into the world’s work marketplace.
             </p>
+           </div>
             <div className="flex items-center w-full border-2 border-secondary rounded-3xl py-2.5 px-2 cursor-text">
               <label
                 className="flex justify-center items-center px-7 cursor-text"
@@ -44,7 +46,7 @@ const SearchSection = () => {
                 placeholder="search..."
               />
             </div>
-            <div className="flex w-full items-center justify-between">
+            {/* <div className="flex w-full items-center justify-between">
               {topics.map((topic, index) => (
                 <a
                   key={index}
@@ -53,7 +55,7 @@ const SearchSection = () => {
                   {topic}
                 </a>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
 
