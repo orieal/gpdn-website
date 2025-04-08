@@ -13,7 +13,7 @@ const Footer = () => {
     <div className="w-full h-auto bg-secondary flex justify-center items-center px-7 md:px-20">
       <div className="w-full h-full flex flex-col">
         {/* ---Top Part--- */}
-        <div className="w-full h-full grid grid-flow-row md:grid-flow-col  md:grid-cols-[0.4fr_1fr] lg:grid-cols-[0.8fr_1fr] md:gap-x-12 lg:gap-x-28 py-4 md:py-10">
+        <div className="w-full h-full grid grid-flow-row md:grid-flow-col  md:grid-cols-[0.4fr_1fr] lg:grid-cols-[0.8fr_1fr] md:gap-x-12 lg:gap-x-28 py-7 md:py-20">
           {/* ---Left section-- */}
           <div className="flex flex-col justify-between gap-4 lg:gap-0 w-full">
             <div className="flex flex-col gap-2 lg:gap-5">
@@ -39,7 +39,7 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-            <h2 className="text-lg pt-5 md:pt-0 border-t md:border-none border-t-white border-opacity-30 lg:text-[2rem] font-semibold text-white">
+            <h2 className="text-lg leading-tight pt-5 md:pt-0 border-t md:border-none border-t-white border-opacity-30 lg:text-[2rem] font-semibold text-white">
               Join Our Newsletter to Keep Up to Date with Us!
             </h2>
             <div className="flex items-center justify-between border-b border-b-white border-opacity-30 w-full">
@@ -133,7 +133,7 @@ const Footer = () => {
               <p className="font-normal text-xs lg:text-base text-white">
                 © 2025 GPDN.
               </p>
-              <div className=" justify-between gap-4 text-white text-sm lg:text-lg hidden md:flex">
+              <div className=" justify-between gap-4 text-white text-sm lg:text-2xl hidden md:flex">
                 <a href="">
                   <RiTwitterXLine />
                 </a>

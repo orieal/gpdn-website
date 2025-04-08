@@ -11,7 +11,7 @@ const FAQSection = () => {
   return (
     <section className="w-full h-auto  flex justify-center items-center py-5 lg:py-14">
       <div className="w-full h-full  flex flex-col gap-3">
-        <h1 className="text-[2rem] md:text-[2.5rem] xl:text-[4rem] text-secondary font-semibold">
+        <h1 className="text-[2rem] md:text-[2.5rem] xl:text-[4rem] text-secondary font-semibold leading-[1.15]">
           Frequently Asked <br />
           Questions
         </h1>
@@ -55,8 +55,8 @@ const FAQSection = () => {
                 }
                 transition={{
                   delay: 0.1,
-                  duration: 0.2,
-                  ease: "easeIn",
+                  duration: 0.5,
+                  ease: "easeInOut",
                 }}
                 className={`text-tertiary text-[0.65rem] md:text-[0.8rem] lg:text-lg font-sans font-normal transition-all overflow-hidden`}
               >

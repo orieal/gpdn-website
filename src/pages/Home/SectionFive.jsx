@@ -14,11 +14,11 @@ const SectionFive = () => {
                         <Image alt='blog image' src={data.image} className='w-full h-full object-cover object-center rounded-2xl'/>
                     </div>
                     <div className='flex flex-col justify-between p-0 md:p-2 lg:p-4 gap-2.5 md:gap-0  md:border-t border-neutral-200'>
-                        <h2 className='text-lg xl:text-3xl 2xl:text-4xl font-semibold'>{data.heading}</h2>
+                        <h2 className='text-lg xl:text-3xl 2xl:text-4xl font-semibold '>{data.heading}</h2>
                         <p className='hidden lg:block text-tertiary text-base font-normal'>{data.date}</p>
                     </div>
                     <div className='flex flex-col justify-between p-0 md:p-2 lg:p-4  gap-2.5 md:gap-0   md:border-t border-neutral-200'>
-                        <p className='font-normal text-xs xl:text-base 2xl:text-lg text-tertiary w-full'>
+                        <p className='font-normal text-xs xl:text-base 2xl:text-lg text-tertiary w-full '>
                         {data.description.length > 300 
                 ? data.description.slice(0, 300).split(" ").slice(0,-1).join(" ") + " ..."
                 : data.description}

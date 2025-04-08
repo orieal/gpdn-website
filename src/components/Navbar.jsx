@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import MobileMenu from './MobileMenu';
 import { CgClose } from "react-icons/cg";
+import { GoChevronRight } from "react-icons/go";
 
 
 
@@ -46,7 +47,10 @@ const Navbar = () => {
             </div>
 
             {/* ---Get Started button--- */}
-            <button className='bg-primary text-white text-xs 2xl:text-xl font-poppins py-3.5 px-5 rounded-md hidden md:block'>Get Started</button>
+            <div className='bg-primary hover:bg-[#029e94] cursor-pointer transition-all duration-300 text-white text-sm 2xl:text-xl font-poppins py-3 px-5 rounded-xl hidden items-center justify-around md:flex '>
+                <p>Explore</p>
+                <GoChevronRight/>
+            </div>
 
             {/* ----Mobile Menu Icon and close icon--- */}
             <div className='md:hidden'>
