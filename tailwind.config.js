@@ -13,6 +13,7 @@ module.exports = {
         primary: '#00A99D',
         secondary: '#0367A5',
         tertiary: '#8E8E8E',
+        blackhalf: 'rgba(0,0,0,0.46)'
       },
       fontFamily: {
         poppins: ['var(--font-poppins)', 'sans-serif'],

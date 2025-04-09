@@ -158,34 +158,37 @@ const SectionOne = () => {
                   </span>
                 </h2>
               </div>
-              <div className="grid grid-flow-col lg:grid-cols-4 auto-cols-max justify-start items-center lg:gap-x-0 gap-x-4">
-                <div className="h-14 2xl:h-full w-14 2xl:w-full flex justify-center items-center ">
+              
+              <div className="flex gap-5 items-center">
+              <div className="flex  gap-5 items-center">
+                <div className="h-14 w-14 2xl:w-full flex justify-center items-center ">
                   <Image
                     alt="Doctor profile image"
                     className="rounded-full w-full h-full"
                     src={doctorImage1}
                   />
                 </div>
-                <div className="h-14 2xl:h-full w-14 2xl:w-full  flex justify-center items-center ">
+                <div className="h-14  w-14   flex justify-center items-center ">
                   <Image
                     alt="Doctor profile image"
                     className="rounded-full w-full h-full"
                     src={doctorImage2}
                   />
                 </div>
-                <div className="h-14 2xl:h-full w-14 2xl:w-full flex justify-center items-center ">
+                <div className="h-14 w-14  flex justify-center items-center ">
                   <Image
                     alt="Doctor profile image"
                     className="rounded-full w-full h-full"
                     src={doctorImage3}
                   />
                 </div>
-                <Link href={'/about'}>
-                <div className="rounded-full hover:bg-[#CACACA] text-[#CACACA] transition-all duration-300 ease-in cursor-pointer hover:text-primary border border-[#CACACA] h-16 2xl:h-full w-16 2xl:w-full flex justify-center justify-self-end items-center">
-                  <PiArrowUpRightLight className=" text-5xl " />
-                </div>
-                </Link>
                 
+              </div>
+              <div>
+               <Link className="rounded-full hover:bg-[#CACACA] p-2 text-[#CACACA] transition-all duration-300 ease-in cursor-pointer hover:text-primary border border-[#CACACA] h-15  w-15  flex justify-center  items-center" href={'/about'}>
+                  <PiArrowUpRightLight className=" text-4xl" />
+                </Link>
+               </div>
               </div>
 
               <p className="font-normal text-sm overflow-hidden w-full">
