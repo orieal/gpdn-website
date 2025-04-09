@@ -17,12 +17,12 @@ const TeamMembers = () => {
           {
             teamMembersData.map((memberData,index)=>(
               <div key={index} className='w-full h-auto flex flex-col gap-4 '>
-                <div className='w-full h-[25rem] relative rounded-xl '>
-                  <Image src={memberData.profileImage} className='w-full h-full rounded-xl object-cover object-top' layout='fill'/>
+                <div className='w-full h-[25rem] relative rounded-xl'>
+                  <Image src={memberData.profileImage} className='w-full h-full rounded-xl object-cover object-top  border-b-[5px] border-secondary' layout='fill'/>
                 </div>
                 <div className='w-full h-auto flex flex-col'>
-                  <h5 className='font-semibold text-[1.875rem] text-black'>{memberData.name}</h5>
-                  <h6 className='font-normal text-[1.2rem] text-tertiary'>{memberData.qualification}</h6>
+                  <h5 className='font-semibold text-[1.7rem] text-black'>{memberData.name}</h5>
+                  <h6 className='font-normal text-[1.1rem] text-tertiary'>{memberData.qualification}</h6>
                 </div>
               </div>
             ))

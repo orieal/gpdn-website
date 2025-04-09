@@ -42,7 +42,7 @@ const Footer = () => {
             <h2 className="text-lg leading-tight pt-5 md:pt-0 border-t md:border-none border-t-white border-opacity-30 lg:text-[2rem] font-semibold text-white">
               Join Our Newsletter to Keep Up to Date with Us!
             </h2>
-            <div className="flex items-center justify-between border-b border-b-white border-opacity-30 w-full">
+            {/* <div className="flex items-center justify-between border-b border-b-white border-opacity-30 w-full">
               <input
                 type="email"
                 placeholder="Enter your email"
@@ -51,7 +51,7 @@ const Footer = () => {
                 className="py-1.5  placeholder:text-white placeholder:opacity-60 placeholder:font-normal placeholder:text-sm lg:placeholder:text-xl bg-secondary "
               />
               <CgArrowRight className="text-lg text-white" />
-            </div>
+            </div> */}
             <div className="md:hidden">
               <div className="flex flex-col gap-5 py-2">
                 <h3 className="text-white font-semibold text-sm lg:text-xl">
