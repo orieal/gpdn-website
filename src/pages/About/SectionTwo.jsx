@@ -6,14 +6,14 @@ const SectionTwo = () => {
   return (
     <section className="w-full h-auto  flex justify-center items-center py-10">
       <div className='w-full h-full flex flex-col gap-24'>
-        <div className='w-full flex flex-col gap-10 md:gap-0 md:grid md:grid-cols-2 md:gap-x-8 lg:gap-x-5'>
+        <div className='w-full flex flex-col gap-10 md:gap-0 md:grid md:grid-cols-2 md:gap-x-8 lg:gap-x-5 '>
           <div className='w-full h-full flex flex-col justify-between gap-8'>
             <h3 className='text-4xl md:text-5xl text-secondary font-semibold'>Why GPDN?</h3>
             <p className='text-tertiary font-normal text-base md:text-lg'>GPDN is more than just a network—it’s a global support system for palliative care physicians dedicated to improving patient care. Our platform fosters collaboration by connecting doctors across countries, enabling seamless referrals and interdisciplinary teamwork. Through expert case discussions, shared best practices, and continuous education, we empower physicians with the latest advancements in palliative medicine. Additionally, GPDN provides a strong peer support system, offering guidance, mentorship, and emotional support to help doctors navigate complex cases.  </p>
           </div>
 
           <div className='flex flex-col gap-5 lg:gap-0 lg:grid lg:grid-cols-[0.9fr_1fr] lg:gap-x-8'>
-            <div className='h-[25vh] md:h-full w-full relative rounded-2xl'>
+            <div className='h-[25vh] md:h-full w-full relative rounded-2xl overflow-hidden'>
               <Image src={aboutBanner} alt='about banner' layout='fill' className='object-cover h-full w-full rounded-2xl'/>
             </div>
             <div className='flex flex-col gap-5 md:gap-0 justify-between'>

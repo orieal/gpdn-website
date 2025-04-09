@@ -1,9 +1,16 @@
 import { blogsData } from "@/app/assets/assets";
 import Image from "next/image";
 import React from "react";
+import blogImage from '../../../app/assets/HOMEPAGE/SectionFive/blog-image-4.png'
 
 const BlogDetails = ({ blogId }) => {
-  const currentBlog = blogsData[blogId];
+  const currentBlog = {
+      heading: "Cancer Cases in Indonesia Predicted to Increase 70% by 2050",
+      date: "3 Dec 2022",
+      description:
+        "COVID-19 vaccines have proven to be highly effective in not only preventing infections but also in significantly alleviating the symptoms associated with the virus. These vaccines work by training the immune system to recognize and combat the virus, thereby reducing the severity of illness in those who do contract.",
+      image: blogImage,
+    }
   return (
     <section className="w-full h-auto  flex justify-center items-center">
       <div className="w-full md:w-[90%] lg:w-[80%] flex flex-col gap-8 md:gap-10 h-auto items-center">

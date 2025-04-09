@@ -9,6 +9,10 @@ import doctorImage2 from "../../app/assets/HOMEPAGE/SectionOne/doctor-image-2.pn
 import doctorImage3 from "../../app/assets/HOMEPAGE/SectionOne/doctor-image-3.png";
 import connectionsImage from "../../app/assets/HOMEPAGE/SectionOne/connection.png";
 import { PiArrowUpRightLight } from "react-icons/pi";
+import { GoChevronRight } from "react-icons/go";
+import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
+
 
 const SectionOne = () => {
 
@@ -43,9 +47,12 @@ const SectionOne = () => {
                     to enhance patient care across borders.
                   </p>
                   <div>
-                    <button className="bg-primary  text-white text-base 2xl:text-xl font-poppins py-3.5 px-5 rounded-md ">
-                      Join the Network
-                    </button>
+                   <div className="flex ">
+                   <div className="bg-primary  hover:bg-[#039187] cursor-pointer transition-all duration-300 ease-in text-white text-base 2xl:text-xl font-poppins py-3.5 px-5 rounded-xl flex items-center justify-around">
+                      <p>Join the Network</p>
+                      <GoChevronRight/>
+                    </div>
+                   </div>
                   </div>
                 </div>
               </div>
@@ -54,7 +61,23 @@ const SectionOne = () => {
           {/* ---Desktop Slider---- */}
           <div className="hidden lg:flex w-full h-full justify-center relative ">
             <div className="absolute bottom-8 right-20 flex justify-center items-center z-10">
-            <h4 className="font-poppins font-normal text-3xl text-white">0{currentImage+1}<span className="text-xs">/0{sliderImages.length}</span></h4>
+              <AnimatePresence>
+              <motion.h4
+               key={currentImage}
+               initial={{
+                 opacity:0
+               }}
+               animate={{
+                 opacity:1
+               }}
+               
+               transition={{
+                delay:0.2,
+                 duration:0.6,
+                 ease:'easeIn'
+               }}
+               className="font-poppins font-normal text-3xl text-white">0{currentImage+1}<span className="text-xs">/0{sliderImages.length}</span></motion.h4>
+              </AnimatePresence>
             </div>
             <svg
               preserveAspectRatio="none"
@@ -70,14 +93,32 @@ const SectionOne = () => {
                 clipPath="url(#custom-shape)"
                 className="w-full h-full"
               >
-                <div className="w-full h-full ">
+                <AnimatePresence mode="wait">
+                <motion.div
+                key={currentImage}
+                initial={{
+                  opacity:0
+                }}
+                animate={{
+                  opacity:1
+                }}
+                exit={{
+                  opacity:0.7
+                }}
+                transition={{
+                  duration:0.6,
+                  ease:'easeIn'
+                }}
+                 className="w-full h-full ">
                   <Image
                     src={sliderImages[currentImage]}
                     alt="Caring"
                     layout="fill"
                     objectFit="cover"
                   />
-                </div>
+                </motion.div>
+                </AnimatePresence>
+                
               </foreignObject>
             </svg>
           </div>
@@ -118,30 +159,33 @@ const SectionOne = () => {
                 </h2>
               </div>
               <div className="grid grid-flow-col lg:grid-cols-4 auto-cols-max justify-start items-center lg:gap-x-0 gap-x-4">
-                <div className="h-14 2xl:h-full w-14 2xl:w-full flex justify-center items-center p-2">
+                <div className="h-14 2xl:h-full w-14 2xl:w-full flex justify-center items-center ">
                   <Image
                     alt="Doctor profile image"
                     className="rounded-full w-full h-full"
                     src={doctorImage1}
                   />
                 </div>
-                <div className="h-14 2xl:h-full w-14 2xl:w-full  flex justify-center items-center p-2">
+                <div className="h-14 2xl:h-full w-14 2xl:w-full  flex justify-center items-center ">
                   <Image
                     alt="Doctor profile image"
                     className="rounded-full w-full h-full"
                     src={doctorImage2}
                   />
                 </div>
-                <div className="h-14 2xl:h-full w-14 2xl:w-full flex justify-center items-center p-2">
+                <div className="h-14 2xl:h-full w-14 2xl:w-full flex justify-center items-center ">
                   <Image
                     alt="Doctor profile image"
                     className="rounded-full w-full h-full"
                     src={doctorImage3}
                   />
                 </div>
-                <div className="rounded-full border border-[#CACACA] h-16 2xl:h-full w-16 2xl:w-full flex justify-center justify-self-end items-center">
-                  <PiArrowUpRightLight className="text-[#CACACA] text-2xl 2xl:text-4xl" />
+                <Link href={'/about'}>
+                <div className="rounded-full hover:bg-[#CACACA] text-[#CACACA] transition-all duration-300 ease-in cursor-pointer hover:text-primary border border-[#CACACA] h-16 2xl:h-full w-16 2xl:w-full flex justify-center justify-self-end items-center">
+                  <PiArrowUpRightLight className=" text-5xl " />
                 </div>
+                </Link>
+                
               </div>
 
               <p className="font-normal text-sm overflow-hidden w-full">

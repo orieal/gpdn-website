@@ -16,10 +16,10 @@ const SectionFour = () => {
         </div>
         <div className="flex flex-col gap-4 lg:gap-2 justify-between">
          <div className="flex flex-col gap-2 2xl:gap-8">
-         <h1 className="text-[2rem] md:text-[2.5rem] xl:text-[4rem] text-secondary font-semibold leading-tight">
+         <h1 className="text-[2rem] md:text-[2.5rem] xl:text-[4rem] text-secondary font-semibold leading-[1]">
             Empowering <br className="hidden md:block lg:hidden"/>Compassionate Care
           </h1>
-          <p className="text-xs md:text-sm 2xl:text-xl text-tertiary w-full">
+          <p className="text-xs md:text-sm lg:text-base 2xl:text-xl text-tertiary w-full">
             Connecting healthcare professionals to enhance palliative care
             worldwide with knowledge, collaboration, and support. Connecting
             healthcare professionals to enhance{" "}
