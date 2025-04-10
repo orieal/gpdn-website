@@ -1,10 +1,11 @@
-import { blogsData } from "@/app/assets/assets";
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
 import { CgArrowRight } from "react-icons/cg";
 import { LuSearch } from "react-icons/lu";
+import { blogsData } from "@/app/assets/assets";
 
 const SearchSection = () => {
+
   const topics = [
     "All",
     "Diabetes",

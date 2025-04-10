@@ -5,9 +5,9 @@ import bannerImg2 from '../../app/assets/ABOUT/SectionOne/banner-2.png'
 
 const SectionOne = () => {
   return (
-    <section className="w-full h-auto lg:h-full flex justify-center items-center pt-10 pb-1">
-        <div className='h-auto md:h-full w-full flex flex-col items-center gap-5'>
-            <h1 className='font-medium text-[2rem] md:text-[3rem] lg:text-[4rem] xl:text-[5rem] 2xl:text-[6.2rem] leading-tight'>Connecting Palliative Care Physicians for Better Patient </h1>
+    <section className="w-full h-auto lg:h-full flex justify-center items-center pt-14 pb-1">
+        <div className='h-auto md:h-full w-full flex flex-col gap-5'>
+            <h1 className='font-medium text-[2rem] md:text-[3rem] lg:text-[4rem] xl:text-[5rem] 2xl:text-[6.2rem] leading-tight mb-5'>Connecting Palliative Care <br/>Physicians for Better Patient </h1>
             <div className='h-auto md:h-full w-full flex flex-col gap-5 md:grid md:grid-cols-[1fr_0.6fr] md:gap-x-5'>
                 <div className='h-[25vh] md:h-full w-full relative rounded-2xl'>
                     <Image layout='fill'  src={bannerImg1} className='w-full object-cover rounded-2xl' alt='banner image'/>

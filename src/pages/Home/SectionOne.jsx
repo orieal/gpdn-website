@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import slideImage1 from "../../app/assets/HOMEPAGE/SectionOne/slide-image-1.png";
@@ -40,18 +41,15 @@ const SectionOne = () => {
                   Global Care for a{" "}
                   <span className="font-medium">Brighter Tomorrow</span>
                 </h1>
-                <div className="flex flex-col w-full gap-4">
-                  <p className="font-normal text-base 2xl:text-xl">
-                    Our global network of dedicated palliative care doctors
-                    fosters collaboration, knowledge-sharing, and peer support
-                    to enhance patient care across borders.
+                <div className="flex flex-col w-full gap-6">
+                  <p className="font-normal text-base 2xl:text-xl">Our global network of dedicated palliative care doctors fosters collaboration, knowledge-sharing, and peer support to enhance<br/> patient care across borders.
                   </p>
                   <div>
                    <div className="flex ">
-                   <div className="bg-primary  hover:bg-[#039187] cursor-pointer transition-all duration-300 ease-in text-white text-base 2xl:text-xl font-poppins py-3.5 px-5 rounded-xl flex items-center justify-around">
-                      <p>Join the Network</p>
-                      <GoChevronRight/>
-                    </div>
+                   <Link href={`/about`} className="bg-primary  hover:bg-[#039187] cursor-pointer transition-all duration-300 ease-in text-white text-base 2xl:text-xl font-poppins py-4 px-6 rounded-xl flex items-center justify-around gap-2">
+                      Join the Network
+                      <GoChevronRight className="text-xl"/>
+                   </Link>
                    </div>
                   </div>
                 </div>
@@ -185,8 +183,8 @@ const SectionOne = () => {
                 
               </div>
               <div>
-               <Link className="rounded-full hover:bg-[#CACACA] p-2 text-[#CACACA] transition-all duration-300 ease-in cursor-pointer hover:text-primary border border-[#CACACA] h-15  w-15  flex justify-center  items-center" href={'/about'}>
-                  <PiArrowUpRightLight className=" text-4xl" />
+               <Link className="rounded-full hover:bg-[#CACACA] p-2 text-[#CACACA] transition-all duration-300 ease-in cursor-pointer hover:text-gray-500 border border-[#CACACA] h-15  w-15  flex justify-center  items-center" href={`/about`}>
+                  <PiArrowUpRightLight className="text-4xl" />
                 </Link>
                </div>
               </div>
