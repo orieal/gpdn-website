@@ -1,12 +1,12 @@
 "use client";
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
-import logoGpdn from '../../public/logo-gpdn.png'
 import Link from 'next/link'
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import MobileMenu from './MobileMenu';
 import { CgClose } from "react-icons/cg";
 import { GoChevronRight } from "react-icons/go";
+import logoGpdn from '../../public/logo-gpdn.png'
 
 
 
@@ -47,16 +47,15 @@ const Navbar = () => {
             </div>
 
             {/* ---Get Started button--- */}
-            <div className='bg-primary hover:bg-[#039187] cursor-pointer transition-all duration-300 ease-in text-white text-sm 2xl:text-xl font-poppins py-3 px-5 rounded-xl hidden items-center justify-around md:flex '>
-                <p>Explore</p>
-                <GoChevronRight/>
-            </div>
+            <Link href="/about" className='bg-primary hover:bg-[#039187] cursor-pointer transition-all duration-300 ease-in text-white text-sm 2xl:text-xl font-poppins py-3 px-5 rounded-xl hidden items-center justify-around md:flex gap-2'>
+                Explore
+                <GoChevronRight className="text-xl"/>
+            </Link>
 
             {/* ----Mobile Menu Icon and close icon--- */}
             <div className='md:hidden'>
                 {isShowMenu ? <CgClose onClick={()=>setIsShowMenu(!isShowMenu)} className='text-4xl'/> :
-                <HiOutlineMenuAlt2 onClick={()=>setIsShowMenu(!isShowMenu)} className='text-4xl '/>
-  }
+                <HiOutlineMenuAlt2 onClick={()=>setIsShowMenu(!isShowMenu)} className='text-4xl '/>}
             </div>
         </div>
 

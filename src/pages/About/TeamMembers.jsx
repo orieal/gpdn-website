@@ -4,10 +4,10 @@ import React from 'react'
 
 const TeamMembers = () => {
   return (
-    <section className="w-full h-auto  flex justify-center items-center py-10">
-      <div className='w-full h-auto flex flex-col gap-7 md:gap-12 lg:gap-20 items-start'>
+    <section className="w-full h-auto  flex justify-center items-center pt-10 pb-14">
+      <div className='w-full h-auto flex flex-col gap-7 md:gap-12 lg:gap-14 items-start'>
         <div className='w-full flex flex-col gap-2'>
-        <h3 className='w-full text-4xl md:text-5xl text-secondary font-semibold'>Meet our<br className='md:hidden'/> Dedicated Team</h3>
+        <h3 className='w-full text-4xl md:text-5xl text-secondary font-semibold mb-3'>Meet our<br className='md:hidden'/> Dedicated Team</h3>
         <div className='flex justify-start items-center'>
         <p className='text-base md:text-lg font-normal text-tertiary w-full md:w-[80%] lg:w-[60%]'>Get to know the faces behind our company's success, their stories, expertise, and unwavering commitment to excellence.</p>
         </div>
