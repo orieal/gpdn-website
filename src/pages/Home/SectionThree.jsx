@@ -17,7 +17,7 @@ const SectionThree = () => {
             <h1 className='font-semibold text-[2rem] md:text-[2.5rem] xl:text-6xl text-secondary lg:text-center'>Bringing Smiles,<br className='hidden md:block lg:hidden'/> Building Connections</h1>
             <p className='text-[#525252] text-sm md:text-lg lg:text-center'>Experience the power of a caring community dedicated to well-being, support, and joy.</p>
             </div>
-            <div className={`rounded-3xl h-[70vh] w-full bg-yellow-300 relative`}>
+            <div className={`rounded-3xl h-[70vh] w-full relative`}>
                <Image src={videoImage} className='w-full rounded-3xl h-full object-cover'/>
                <motion.div onHoverStart={()=>setIsHover(true)} onHoverEnd={()=>setIsHover(false)} className={` ${isHover ? "scale-[110%]" : "" }  transition-all duration-300 ease-linear  absolute cursor-pointer top-[40%] left-1/2 transform -translate-x-1/2 bg-blackhalf w-24 h-24 rounded-full flex justify-center items-center`}> 
                <FaPlay className='text-white opacity-100 text-4xl'/>

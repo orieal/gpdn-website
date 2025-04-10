@@ -141,7 +141,7 @@ const handleAccordionChange = (index) => (event, isExpanded) => {
       }} className="border-none">
         <Typography
           sx={{
-            width: "60%",
+            width:  { xs:"100%" , lg: "60%"},
             fontSize: { xs: "0.85rem", md: "1rem", lg: "1.125rem" },
             fontWeight: 400,
             fontFamily: "Poppins, sans-serif",
