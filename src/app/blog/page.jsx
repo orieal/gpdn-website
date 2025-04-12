@@ -1,6 +1,7 @@
 'use client'; // 👈 This line is required
 
-import React, { useEffect, useState } from "react";import Navbar from '@/components/Navbar'
+import React, { useEffect, useState } from "react";
+import Navbar from '@/components/Navbar'
 import BlogsSection from '@/pages/Blog/BlogsSection'
 import SearchSection from '@/pages/Blog/SearchSection'
 import Footer from '@/pages/Home/Footer'

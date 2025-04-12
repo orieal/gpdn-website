@@ -5,13 +5,12 @@ import userRoute from "../services/endPoints/userEndpoints";
 
 
 
-export const fetchBlogs = async () => {
+export const userContactDetails = async (formData) => {
   try {
-    const response = await Api.get(userRoute.FetchNewsAndBlogs);
+    const response = await Api.post(userRoute.userContactDetails , {formData});
     return response;
   } catch (error) {
     console.log(error)
-    return errorHandle(err);
   }
 };
 

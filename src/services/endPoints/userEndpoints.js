@@ -1,5 +1,5 @@
 const userRoutes = {
-  FetchNewsAndBlogs: "/user/FetchNewsAndBlogs",
+  userContactDetails: "/user/userContactDetails",
 
   };
   

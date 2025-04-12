@@ -16,13 +16,13 @@ const BlogsSection = ( {blogs}) => {
         {blogs.map((data, index) => (
           <div key={index} className=" w-full h-auto  flex flex-col justify-between gap-5">
             <div className="w-full h-[25vh] md:h-auto relative rounded-3xl">
-            {/* <Image
+            <Image
             src={data?.imageURL  } // fallback if data is undefined
             alt="Image"
             width={600}
             height={400}
             className="w-full h-full md:h-auto md:aspect-square object-cover object-center rounded-3xl"
-            /> */}
+            />
             </div>
 
             <div className="flex flex-col gap-6">

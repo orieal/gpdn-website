@@ -43,8 +43,7 @@ const SearchSection = ({  sendDataToParent }) => {
     "Healthy Food",
     "Lifestyle",
   ];
-console.log(blogs)
-  const latestBlogData = blogsData[blogsData.length - 1];
+   const latestBlogData = blogsData[blogsData.length - 1];
 
   return (
     <section className="w-full h-full  flex justify-center items-center">
@@ -80,7 +79,7 @@ console.log(blogs)
     </form>
             </div>
             <div className="flex w-full items-center justify-between">
-              {topics.map((topic, index) => (
+              {/* {topics.map((topic, index) => (
                 <a
                   key={index}
                   onClick={() => handleFilter(topic)}
@@ -88,7 +87,7 @@ console.log(blogs)
                 >
                   {topic}
                 </a>
-              ))}
+              ))} */}
             </div>
           </div>
         </div>
