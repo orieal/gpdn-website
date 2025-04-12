@@ -1,21 +1,28 @@
+'use client';
+import React, { useEffect, useState } from "react";
+import { fetchBlogs } from "../../api/blog";
 import { blogsData } from "@/app/assets/assets";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { CgArrowRight } from "react-icons/cg";
 
-const BlogsSection = () => {
+const BlogsSection = ( {blogs}) => {
+  useEffect(() => {
+    console.log("blogs from blogs", blogs);
+  }, [blogs]);  
   return (
     <section className="w-full h-auto  flex justify-center items-center py-10">
       <div className="w-full h-auto flex flex-col gap-20 md:gap-10 md:grid  md:grid-cols-2 lg:grid-cols-3  grid-flow-row ">
-        {blogsData.slice(0, blogsData.length - 1).map((data, index) => (
+        {blogs.map((data, index) => (
           <div key={index} className=" w-full h-auto  flex flex-col justify-between gap-5">
             <div className="w-full h-[25vh] md:h-auto relative rounded-3xl">
-              <Image
-                alt="blog image"
-                src={data.image}
-                className="w-full h-full md:h-auto md:aspect-square object-cover object-center rounded-3xl"
-              />
+            {/* <Image
+            src={data?.imageURL  } // fallback if data is undefined
+            alt="Image"
+            width={600}
+            height={400}
+            className="w-full h-full md:h-auto md:aspect-square object-cover object-center rounded-3xl"
+            /> */}
             </div>
 
             <div className="flex flex-col gap-6">
@@ -25,16 +32,17 @@ const BlogsSection = () => {
                   Cancer
                 </a>
                 <p className=" text-tertiary text-sm font-normal">
-                  {data.date}
+                  {data.title}
                 </p>
               </div>
               <h2 className="text-xl font-semibold text-black">
-                {data.heading}
+                {data.content}
               </h2>
               <p className="font-normal text-sm  text-tertiary w-full">
-                {data.description.length > 120 
-                ? data.description.slice(0, 120).split(" ").slice(0,-1).join(" ") + " ..."
-                : data.description}
+               {data.description && data.description.length > 120 
+               ? data.description.slice(0, 120).split(" ").slice(0, -1).join(" ") + " ..."
+               : data.description
+               }
               </p>
              </div>
              <Link href={`/blog/${index}`} >

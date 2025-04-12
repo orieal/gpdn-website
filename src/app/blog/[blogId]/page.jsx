@@ -17,7 +17,7 @@ const page = ({params}) => {
       </div>
       <RelatedBlogs blogId={blogId}/>
       </div>
-      <Footer/>
+      <Footer/> 
     </main>
   )
 }

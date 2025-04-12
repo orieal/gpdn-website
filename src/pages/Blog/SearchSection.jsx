@@ -1,10 +1,39 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { CgArrowRight } from "react-icons/cg";
 import { LuSearch } from "react-icons/lu";
 import { blogsData } from "@/app/assets/assets";
+import BlogsSection from './BlogsSection'
+import {  } from "../../api/blog";
 
-const SearchSection = () => {
+const SearchSection = ({  sendDataToParent }) => {
+
+  const [blogs, setBlogs] = useState([]);
+  const [search, setSearch] = useState("");
+
+ 
+ 
+
+  const handleSubmit = async (e)=>{
+    e.preventDefault();
+    try {
+      sendDataToParent(1,search);
+
+    } catch (error) {
+      console.error("Error fetching Blogs:", error);
+    }
+  }
+
+  const handleFilter = async(topic) =>{
+    try{
+      sendDataToParent(2,topic);
+
+    }catch(error){
+      console.log(error)
+    }
+  }
 
   const topics = [
     "All",
@@ -14,7 +43,7 @@ const SearchSection = () => {
     "Healthy Food",
     "Lifestyle",
   ];
-
+console.log(blogs)
   const latestBlogData = blogsData[blogsData.length - 1];
 
   return (
@@ -39,24 +68,28 @@ const SearchSection = () => {
               >
                 <LuSearch className="text-tertiary text-xl" />
               </label>
-              <input
-                className="outline-none rounded-3xl w-full text-base placeholder:text-base placeholder:text-tertiary text-tertiary placeholder:font-poppins font-poppins placeholder:font-normal font-normal"
-                type="text"
-                name=""
-                id="searchText"
-                placeholder="search..."
-              />
+              <form onSubmit={handleSubmit}>
+      <input
+        className="outline-none rounded-3xl w-full text-base placeholder:text-base placeholder:text-tertiary text-tertiary placeholder:font-poppins font-poppins placeholder:font-normal font-normal"
+        type="text"
+        id="searchText"
+        placeholder="search..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+    </form>
             </div>
-            {/* <div className="flex w-full items-center justify-between">
+            <div className="flex w-full items-center justify-between">
               {topics.map((topic, index) => (
                 <a
                   key={index}
+                  onClick={() => handleFilter(topic)}
                   className="flex items-center justify-center font-poppins font-medium text-xs lg:text-sm text-nowrap text-[#797979]"
                 >
                   {topic}
                 </a>
               ))}
-            </div> */}
+            </div>
           </div>
         </div>
 
@@ -101,7 +134,10 @@ const SearchSection = () => {
           </div>
         </div>
       </div>
+      
+     
     </section>
+    
   );
 };
 
