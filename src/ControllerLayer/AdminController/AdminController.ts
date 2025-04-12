@@ -324,9 +324,9 @@ async approveORdeclineResource(req: Request, res: Response, next: NextFunction){
 
 async addNewsAndBlogs(req: Request, res: Response, next: NextFunction){
   try{
-    const { title , content , authorId , tags , category , imageURL , description} = req.body;
+    const {title , content ,description , authorId , tags  , imageURL , category} = req.body;
 
-    const addNewsAndBlogs = await this.AdminUsecase.addNewsAndBlogsForm( title , content , authorId , tags , category , imageURL , description);
+    const addNewsAndBlogs = await this.AdminUsecase.AddNewsAndBlogsForm( title , content , authorId, tags , description , imageURL , category);
     return res.json({
       success: addNewsAndBlogs?.success,
       status: addNewsAndBlogs?.status,

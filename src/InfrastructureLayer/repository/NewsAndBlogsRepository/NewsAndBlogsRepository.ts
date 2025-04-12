@@ -22,6 +22,7 @@ class NewsAndBlogsRepository implements NewsAndBlogsRepo {
           const newNewsAndBlogs = new BlogSchema(NewsAndBlogs); 
           const savedNewsAndBlogs = await newNewsAndBlogs.save();   
          return savedNewsAndBlogs;
+         
         } catch (error) {
           console.log(error);
           return error;

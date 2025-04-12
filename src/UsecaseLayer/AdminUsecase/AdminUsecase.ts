@@ -467,12 +467,12 @@ class AdminUsecase {
   }
 
   
-  async addNewsAndBlogsForm(title:string , content:string , authorId:string , tags:[string] , description:string , category:string , imageURL:string){
+  async AddNewsAndBlogsForm(title:string , content:string , authorId:string , tags:[string] , description:string , imageURL:string, category:string ){
     try{
-        const NewsAndBlogs = {title , content , authorId, tags , description , imageURL , category}
-        if (!authorId || !title || !content || !tags || !description || !imageURL || !category) {
-          return { success: false, status:400 ,message: "Please fill all required feilds." };
-        }
+      const NewsAndBlogs = {title , content ,description , tags , authorId , imageURL , category } ;
+      if (!authorId || !title || !content || !tags || !description || !imageURL || !category) {
+        return { success: false, status:400 ,data:{Message:"Please fill all required feilds." } };
+      }
         const addNewsAndBlogs =await  this.AdminRepository.addNewsAndBlogs(NewsAndBlogs);
         if(!addNewsAndBlogs){
           return {

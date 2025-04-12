@@ -26,7 +26,7 @@ class NewsAndBlogsController {
   async AddNewsAndBlogs(req: Request, res: Response, next: NextFunction){
     try{
        const { title , content ,description , authorId , tags  , imageURL , category} = req.body;
-      const AddNewsAndBlogs = await this.NewsAndBlogsUsecase.AddNewAndBlogsForm( title , content , authorId, tags , description , imageURL , category)
+      const AddNewsAndBlogs = await this.NewsAndBlogsUsecase.AddNewAndBlogsForm(title , content , authorId, tags , description , imageURL , category)
       return res.json({
         success: AddNewsAndBlogs?.success,
         status: AddNewsAndBlogs?.status,
