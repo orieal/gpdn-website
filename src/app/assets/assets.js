@@ -8,46 +8,50 @@ import blogImage1 from "./HOMEPAGE/SectionFive/blog-image-1.jpeg";
 import blogImage2 from "./HOMEPAGE/SectionFive/blog-image-2.jpeg";
 import blogImage3 from "./HOMEPAGE/SectionFive/blog-image-3.jpeg";
 import blogImage4 from "./HOMEPAGE/SectionFive/blog-image-4.png";
-import memeberProfile1 from "./ABOUT/TeamMembers/member1.png"
-import memeberProfile2 from "./ABOUT/TeamMembers/member2.png"
-import memeberProfile3 from "./ABOUT/TeamMembers/member3.png"
-import memeberProfile4 from "./ABOUT/TeamMembers/member4.png"
+import memeberProfile1 from "./ABOUT/TeamMembers/member1.webp"
+import memeberProfile2 from "./ABOUT/TeamMembers/member2.webp"
+import memeberProfile3 from "./ABOUT/TeamMembers/member3.webp"
+import memeberProfile4 from "./ABOUT/TeamMembers/member4.webp"
+import memeberProfile5 from "./ABOUT/TeamMembers/member5.webp"
+import memeberProfile6 from "./ABOUT/TeamMembers/member6.webp"
+import memeberProfile7 from "./ABOUT/TeamMembers/member7.webp"
+import memeberProfile8 from "./ABOUT/TeamMembers/member8.webp"
 
 export const excellenceData = [
   {
     heading: "Global Community",
     description:
-      "Join 468+ palliative care doctors from 83+ countries, fostering cross-border collaboration and support.",
+      "Connect with a worldwide network of palliative care doctors to exchange insights, build relationships, and foster a shared vision for better patient care.",
     icon: excellenceIcon1,
   },
   {
     heading: "Knowledge & Resource Hub",
     description:
-      "Access a centralized library of research articles, case studies, and clinical guidelines for continuous learning.",
+      "Access curated resources, including research articles, clinical guidelines, and tools that support continuous learning and evidence-based practice.",
     icon: excellenceIcon2,
   },
   {
     heading: "Seamless Patient Referrals",
     description:
-      "Utilize our Global Palliative Care Directory to coordinate patient care across regions effortlessly.",
+      "Collaborate with fellow members for cross-border referrals and expert opinions, ensuring patients receive consistent care wherever they are.",
     icon: excellenceIcon3,
   },
   {
-    heading: "Expert Peer Consultation",
+    heading: "Real-time Communication",
     description:
-      "Engage in real-time discussions with global specialists for insights on complex cases and patient care strategies.",
+      "Stay engaged through active chat groups, forums, and notifications—helping you keep in touch and informed at all times.",
     icon: excellenceIcon4,
   },
   {
     heading: "Education & Training Opportunities",
     description:
-      "Participate in webinars, workshops, and research discussions to enhance your palliative care expertise.",
+      "Join webinars, workshops, and mentorship sessions tailored to enhance your clinical skills and deepen your understanding of palliative care.",
     icon: excellenceIcon5,
   },
   {
     heading: "Stay Updated & Connected",
     description:
-      "Receive daily updates on emerging trends, global conferences, and innovations in palliative medicine.",
+      "Receive regular updates, event invitations, and important announcements to keep you in sync with global trends and opportunities.",
     icon: excellenceIcon6,
   },
 ];
@@ -161,44 +165,44 @@ export const faqData = [
 
 export const teamMembersData = [
   {
-    name : "Mujeeb Rahman",
+    name : "Dr. Mujeeb Rahman",
     qualification: "Founder & CEO Graperoject",
     profileImage: memeberProfile1
   },
   {
-    name : "Shafika Banoo",
+    name : "Dr. Shafika Banoo",
     qualification: "MD Gen Med (MGMC, Puducherry)",
     profileImage: memeberProfile2
   },
   {
-    name : "Beatriz Dorsey Rivera",
+    name : "Dr. Beatrice Dorsey Rivera",
     qualification: "MD, MsC",
     profileImage: memeberProfile3
   },
   {
-    name : "Preeya Desh",
+    name : "Dr. Jairam Kamala Ramakrishnan",
     qualification: "MD",
     profileImage: memeberProfile4
   },
   {
-    name : "Mujeeb Rahman",
+    name : "Dr. Maria Madeline Baylon-Mallillin",
     qualification: "Founder & CEO Graperoject",
-    profileImage: memeberProfile1
+    profileImage: memeberProfile5
   },
   {
-    name : "Shafika Banoo",
+    name : "Dr. Noorjehan Begum",
     qualification: "MD Gen Med (MGMC, Puducherry)",
-    profileImage: memeberProfile2
+    profileImage: memeberProfile6
   },
   {
-    name : "Beatriz Dorsey Rivera",
+    name : "Dr. Preeya Desh",
     qualification: "MD, MsC",
-    profileImage: memeberProfile3
+    profileImage: memeberProfile7
   },
   {
-    name : "Preeya Desh",
+    name : "Dr. Thiloshini Govender",
     qualification: "MD",
-    profileImage: memeberProfile4
+    profileImage: memeberProfile8
   },
 ]
 

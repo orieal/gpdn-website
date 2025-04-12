@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import careImage from "../../app/assets/HOMEPAGE/SectionFour/care-image.png";
+import careImage from "../../app/assets/HOMEPAGE/SectionFour/care-image.webp";
 import icon1 from "../../app/assets/HOMEPAGE/SectionFour/icon-1.png";
 import icon2 from "../../app/assets/HOMEPAGE/SectionFour/icon-2.png";
 
@@ -20,9 +20,7 @@ const SectionFour = () => {
             Empowering <br className="hidden md:block lg:hidden"/>Compassionate Care
           </h1>
           <p className="text-xs md:text-sm lg:text-base 2xl:text-xl text-tertiary w-full">
-            Connecting healthcare professionals to enhance palliative care
-            worldwide with knowledge, collaboration, and support. Connecting
-            healthcare professionals to enhance{" "}
+          At GPDN, we believe compassionate care begins with empowered professionals. Our network provides doctors with the support, and global collaboration they need to improve lives and deliver care that goes beyond medicine.
           </p>
          </div>
           <div className="flex flex-col gap-4">
@@ -34,7 +32,7 @@ const SectionFour = () => {
               </div>
               <div className="flex flex-col gap-1">
                 <h2 className="text-base md:text-lg font-poppins font-medium text-[#252525]">Global Knowledge Exchange</h2>
-                <p className="text-xs md:text-sm font-poppins font-normal text-tertiary">Access the latest advancements, research, and best practices to improve patient care.</p>
+                <p className="text-xs md:text-sm font-poppins font-normal text-tertiary">Collaborate with peers worldwide to share insights and learn from real clinical experiences.</p>
               </div>
             </div>
             <div className="flex items-start gap-4 border border-primary rounded-xl p-4">
@@ -45,7 +43,7 @@ const SectionFour = () => {
               </div>
               <div className="flex flex-col gap-1">
                 <h2 className="text-base md:text-lg font-poppins font-medium text-[#252525]">Stronger Together</h2>
-                <p className="text-xs md:text-sm font-poppins font-normal text-tertiary">Join a community of experts, share insights, and support one another in making a lasting impact.</p>
+                <p className="text-xs md:text-sm font-poppins font-normal text-tertiary">Be part of a supportive global network that uplifts, encourages, and strengthens your care journey.</p>
               </div>
             </div>
           </div>

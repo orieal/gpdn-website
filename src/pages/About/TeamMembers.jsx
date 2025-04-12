@@ -9,7 +9,10 @@ const TeamMembers = () => {
         <div className='w-full flex flex-col gap-2'>
         <h3 className='w-full text-4xl md:text-5xl text-secondary font-semibold mb-3'>Meet our<br className='md:hidden'/> Dedicated Team</h3>
         <div className='flex justify-start items-center'>
-        <p className='text-base md:text-lg font-normal text-tertiary w-full md:w-[80%] lg:w-[60%]'>Get to know the faces behind our company's success, their stories, expertise, and unwavering commitment to excellence.</p>
+        <div className='text-base md:text-lg font-normal text-tertiary w-full flex flex-col-reverse lg:flex-row justify-between gap-5'>
+          <p>The network is guided by a dedicated core team of palliative care physicians who collaborate closely with the founders to shape its direction, foster engagement, and uphold clinical excellence. The core team includes:</p>
+          <p>Together, this team helps drive GPDN’s mission forward—building a global community united by compassion, expertise, and the shared goal of advancing palliative care.</p>
+        </div>
         </div>
         </div>
 
@@ -22,7 +25,7 @@ const TeamMembers = () => {
                 </div>
                 <div className='w-full h-auto flex flex-col'>
                   <h5 className='font-semibold text-[1.7rem] text-black'>{memberData.name}</h5>
-                  <h6 className='font-normal text-[1.1rem] text-tertiary'>{memberData.qualification}</h6>
+                  <h6 className='font-normal text-[1.1rem] text-tertiary hidden'>{memberData.qualification}</h6>
                 </div>
               </div>
             ))
