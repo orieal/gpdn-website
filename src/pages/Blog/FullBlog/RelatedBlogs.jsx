@@ -18,6 +18,7 @@ const RelatedBlogs = ({ blogId }) => {
               >
                 <div className="w-full relative rounded-3xl">
                   <Image
+                  fill
                     alt="blog image"
                     src={data.image}
                     className="w-full aspect-square object-cover object-center rounded-3xl"

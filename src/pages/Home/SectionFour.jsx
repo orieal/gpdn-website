@@ -10,6 +10,7 @@ const SectionFour = () => {
       <div className="grid lg:grid-cols-[1fr_0.6fr] grid-flow-row lg:grid-flow-col lg:gap-28">
         <div className="w-full h-full rounded-3xl hidden lg:block">
           <Image
+            alt="Image"
             src={careImage}
             className="w-full h-full object-cover rounded-3xl"
           />
@@ -27,7 +28,7 @@ const SectionFour = () => {
             <div className="flex items-start gap-4 border border-primary rounded-xl p-4">
               <div className="flex items-start justify-center">
                 <div className="w-6 h-6 md:w-8 md:h-8">
-                  <Image src={icon1} className="w-full h-full" />
+                  <Image src={icon1} alt="Image" className="w-full h-full" />
                 </div>
               </div>
               <div className="flex flex-col gap-1">
@@ -38,7 +39,7 @@ const SectionFour = () => {
             <div className="flex items-start gap-4 border border-primary rounded-xl p-4">
               <div className="flex items-start justify-center">
                 <div className="w-5 h-5 md:w-7 md:h-7">
-                  <Image src={icon2} className="w-full h-full" />
+                  <Image src={icon2} alt="Image" className="w-full h-full" />
                 </div>
               </div>
               <div className="flex flex-col gap-1">

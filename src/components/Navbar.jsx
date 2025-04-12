@@ -28,7 +28,7 @@ const Navbar = () => {
             {/* ----- Logo and Navlinks------- */}
             <div className='flex justify-between items-center gap-16'>
                 <div className='w-32 2xl:w-48'>
-                    <Image className='w-full' src={logoGpdn}/>
+                    <Image className='w-full' alt="Img" src={logoGpdn}/>
                 </div>
                 <div className='font-normal text-[#0C0E12] text-lg 2xl:text-2xl justify-between gap-8 2xl:gap-20 hidden md:flex'>
                     <Link href={'/'}>

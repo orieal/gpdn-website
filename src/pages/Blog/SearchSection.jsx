@@ -99,6 +99,7 @@ const SearchSection = ({  sendDataToParent }) => {
               <div className="h-[60vh] lg:h-full w-full flex justify-center items-center  rounded-2xl relative">
                 <Image
                   alt="blog image"
+                  fill
                   src={latestBlogData.image}
                   layout="fill"
                   className="h-full w-full object-cover object-center rounded-2xl"

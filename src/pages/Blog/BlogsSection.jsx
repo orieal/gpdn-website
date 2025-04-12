@@ -8,7 +8,6 @@ import { CgArrowRight } from "react-icons/cg";
 
 const BlogsSection = ( {blogs}) => {
   useEffect(() => {
-    console.log("blogs from blogs", blogs);
   }, [blogs]);  
   return (
     <section className="w-full h-auto  flex justify-center items-center py-10">
@@ -17,7 +16,8 @@ const BlogsSection = ( {blogs}) => {
           <div key={index} className=" w-full h-auto  flex flex-col justify-between gap-5">
             <div className="w-full h-[25vh] md:h-auto relative rounded-3xl">
             <Image
-            src={data?.imageURL  } // fallback if data is undefined
+            src={data?.imageURL  } 
+            fill
             alt="Image"
             width={600}
             height={400}

@@ -30,6 +30,7 @@ const BlogDetails = ({ blogId }) => {
 
         <div className="w-full h-[20rem] md:h-[33rem]">
             <Image
+                fill
                 alt="blog image"
                 src={currentBlog.image}
                 className="w-full h-full object-cover object-center rounded-2xl"

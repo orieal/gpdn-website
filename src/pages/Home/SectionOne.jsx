@@ -161,6 +161,7 @@ const SectionOne = () => {
               <div className="flex justify-between w-full gap-2 xl:w-[90%] items-center">
                 <div className="xl:h-14 xl:w-14 2xl:w-full flex justify-center items-center ">
                   <Image
+                  
                     alt="Doctor profile image"
                     className="rounded-full w-full h-full"
                     src={doctorImage1}

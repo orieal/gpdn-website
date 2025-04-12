@@ -1,13 +1,11 @@
 "use client"
-import { blogsData } from '@/app/assets/assets';
-import React, { useEffect, useState } from "react";
+ import React, { useEffect, useState } from "react";
 import Image from 'next/image'
 import { CgArrowRight } from "react-icons/cg";
 import { fetchBlogs  } from "@/api/blog"; 
 
 
 const SectionFive = () => {
-
     const [blogs, setBlogs] = useState([]);
 
     useEffect(() => {
@@ -24,21 +22,13 @@ const SectionFive = () => {
         };
         fetchBlogData();
       }, [setBlogs ]); 
-
   return (
     <section className="w-full h-auto lg:h-screen  flex justify-center items-center py-5 lg:py-14">
         <div className='w-full h-full grid grid-rows-3 justify-between gap-5'>
             {blogs.slice(0,3).map((data,index)=>(
                 <div key={index} className=' w-full h-full grid grid-flow-row md:grid-flow-col gap-y-2 md:gap-y-0  md:grid-cols-[0.5fr_1fr_1fr] '>
                     <div className='h-[12rem]  md:h-full w-full rounded-2xl overflow-hidden'>
-                        {/* <Image alt='blog image' src={data.imageURL} className='w-full h-full object-cover object-center rounded-2xl'/> */}
-                        <Image
-            src={data?.imageURL  } // fallback if data is undefined
-            alt="Image"
-            width={600} 
-            height={400}
-            className="w-full h-full object-cover object-center rounded-2xl"
-            />
+                        <Image alt='blog image' src={data.imageURL} width={600}  height={400} className='w-full h-full object-cover object-center rounded-2xl'/>
                     </div>
                     <div className='flex flex-col justify-between p-0 md:p-2 lg:p-4 gap-2.5 md:gap-0 md:border-t border-neutral-200'>
                         <h2 className='text-[1.125rem] xl:text-[1.875rem] 2xl:text-[2.25rem] font-semibold leading-[1.3]'>{data.title}</h2>
@@ -50,11 +40,7 @@ const SectionFive = () => {
                 ? data.description.slice(0, 300).split(" ").slice(0,-1).join(" ") + " ..."
                 : data.description}
                         </p>
-                        <p className=' lg:hidden text-tertiary text-xs font-normal'> {new Date(data.createdAt).toLocaleDateString('en-US', {
-                         day: '2-digit',
-                         month: 'short',
-                         year: 'numeric',
-                       })}</p>
+                        <p className=' lg:hidden text-tertiary text-xs font-normal'>{data.createdAt}</p>
                         <div className='flex justify-start'>
                             <a className='border border-neutral-200 bg-white hover:bg-neutral-200 transition-all duration-300 ease-in cursor-pointer  text-[#0C0E12] rounded-full flex gap-1 items-center px-4 py-1.5'>
                                 <p className='text-xs xl:text-base'>Read More</p>

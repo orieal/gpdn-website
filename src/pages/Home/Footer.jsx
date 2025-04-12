@@ -18,7 +18,7 @@ const Footer = () => {
           <div className="flex flex-col justify-between gap-4 lg:gap-0 w-full">
             <div className="flex flex-col gap-2 lg:gap-3">
               <div className="w-[11.5rem]">
-                <Image alt="logo" src={logo} />
+                <Image alt="logo" fill src={logo} />
               </div>
               <p className="font-normal text-xs lg:text-base text-white opacity-60 w-full md:w-[50%]">
                 We believe that by investing in our people, we can create a
