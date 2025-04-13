@@ -37,7 +37,7 @@ const SectionOne = () => {
           <div className="relative w-full h-full">
             <div className="lg:absolute flex lg:items-center top-[8.5vh] xl:top-[8vh] left-0 w-full h-auto">
               <div className="flex flex-col gap-4 lg:gap-0 lg:justify-between">
-                <h1 className="text-4xl md:text-7xl lg:text-[6.5vw] xl:text-[6.7vw] font-light lg:leading-none xl:leading-[1.1] w-full lg:w-[125%] text-[#1E1E1E]">
+                <h1 className="text-4xl  md:text-7xl lg:text-[6.5vw] xl:text-[6.5vw] font-light lg:leading-none xl:leading-[1.1] w-full lg:w-[150%]  text-[#1E1E1E]">
                   Global Care<br className="hidden lg:block"/>for a{" "}
                   <span className="font-medium">Brighter Tomorrow</span>
                 </h1>
@@ -157,9 +157,9 @@ const SectionOne = () => {
                 </h2>
               </div>
               
-              <div className="w-full  flex  items-center">
-              <div className="flex justify-between w-full gap-2 xl:w-[90%] items-center">
-                <div className="xl:h-14 xl:w-14 2xl:w-full flex justify-center items-center ">
+              <div className="w-full  flex  items-center ">
+              <div className="flex justify-between w-full gap-2 xl:w-[90%] items-center ">
+                <div className="xl:h-14 xl:w-14 flex justify-center items-center ">
                   <Image
                   
                     alt="Doctor profile image"

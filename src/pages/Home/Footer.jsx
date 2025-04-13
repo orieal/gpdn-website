@@ -16,9 +16,9 @@ const Footer = () => {
         <div className="w-full h-full px-7 md:px-20 grid grid-flow-row md:grid-flow-col  md:grid-cols-[0.4fr_1fr] lg:grid-cols-[0.8fr_1fr] md:gap-x-12 lg:gap-x-28 pt-7 md:pt-20 pb-3 md:pb-10">
           {/* ---Left section-- */}
           <div className="flex flex-col justify-between gap-4 lg:gap-0 w-full">
-            <div className="flex flex-col gap-2 lg:gap-3">
-              <div className="w-[11.5rem]">
-                <Image alt="logo" fill src={logo} />
+            <div className="flex flex-col gap-2 lg:gap-3 relative">
+            <div className="w-[11.5rem]">
+                <Image alt="logo" src={logo} />
               </div>
               <p className="font-normal text-xs lg:text-base text-white opacity-60 w-full md:w-[50%]">
                 We believe that by investing in our people, we can create a

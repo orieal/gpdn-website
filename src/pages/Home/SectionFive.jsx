@@ -44,7 +44,7 @@ const SectionFive = () => {
                     </div>
                     <div className='flex flex-col justify-between p-0 md:p-2 lg:p-4 gap-2.5 md:gap-0 md:border-t border-neutral-200'>
                         <h2 className='text-[1.125rem] xl:text-[1.875rem] 2xl:text-[2.25rem] font-semibold leading-[1.3]'>{data.title}</h2>
-                        <p className='hidden lg:block text-tertiary text-base font-normal'>{data.content}</p>
+                        <p className='hidden lg:block text-tertiary text-base font-normal'>{new Date(data.createdAt).getDate()} {new Date(data.createdAt).toLocaleString('default', { month: 'short'})} {new Date(data.createdAt).getFullYear()}</p>
                     </div>
                     <div className='flex flex-col justify-between p-0 md:p-2 lg:p-4  gap-2.5 md:gap-0   md:border-t border-neutral-200'>
                         <p className='font-normal text-xs xl:text-[1rem] 2xl:text-[1.125rem] text-tertiary w-full leading-[1.6]'>
@@ -52,7 +52,7 @@ const SectionFive = () => {
                 ? data.description.slice(0, 300).split(" ").slice(0,-1).join(" ") + " ..."
                 : data.description}
                         </p>
-                        <p className=' lg:hidden text-tertiary text-xs font-normal'>{data.createdAt}</p>
+                        <p className=' lg:hidden text-tertiary text-xs font-normal'>{new Date(data.createdAt).getDate()} {new Date(data.createdAt).toLocaleString('default', { month: 'short'})} {new Date(data.createdAt).getFullYear()}</p>
                         <div className='flex justify-start'>
                             <a className='border border-neutral-200 bg-white hover:bg-neutral-200 transition-all duration-300 ease-in cursor-pointer  text-[#0C0E12] rounded-full flex gap-1 items-center px-4 py-1.5'>
                                 <p className='text-xs xl:text-base'>Read More</p>
