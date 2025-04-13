@@ -44,9 +44,7 @@ const SearchSection = ({  sendDataToParent,blogs }) => {
   ];
 
   useEffect(()=>{
-    setLatestBlogData(blogs[blogs.length-1])
-    console.log(latestBlogData,"latest");
-    
+    setLatestBlogData(blogs[blogs.length-1])    
   },[blogs])
 
   return (

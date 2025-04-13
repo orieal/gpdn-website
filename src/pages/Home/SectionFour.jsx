@@ -6,7 +6,7 @@ import icon2 from "../../app/assets/HOMEPAGE/SectionFour/icon-2.png";
 
 const SectionFour = () => {
   return (
-    <section className="w-full h-auto lg:h-screen flex justify-center items-center py-5 lg:py-14">
+    <section className="w-full h-auto lg:min-h-screen flex justify-center items-center py-5 lg:py-14">
       <div className="grid lg:grid-cols-[1fr_0.6fr] grid-flow-row lg:grid-flow-col lg:gap-28">
         <div className="w-full h-full rounded-3xl hidden lg:block">
           <Image

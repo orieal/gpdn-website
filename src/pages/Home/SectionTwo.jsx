@@ -5,7 +5,7 @@ import { excellenceData } from "@/app/assets/assets";
 
 const SectionTwo = () => {
   return (
-    <section className="w-full h-auto lg:h-screen flex justify-center items-center py-5 lg:py-0 ">
+    <section className="w-full h-auto lg:min-h-screen flex justify-center items-center py-5 lg:py-0 ">
       <div className="w-full h-auto lg:h-[75%] xl:h-[80%]  flex flex-col gap-16 lg:grid lg:grid-cols-2  lg:gap-x-28">
         {/* ---Left Side---  */}
         <div className="flex flex-col justify-between gap-3 lg:gap-0 w-full h-full">

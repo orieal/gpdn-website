@@ -37,11 +37,11 @@ const SectionOne = () => {
           <div className="relative w-full h-full">
             <div className="lg:absolute flex lg:items-center top-[8.5vh] xl:top-[8vh] left-0 w-full h-auto">
               <div className="flex flex-col gap-4 lg:gap-0 lg:justify-between">
-                <h1 className="text-4xl  md:text-7xl lg:text-[6.5vw] xl:text-[6.5vw] font-light lg:leading-none xl:leading-[1.1] w-full lg:w-[150%]  text-[#1E1E1E]">
+                <h1 className="text-4xl  md:text-7xl lg:text-[6.5vw] xl:text-[6.5vw] font-light lg:leading-none  w-full lg:w-[150%]  text-[#1E1E1E]">
                   Global Care<br className="hidden lg:block"/>for a{" "}
                   <span className="font-medium">Brighter Tomorrow</span>
                 </h1>
-                <div className="flex flex-col w-full gap-3 xl:gap-6">
+                <div className="flex flex-col w-full gap-3 xl:gap-5">
                   <p className="font-normal text-[2vh]  flex-nowrap">Join a global network of dedicated palliative care doctors committed to transforming patient lives through compassion, innovation, and shared knowledge.
                   </p>
                   <div>

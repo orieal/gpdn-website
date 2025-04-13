@@ -28,7 +28,7 @@ const SectionFive = () => {
         fetchBlogData();
       }, []); // Removed setBlogs from dependency array as it's unnecessary
   return (
-    <section className="w-full h-auto lg:h-screen  flex justify-center items-center py-5 lg:py-14">
+    <section className="w-full h-auto lg:min-h-screen  flex justify-center items-center py-5 lg:py-14">
         <div className='w-full h-full grid grid-rows-3 justify-between gap-5'>
             {blogs.slice(0,3).map((data,index)=>(
                 <div key={index} className=' w-full h-full grid grid-flow-row md:grid-flow-col gap-y-2 md:gap-y-0  md:grid-cols-[0.5fr_1fr_1fr] '>

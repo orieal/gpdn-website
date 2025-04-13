@@ -4,7 +4,7 @@ import aboutBanner from '../../app/assets/ABOUT/SectionTwo/about-banner.webp'
 
 const SectionTwo = () => {
   return (
-    <section className="w-full h-auto  flex justify-center items-center py-10">
+    <section className="w-full min-h-screen  flex justify-center items-center py-10">
       <div className='w-full h-full flex flex-col gap-24'>
         <div className='w-full flex flex-col gap-10 md:gap-0 md:grid md:grid-cols-2 md:gap-x-8 lg:gap-x-5 '>
           <div className='w-full h-full flex flex-col justify-between gap-8'>

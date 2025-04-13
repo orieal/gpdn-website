@@ -28,9 +28,9 @@ const BlogDetails = ({ blogId }) => {
           <h2 className="text-[1.8rem] md:text-[2.9rem] leading-tight font-semibold w-full text-center">{currentBlog.heading}</h2>
         </div>
 
-        <div className="w-full h-[20rem] md:h-[33rem]">
+        <div className="w-full h-[20rem] md:h-[33rem] relative">
             <Image
-                fill
+            fill
                 alt="blog image"
                 src={currentBlog.image}
                 className="w-full h-full object-cover object-center rounded-2xl"
