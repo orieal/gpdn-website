@@ -15,28 +15,25 @@ const BlogsSection = ( {blogs}) => {
         {blogs.map((data, index) => (
           <div key={index} className=" w-full h-auto  flex flex-col justify-between gap-5">
             <div className="w-full h-[25vh] md:h-auto relative rounded-3xl">
-            <Image
-            src={data?.imageURL  } 
-            fill
-            alt="Image"
-            width={600}
-            height={400}
-            className="w-full h-full md:h-auto md:aspect-square object-cover object-center rounded-3xl"
-            />
+                <Image
+                    src={data.imageURL ? data.imageURL : '/placeholder-image.jpg'}
+                    alt={`Blog image ${index + 1}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover rounded-3xl"
+                    priority={index < 2}
+                />
             </div>
-
             <div className="flex flex-col gap-6">
              <div className="flex flex-col gap-1.5">
              <div className="flex items-center w-full justify-between">
                 <a className="flex items-center justify-center font-poppins font-medium text-sm  text-primary">
-                  Cancer
+                  {data.category}
                 </a>
-                <p className=" text-tertiary text-sm font-normal">
-                  {data.title}
-                </p>
+                
               </div>
               <h2 className="text-xl font-semibold text-black">
-                {data.content}
+                {data.title}
               </h2>
               <p className="font-normal text-sm  text-tertiary w-full">
                {data.description && data.description.length > 120 
