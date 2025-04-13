@@ -27,10 +27,10 @@ const Navbar = () => {
         <div className='w-full flex justify-between items-center'>
             {/* ----- Logo and Navlinks------- */}
             <div className='flex justify-between items-center gap-16'>
-                <div className='w-32 2xl:w-48'>
+                <div className='w-32'>
                     <Image className='w-full' alt="Img" src={logoGpdn}/>
                 </div>
-                <div className='font-normal text-[#0C0E12] text-lg 2xl:text-2xl justify-between gap-8 2xl:gap-20 hidden md:flex'>
+                <div className='font-normal text-[#0C0E12] text-lg  justify-between gap-8  hidden md:flex'>
                     <Link href={'/'}>
                         <button className=''>Home</button>
                     </Link>
@@ -47,7 +47,7 @@ const Navbar = () => {
             </div>
 
             {/* ---Get Started button--- */}
-            <Link href="/about" className='bg-primary hover:bg-[#039187] cursor-pointer transition-all duration-300 ease-in text-white text-sm 2xl:text-xl font-poppins py-3 px-5 rounded-xl hidden items-center justify-around md:flex gap-2'>
+            <Link href="/about" className='bg-primary hover:bg-[#039187] cursor-pointer transition-all duration-300 ease-in text-white text-sm font-poppins py-3 px-5 rounded-xl hidden items-center justify-around md:flex gap-2'>
                 Explore
                 <GoChevronRight className="text-xl"/>
             </Link>

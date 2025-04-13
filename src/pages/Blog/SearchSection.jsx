@@ -8,11 +8,10 @@ import { blogsData } from "@/app/assets/assets";
 import BlogsSection from './BlogsSection'
 import {  } from "../../api/blog";
 
-const SearchSection = ({  sendDataToParent }) => {
+const SearchSection = ({  sendDataToParent,blogs }) => {
 
-  const [blogs, setBlogs] = useState([]);
   const [search, setSearch] = useState("");
-
+  const [latestBlogData,setLatestBlogData] = useState([])
  
  
 
@@ -43,7 +42,12 @@ const SearchSection = ({  sendDataToParent }) => {
     "Healthy Food",
     "Lifestyle",
   ];
-   const latestBlogData = blogsData[blogsData.length - 1];
+
+  useEffect(()=>{
+    setLatestBlogData(blogs[blogs.length-1])
+    console.log(latestBlogData,"latest");
+    
+  },[blogs])
 
   return (
     <section className="w-full h-full  flex justify-center items-center">
@@ -93,14 +97,27 @@ const SearchSection = ({  sendDataToParent }) => {
         </div>
 
         {/* ---FIRST BLOG SECT---- */}
-        <div className="w-full flex justify-center items-center h-[50vh]  lg:h-[40vh]">
+        {
+           !latestBlogData ?
+
+           (
+             <section className="w-full h-auto flex justify-center items-center py-10">
+             <div className="text-black text-4xl">Loading...</div> {/* You can add a loading state or skeleton screen */}
+           </section>
+           )
+           
+     
+           :
+           (
+
+            <div className="w-full flex justify-center items-center h-[50vh]  lg:h-[40vh]">
           <div className="w-full h-full flex justify-center items-center ">
             <div className=" w-full h-full flex flex-col gap-6 md:gap-0 justify-around  lg:grid  lg:grid-flow-col  lg:gap-x-6  lg:grid-cols-[0.8fr_1fr]">
               <div className="h-[60vh] lg:h-full w-full flex justify-center items-center  rounded-2xl relative">
                 <Image
                   alt="blog image"
                   fill
-                  src={latestBlogData.image}
+                  src={latestBlogData?.imageURL ? latestBlogData.imageURL : '/placeholder-image.jpg'}
                   layout="fill"
                   className="h-full w-full object-cover object-center rounded-2xl"
                 />
@@ -109,17 +126,20 @@ const SearchSection = ({  sendDataToParent }) => {
                <div className="flex flex-col gap-0 md:gap-3 lg:gap-3 ">
                <div className="flex items-center gap-3">
                   <a className="flex items-center justify-center font-poppins font-medium text-sm  text-primary">
-                    Cancer
+                  {latestBlogData?.category}
                   </a>
                   <p className=" text-tertiary text-base font-normal">
-                    {latestBlogData.date}
+                    {latestBlogData?.date}
                   </p>
                 </div>
                 <h2 className="text-lg xl:text-3xl 2xl:text-4xl font-semibold">
-                  {latestBlogData.heading}
+                {latestBlogData?.title}
                 </h2>
                 <p className="font-normal text-xs xl:text-base 2xl:text-lg text-tertiary w-full">
-                  {latestBlogData.description}
+                {latestBlogData?.description && latestBlogData.description.length > 120 
+               ? latestBlogData.description.slice(0, 120).split(" ").slice(0, -1).join(" ") + " ..."
+               : latestBlogData?.description
+               }
                 </p>
                </div>
 
@@ -133,6 +153,10 @@ const SearchSection = ({  sendDataToParent }) => {
             </div>
           </div>
         </div>
+
+           )
+        }
+        
       </div>
       
      
