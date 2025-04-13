@@ -8,13 +8,27 @@ import { CgArrowRight } from "react-icons/cg";
 
 const BlogsSection = ( {blogs}) => {
   useEffect(() => {
+
   }, [blogs]);  
   return (
-    <section className="w-full h-auto  flex justify-center items-center py-10">
+
+      !blogs || !Array.isArray(blogs)  ?
+
+      (
+        <section className="w-full h-auto flex justify-center items-center py-10">
+        <div className="text-black text-4xl">Loading...</div> {/* You can add a loading state or skeleton screen */}
+      </section>
+      )
+      
+
+      :
+
+      (
+        <section className="w-full h-auto  flex justify-center items-center py-10">
       <div className="w-full h-auto flex flex-col gap-20 md:gap-10 md:grid  md:grid-cols-2 lg:grid-cols-3  grid-flow-row ">
         {blogs.map((data, index) => (
           <div key={index} className=" w-full h-auto  flex flex-col justify-between gap-5">
-            <div className="w-full h-[25vh] md:h-auto relative rounded-3xl">
+            <div className="w-full h-[25vh] md:h-[40vh] relative rounded-3xl">
                 <Image
                     src={data.imageURL ? data.imageURL : '/placeholder-image.jpg'}
                     alt={`Blog image ${index + 1}`}
@@ -32,10 +46,10 @@ const BlogsSection = ( {blogs}) => {
                 </a>
                 
               </div>
-              <h2 className="text-xl font-semibold text-black">
+              <h2 className="text-xl lg:h-[4rem] font-semibold text-black">
                 {data.title}
               </h2>
-              <p className="font-normal text-sm  text-tertiary w-full">
+              <p className="font-normal lg:h-[4rem] text-sm  text-tertiary w-full">
                {data.description && data.description.length > 120 
                ? data.description.slice(0, 120).split(" ").slice(0, -1).join(" ") + " ..."
                : data.description
@@ -56,6 +70,10 @@ const BlogsSection = ( {blogs}) => {
         ))}
       </div>
     </section>
+      )
+      
+
+    
   );
 };
 

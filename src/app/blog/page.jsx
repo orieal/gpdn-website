@@ -14,6 +14,25 @@ const Page = () => {
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+         const fetchBlogData = async () => {
+           try {
+             const response = await fetchBlogs();
+             
+             // Safely check if response has the nested data property
+             if (response?.data?.data) {
+               setBlogs(Array.isArray(response.data.data) ? response.data.data : []);
+             } else {
+               setBlogs([]);
+             }
+           } catch (error) {
+             console.error("Error fetching Blogs:", error);
+             setBlogs([]);
+           }
+         };
+         fetchBlogData();
+       }, []); // Removed setBlogs from dependency array as it's unnecessary
+
 const handleData =async (number ,data) => {
   if(number ==1){
       const blogs = await searchBlogs(data);
