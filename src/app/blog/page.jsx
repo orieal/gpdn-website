@@ -5,33 +5,46 @@ import BlogsSection from '@/pages/Blog/BlogsSection'
 import SearchSection from '@/pages/Blog/SearchSection'
 import Footer from '@/pages/Home/Footer'
 import { fetchBlogs , searchBlogs , filterBlogs } from "@/api/blog"; 
+import { useDispatch, useSelector } from "react-redux";
+import { setAllBlogs } from "@/redux/slices/blogsSlice";
 
 const Page = () => {
   const [mounted, setMounted] = useState(false);
   const [blogs, setBlogs] = useState([]);
+  const dispatch = useDispatch();
+  const allBlogsData = useSelector((state) => state.blogs.allBlogsData);
+
+
+  useEffect(()=>{
+    if(allBlogsData){
+      setBlogs(allBlogsData)
+    }else{
+
+              const fetchAllBlogsData = async () => {
+                try {
+                  const response = await fetchBlogs();
+                  
+                  // Safely check if response has the nested data property
+                  if (response?.data?.data) {
+                    dispatch(setAllBlogs(Array.isArray(response.data.data) ? response.data.data : []));
+                  } else {
+                    dispatch(setAllBlogs([]));
+                  }
+                } catch (error) {
+                  console.error("Error fetching Blogs:", error);
+                  dispatch(setAllBlogs([]));
+                }
+              };
+              fetchAllBlogsData();
+    }
+    
+  },[allBlogsData])
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-         const fetchBlogData = async () => {
-           try {
-             const response = await fetchBlogs();
-             
-             // Safely check if response has the nested data property
-             if (response?.data?.data) {
-               setBlogs(Array.isArray(response.data.data) ? response.data.data : []);
-             } else {
-               setBlogs([]);
-             }
-           } catch (error) {
-             console.error("Error fetching Blogs:", error);
-             setBlogs([]);
-           }
-         };
-         fetchBlogData();
-       }, []); // Removed setBlogs from dependency array as it's unnecessary
+ 
 
 const handleData =async (number ,data) => {
   if(number ==1){

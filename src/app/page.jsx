@@ -6,8 +6,12 @@ import SectionFour from "@/pages/Home/SectionFour";
 import SectionFive from "@/pages/Home/SectionFive";
 import FAQSection from "@/pages/Home/FAQSection";
 import Footer from "@/pages/Home/Footer";
+import { fetchBlogs } from "@/api/blog";
+import { useDispatch } from "react-redux";
+import { setAllBlogs } from "@/redux/slices/blogsSlice";
 
 export default function Home() {
+
   return (
     <main className="flex  flex-col items-center overflow-hidden">
       <div className="flex w-full  flex-col items-center justify-between gap-10 lg:gap-0 px-7 md:px-16 lg:px-20 2xl:px-40 ">

@@ -4,9 +4,9 @@ import RelatedBlogs from '@/pages/Blog/FullBlog/RelatedBlogs'
 import Footer from '@/pages/Home/Footer'
 import React from 'react'
 
-const page = ({params}) => {
+const page = async ({params}) => {
 
-    const {blogId} = params
+    const {blogId} = await params ;
 
   return (
     <main className="flex  flex-col items-center gap-20">

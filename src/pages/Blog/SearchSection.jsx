@@ -7,6 +7,7 @@ import { LuSearch } from "react-icons/lu";
 import { blogsData } from "@/app/assets/assets";
 import BlogsSection from './BlogsSection'
 import {  } from "../../api/blog";
+import Link from "next/link";
 
 const SearchSection = ({  sendDataToParent,blogs }) => {
 
@@ -34,6 +35,14 @@ const SearchSection = ({  sendDataToParent,blogs }) => {
     }
   }
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString('default', { month: 'short' });
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
+  };
+
   const topics = [
     "All",
     "Diabetes",
@@ -44,7 +53,9 @@ const SearchSection = ({  sendDataToParent,blogs }) => {
   ];
 
   useEffect(()=>{
-    setLatestBlogData(blogs[blogs.length-1])    
+    setLatestBlogData(blogs[blogs.length-1])  
+    console.log(latestBlogData,"latestblog");
+      
   },[blogs])
 
   return (
@@ -99,7 +110,7 @@ const SearchSection = ({  sendDataToParent,blogs }) => {
            !latestBlogData ?
 
            (
-             <section className="w-full h-auto flex justify-center items-center py-10">
+             <section className="w-full h-[50vh]  lg:h-[40vh] flex justify-center items-center py-10">
              <div className="text-black text-4xl">Loading...</div> {/* You can add a loading state or skeleton screen */}
            </section>
            )
@@ -127,7 +138,7 @@ const SearchSection = ({  sendDataToParent,blogs }) => {
                   {latestBlogData?.category}
                   </a>
                   <p className=" text-tertiary text-base font-normal">
-                    {latestBlogData?.date}
+                    {formatDate(latestBlogData.createdAt)}
                   </p>
                 </div>
                 <h2 className="text-lg xl:text-3xl 2xl:text-4xl font-semibold">
@@ -140,13 +151,13 @@ const SearchSection = ({  sendDataToParent,blogs }) => {
                }
                 </p>
                </div>
-
-                <div className="flex justify-start">
-                  <a className="border border-neutral-200 bg-white hover:bg-neutral-200 transition-all duration-300 ease-in cursor-pointer text-[#0C0E12] rounded-full flex gap-1 items-center px-4 py-1.5">
+               <Link href={`/blog/${latestBlogData._id}`} className="flex justify-start" >
+                  <div className="border border-neutral-200 bg-white hover:bg-neutral-200 transition-all duration-300 ease-in cursor-pointer text-[#0C0E12] rounded-full flex gap-1 items-center px-4 py-1.5">
                     <p className="text-xs xl:text-base">Read More</p>
                     <CgArrowRight className="text-base xl:text-xl" />
-                  </a>
-                </div>
+                  </div>
+               </Link>
+               
               </div>
             </div>
           </div>

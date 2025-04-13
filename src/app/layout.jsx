@@ -1,5 +1,7 @@
 import { Urbanist, Poppins } from "next/font/google";
 import "./globals.css";
+import ReduxProvider from "@/redux/ReduxProvider";
+
 
 const urbanist = Urbanist({
     subsets: ["latin"],
@@ -14,6 +16,10 @@ const poppins = Poppins({
 });
 
 export default function RootLayout({children}) {
+
+   
+
+
     return (
         <html lang="en">
             <head>
@@ -36,7 +42,11 @@ export default function RootLayout({children}) {
                 <meta property="og:url" content="https://gpdnorg.net"/>
                 <meta property="og:type" content="website"/>
             </head>
-            <body className={`${urbanist.className} ${poppins.variable}`}>{children}</body>
+            <body className={`${urbanist.className} ${poppins.variable}`}>
+                <ReduxProvider>
+                {children}
+                </ReduxProvider>
+                </body>
         </html>
     );
 }

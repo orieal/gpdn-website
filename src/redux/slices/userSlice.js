@@ -1,15 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// const getStoredUserInfo = () => {
+//     const storedUserInfo = localStorage.getItem('userInfo');
+//     try {
+//         return storedUserInfo ? JSON.parse(storedUserInfo) : null;
+//     } catch (error) {
+//         console.log('Error parsing stored user info:', error);
+//         localStorage.removeItem('userInfo');
+//         return null;
+//     }
+// };
+
 const getStoredUserInfo = () => {
-    const storedUserInfo = localStorage.getItem('userInfo');
-    try {
+    if (typeof window !== 'undefined') {
+      const storedUserInfo = localStorage.getItem('userInfo');
+      try {
         return storedUserInfo ? JSON.parse(storedUserInfo) : null;
-    } catch (error) {
+      } catch (error) {
         console.log('Error parsing stored user info:', error);
         localStorage.removeItem('userInfo');
         return null;
+      }
     }
-};
+    return null;
+  };
 
 const initialState = {
     userInfo: getStoredUserInfo(),

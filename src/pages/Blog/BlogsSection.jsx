@@ -7,6 +7,15 @@ import Link from "next/link";
 import { CgArrowRight } from "react-icons/cg";
 
 const BlogsSection = ( {blogs}) => {
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString('default', { month: 'short' });
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
+  };
+
   useEffect(() => {
 
   }, [blogs]);  
@@ -44,7 +53,9 @@ const BlogsSection = ( {blogs}) => {
                 <a className="flex items-center justify-center font-poppins font-medium text-sm  text-primary">
                   {data.category}
                 </a>
-                
+                <p className=" text-tertiary text-sm font-normal">
+                      {formatDate(data.createdAt)}
+                    </p>
               </div>
               <h2 className="text-xl lg:h-[4rem] font-semibold text-black">
                 {data.title}
@@ -56,7 +67,7 @@ const BlogsSection = ( {blogs}) => {
                }
               </p>
              </div>
-             <Link href={`/blog/${index}`} >
+             <Link href={`/blog/${data._id}`} >
              <div className="flex justify-start cursor-pointer">
                 <div className="border border-neutral-200 bg-white hover:bg-neutral-200 transition-all duration-300 ease-in cursor-pointer text-[#0C0E12] rounded-full flex gap-1 items-center px-4 py-1.5">
                   <p className="text-xs xl:text-base">Read More</p>
