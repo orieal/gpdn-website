@@ -178,17 +178,51 @@ return
 
     async VerifyOtp(req:Request , res:Response , next: NextFunction){
       try{
-
-        
         const { email , otp } = req.body;
   
         const verifyOtp = await this.UserUsecase.VerifyOtpForm(  otp ,email )
 
-        
         return res.json({
           success: verifyOtp?.success,
           status: verifyOtp?.status,
           data: verifyOtp?.data,
+        });
+
+        
+      }catch(error){
+        console.log(error)
+      }
+    }
+    
+    async FetchNewsAndBlogs(req:Request , res:Response , next: NextFunction){
+      try{
+  
+        const fetchNewsAndBlogs = await this.UserUsecase.FetchNewsAndBlogsForm()
+
+        return res.json({
+          success: fetchNewsAndBlogs?.success,
+          status: fetchNewsAndBlogs?.status,
+          data: fetchNewsAndBlogs?.data,
+        });
+
+        
+      }catch(error){
+        console.log(error)
+      }
+    }
+
+    
+    async ContactEmail(req:Request , res:Response , next: NextFunction){
+      try{
+        const { name , email , phone , message } = req.body.formData;
+        console.log('am on',req.body,name)
+  
+        const ContactEmail = await this.UserUsecase.ContactEmailForm(  name , email , phone , message )
+    
+        return res.json({
+          success: ContactEmail?.success,
+          status: ContactEmail?.status,
+          data: ContactEmail?.data,
         });
 
         

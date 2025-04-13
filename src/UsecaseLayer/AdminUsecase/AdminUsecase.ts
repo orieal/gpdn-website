@@ -503,12 +503,13 @@ class AdminUsecase {
         }
         
         const editNewsAndBlogs =await  this.AdminRepository.editNewsAndBlogs(NewsAndBlogs);
+        console.log(editNewsAndBlogs)
         if(!editNewsAndBlogs){
           return {
             success: false,
             status: 400,
             data:{
-              message:"Failed to add newsandblogs! ,Please try later."
+              message:"Failed to edit newsandblogs! ,Please try later."
             },
           };
         }else{

@@ -35,6 +35,26 @@ class sendOtp implements Nodemailer {
     });
   }
 
+  sendContactMail(name:string , email: string, phone: string, message: string): void {
+    console.log("came here sendContactMail inside services");
+  
+    const mailOptions: nodemailer.SendMailOptions = {
+      from: "nihalmuhaednihal@gmail.com",
+      to: email, 
+      subject: "New Contact Form Submission",
+      text: `You've received a new message from ${name}\n your contact form:\n\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`,
+    };
+  
+    this.transporter.sendMail(mailOptions, (err: any) => {
+      if (err) {
+        console.log("Error from sendContactMail:", err);
+      } else {
+        console.log("Contact form message sent successfully");
+      }
+    });
+  }
+  
+
   sendInvitationToUser(email: string ): void {
     const link = process.env.InvitationLink;
     console.log("came here sendmail inside services / sendMail");

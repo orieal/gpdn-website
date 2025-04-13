@@ -4,6 +4,8 @@ import UserSchema from "../../database/UserSchema";
 import UserRepo from "../../../UsecaseLayer/Interface/UserRepo";
 import IOtp from "../../../DomainLayer/OtpDomain";
 import OtpSchema from "../../database/OtpSchema";
+import BlogSchema from "../../database/BlogSchema";
+import IBlog from "../../../DomainLayer/BlogDomain.";
 
 class UserRepository implements UserRepo {
 
@@ -63,6 +65,17 @@ class UserRepository implements UserRepo {
     try {
       const deletedUser = await OtpSchema.deleteOne({ email : email });
       return deletedUser;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  
+  async fetchBlogs(): Promise<IBlog | any> {
+    try {
+      const fetchBlogs = await BlogSchema.find();
+      return fetchBlogs;
     } catch (error) {
       console.log(error);
       return error;

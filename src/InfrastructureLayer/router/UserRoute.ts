@@ -67,6 +67,14 @@ route.post("/upload",upload.single("file"), (req, res, next) => {
     userController.VerifyOtp(req, res, next);
   });
 
+  route.post("/FetchNewsAndBlogs", (req, res, next) => {
+    userController.FetchNewsAndBlogs(req, res, next);
+  });
+
+  route.post("/userContactDetails", (req, res, next) => {
+    userController.ContactEmail(req, res, next);
+  });
+
 // route.use(errorHandle);
  
 

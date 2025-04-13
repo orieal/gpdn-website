@@ -62,7 +62,7 @@ class NewsAndBlogsUsecase {
    
    async AddNewAndBlogsForm(title:string , content:string , authorId:string , tags:[string] , description:string , imageURL:string, category:string){
     try{
-        const NewsAndBlogs = {title , content ,description , tags , authorId , imageURL , category } ;
+        const NewsAndBlogs = {title , content ,description , tags , authorId , imageURL , category  } ;
         if (!authorId || !title || !content || !tags || !description || !imageURL || !category) {
           return { success: false, status:400 ,data:{Message:"Please fill all required feilds." } };
         }
