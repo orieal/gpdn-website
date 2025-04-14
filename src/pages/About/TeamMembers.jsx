@@ -21,7 +21,12 @@ const TeamMembers = () => {
             teamMembersData.map((memberData,index)=>(
               <div key={index} className='w-full h-auto flex flex-col gap-4 '>
                 <div className='w-full h-[25rem] relative rounded-xl'>
-                  <Image src={memberData.profileImage} className='w-full h-full rounded-xl object-cover object-top  border-b-[5px] border-secondary' layout='fill'/>
+                  <Image 
+                    src={memberData.profileImage} 
+                    alt={`Profile picture of ${memberData.name}`}
+                    className='w-full h-full rounded-xl object-cover object-top border-b-[5px] border-secondary' 
+                    layout='fill'
+                  />
                 </div>
                 <div className='w-full h-auto flex flex-col'>
                   <h5 className='font-semibold text-[1.7rem] text-black'>{memberData.name}</h5>
