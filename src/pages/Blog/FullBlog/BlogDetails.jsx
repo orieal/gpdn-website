@@ -3,11 +3,8 @@ import { blogsData } from "@/app/assets/assets";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import blogImage from '../../../app/assets/HOMEPAGE/SectionFive/blog-image-4.png'
-import { useSelector } from "react-redux";
 
-const BlogDetails = ({ blogId }) => {
-  
-  const allBlogsData = useSelector((state) => state.blogs.allBlogsData);
+const BlogDetails = ({ blogId, allBlogsData }) => {
   const [currentBlog,setCurrentBlog] = useState(false)
 
   const formatDate = (dateString) => {
@@ -19,9 +16,9 @@ const BlogDetails = ({ blogId }) => {
   };
 
   useEffect(()=>{
-    const matchedBlog = allBlogsData.find(data => data._id == blogId);
-  setCurrentBlog(matchedBlog);
-  },[allBlogsData])
+    const matchedBlog = allBlogsData?.find(data => data._id == blogId);
+    setCurrentBlog(matchedBlog);
+  },[allBlogsData, blogId])
 
   // const currentBlog = {
   //     heading: "Cancer Cases in Indonesia Predicted to Increase 70% by 2050",

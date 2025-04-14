@@ -15,7 +15,7 @@ const page = async ({params}) => {
       <Navbar/>
       <BlogDetails blogId={blogId}/>
       </div>
-      <RelatedBlogs blogId={blogId}/>
+    <RelatedBlogs blogId={blogId}/> 
       </div>
       <Footer/> 
     </main>

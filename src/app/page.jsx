@@ -6,9 +6,6 @@ import SectionFour from "@/pages/Home/SectionFour";
 import SectionFive from "@/pages/Home/SectionFive";
 import FAQSection from "@/pages/Home/FAQSection";
 import Footer from "@/pages/Home/Footer";
-import { fetchBlogs } from "@/api/blog";
-import { useDispatch } from "react-redux";
-import { setAllBlogs } from "@/redux/slices/blogsSlice";
 
 export default function Home() {
 

@@ -4,11 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { CgArrowRight } from "react-icons/cg";
-import { useSelector } from "react-redux";
 
-const RelatedBlogs = ({ blogId }) => {
-
-  const allBlogsData = useSelector((state) => state.blogs.allBlogsData);
+const RelatedBlogs = ({ blogId, allBlogsData }) => {
   const [relatedBlogs,setRelatedBlogs] = useState(false)
 
   const formatDate = (dateString) => {
@@ -20,14 +17,13 @@ const RelatedBlogs = ({ blogId }) => {
   };
 
   useEffect(()=>{
-    const idMatchedBlog = allBlogsData.find(data => data._id == blogId);
+    const idMatchedBlog = allBlogsData?.find(data => data._id == blogId);
     if(idMatchedBlog){
-      const category = idMatchedBlog.category ;
-   const categoryMatchedBlogs = allBlogsData.filter(data => data.category == category && data._id !== idMatchedBlog._id);
-   setRelatedBlogs(categoryMatchedBlogs)
+      const category = idMatchedBlog.category;
+      const categoryMatchedBlogs = allBlogsData.filter(data => data.category == category && data._id !== idMatchedBlog._id);
+      setRelatedBlogs(categoryMatchedBlogs)
     }
-  
-  },[allBlogsData])
+  },[allBlogsData, blogId])
 
   useEffect(()=>{
     console.log(relatedBlogs,"'rb");

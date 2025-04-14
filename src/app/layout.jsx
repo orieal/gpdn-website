@@ -1,6 +1,5 @@
 import { Urbanist, Poppins } from "next/font/google";
 import "./globals.css";
-import ReduxProvider from "@/redux/ReduxProvider";
 
 
 const urbanist = Urbanist({
@@ -43,9 +42,9 @@ export default function RootLayout({children}) {
                 <meta property="og:type" content="website"/>
             </head>
             <body className={`${urbanist.className} ${poppins.variable}`}>
-                <ReduxProvider>
+             
                 {children}
-                </ReduxProvider>
+               
                 </body>
         </html>
     );
