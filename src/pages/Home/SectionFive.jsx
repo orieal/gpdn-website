@@ -50,49 +50,42 @@ const SectionFive = () => {
       return '';
     }
   };
-
-  const SkeletonBlog = () => (
-    <div className='w-full h-full grid grid-flow-row md:grid-flow-col gap-y-2 md:gap-y-0 md:grid-cols-[0.5fr_1fr_1fr]'>
-      {/* Image placeholder */}
-      <div className='h-48 md:h-60 w-full rounded-2xl overflow-hidden relative bg-gray-200 animate-pulse'></div>
+  const SkeletonBlogRow = () => (
+    <div className='min-w-[85vw] min-h-60 md:min-h-60 grid grid-flow-row md:grid-flow-col gap-y-2 md:gap-y-0 md:grid-cols-[0.5fr_1fr_1fr] animate-pulse'>
       
-      {/* Title and date section */}
+      {/* Image Placeholder */}
+      <div className='h-48 md:h-60 w-full rounded-2xl overflow-hidden relative bg-gray-200'></div>
+  
+      {/* Title + Date Placeholder */}
       <div className='flex flex-col justify-between p-0 md:p-2 lg:p-4 gap-2.5 md:gap-0 md:border-t border-neutral-200'>
-        {/* Title placeholder - taller and multiple lines */}
         <div className='space-y-2'>
-          <div className='h-6 bg-gray-200 rounded animate-pulse w-full'></div>
-          <div className='h-6 bg-gray-200 rounded animate-pulse w-4/5'></div>
+          <div className='h-6 bg-gray-200 rounded w-full'></div>
+          <div className='h-6 bg-gray-200 rounded w-4/5'></div>
         </div>
-        {/* Date placeholder - hidden on mobile as in the real component */}
-        <div className='hidden lg:block h-4 w-24 bg-gray-200 rounded animate-pulse mt-2'></div>
+        <div className='hidden lg:block h-4 w-24 bg-gray-200 rounded mt-2'></div>
       </div>
-      
-      {/* Description and CTA section */}
+  
+      {/* Description + CTA Placeholder */}
       <div className='flex flex-col justify-between p-0 md:p-2 lg:p-4 gap-2.5 md:gap-0 md:border-t border-neutral-200'>
-        {/* Description placeholder - multiple lines */}
         <div className='space-y-2'>
-          <div className='h-4 bg-gray-200 rounded animate-pulse w-full'></div>
-          <div className='h-4 bg-gray-200 rounded animate-pulse w-full'></div>
-          <div className='h-4 bg-gray-200 rounded animate-pulse w-3/4'></div>
+          <div className='h-4 bg-gray-200 rounded w-full'></div>
+          <div className='h-4 bg-gray-200 rounded w-full'></div>
+          <div className='h-4 bg-gray-200 rounded w-3/4'></div>
         </div>
-        
-        {/* Mobile date placeholder */}
-        <div className='lg:hidden h-4 w-24 bg-gray-200 rounded animate-pulse my-2'></div>
-        
-        {/* Read More button placeholder */}
-        <div className='h-8 w-28 bg-gray-200 rounded-full animate-pulse mt-2'></div>
+        <div className='lg:hidden h-4 w-24 bg-gray-200 rounded my-2'></div>
+        <div className='h-8 w-28 bg-gray-200 rounded-full mt-2'></div>
       </div>
     </div>
   );
 
   return (
     <section className="w-full h-auto lg:min-h-screen flex justify-center items-center py-5 lg:py-14">
-      <div className='w-full h-full grid grid-rows-[auto_auto_auto] justify-between gap-5'>
+      <div className='w-full h-full grid grid-rows-[auto_auto_auto] justify-between  gap-5'>
         {isLoading ? (
           <>
-            <SkeletonBlog />
-            <SkeletonBlog />
-            <SkeletonBlog />
+            <SkeletonBlogRow />
+            <SkeletonBlogRow />
+            <SkeletonBlogRow />
           </>
         ) : blogs && blogs.length > 0 ? (
           blogs.map((data, index) => (

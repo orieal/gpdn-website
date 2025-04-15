@@ -1,12 +1,14 @@
 'use client';
+import { fetchBlogs } from "@/api/blog";
 import { blogsData } from "@/app/assets/assets";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { CgArrowRight } from "react-icons/cg";
 
-const RelatedBlogs = ({ blogId, allBlogsData }) => {
+const RelatedBlogs = ({ blogId }) => {
   const [relatedBlogs,setRelatedBlogs] = useState(false)
+  const [allBlogsData,setAllBlogsData] = useState([])
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -15,6 +17,22 @@ const RelatedBlogs = ({ blogId, allBlogsData }) => {
     const year = date.getFullYear();
     return `${day} ${month} ${year}`;
   };
+
+  useEffect(() => {
+        const fetchAllBlogsData = async () => {
+          try {
+            const response = await fetchBlogs();
+            if (response?.data?.data) {
+              setAllBlogsData(Array.isArray(response.data.data) ? response.data.data : []);
+            }
+          } catch (error) {
+            console.error("Error fetching Blogs:", error);
+            setAllBlogsData([]);
+          }
+        };
+        
+        fetchAllBlogsData();
+      }, []);
 
   useEffect(()=>{
     const idMatchedBlog = allBlogsData?.find(data => data._id == blogId);
@@ -25,35 +43,62 @@ const RelatedBlogs = ({ blogId, allBlogsData }) => {
     }
   },[allBlogsData, blogId])
 
-  useEffect(()=>{
-    console.log(relatedBlogs,"'rb");
-    
-  },[relatedBlogs])
+
+  const SkeletonRelatedBlogs = () => {
+    return (
+      <div className="w-full h-auto grid grid-cols-1 md:grid-cols-3 gap-10 grid-flow-row">
+        {[1, 2, 3].map((_, index) => (
+          <div
+            key={index}
+            className="w-full h-auto flex flex-col justify-between gap-5 animate-pulse"
+          >
+            {/* Image Skeleton */}
+            <div className="w-full h-[25vh] md:h-[40vh] bg-gray-200 rounded-3xl"></div>
+  
+            {/* Content Skeleton */}
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center w-full justify-between">
+                <div className="w-20 h-5 bg-gray-200 rounded"></div>
+                <div className="w-16 h-4 bg-gray-200 rounded"></div>
+              </div>
+              <div className="w-full h-6 bg-gray-200 rounded"></div>
+              <div className="w-full h-4 bg-gray-200 rounded"></div>
+              <div className="w-5/6 h-4 bg-gray-200 rounded"></div>
+              <div className="w-3/4 h-4 bg-gray-200 rounded"></div>
+  
+              {/* Read More Button Skeleton */}
+              <div className="w-24 h-8 bg-gray-200 rounded-full mt-2"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
 
   return (
 
-    !relatedBlogs ?
-
-    (
-      <section className="w-full h-auto flex justify-center items-center py-10">
-      <div className="text-black text-4xl">Loading...</div> {/* You can add a loading state or skeleton screen */}
-    </section>
-    )
-    
-
-    :
-
-    (
-      relatedBlogs.length == 0 ?
-      <div>
-        <h1>no related blogs</h1>
-      </div>
-      :
+   
       <section className="w-full h-auto  flex justify-center items-center ">
       <div className="flex flex-col items-start gap-4 w-full">
         <h2 className="font-semibold text-[2.5rem]">Related Articles</h2>
-        <div className="overflow-x-scroll">
-          <div className="w-full h-auto grid grid-cols-1 md:grid-cols-3 gap-10 grid-flow-row ">
+        <div className="overflow-x-scroll w-full">
+          {
+            !relatedBlogs ?
+            (
+              <SkeletonRelatedBlogs/>
+            )
+            :
+            (
+              relatedBlogs.length == 0 ?
+              (
+                <div>
+                <h1 className="text-primary">NO REALTED BLOGS</h1>
+              </div>
+              )
+              :
+              (
+                <div className="w-full h-auto grid grid-cols-1 md:grid-cols-3 gap-10 grid-flow-row ">
             {relatedBlogs.slice(0, 3).map((data, index) => (
               <div
                 key={index}
@@ -99,14 +144,16 @@ const RelatedBlogs = ({ blogId, allBlogsData }) => {
               </div>
             ))}
           </div>
+              )
+            )
+          }
+          
+
         </div>
       </div>
     </section>
     )
-
-
     
-  );
 };
 
 export default RelatedBlogs;

@@ -58,6 +58,46 @@ const SearchSection = ({  sendDataToParent,blogs }) => {
       
   },[blogs])
 
+
+
+  const SkeletonLatestBlog = () => (
+    <div className="w-full h-full flex flex-col gap-6 md:gap-0 justify-around lg:grid lg:grid-flow-col lg:gap-x-6 lg:grid-cols-[0.8fr_1fr]">
+      {/* Image Skeleton */}
+      <div className="h-[60vh] lg:h-full w-full flex justify-center items-center rounded-2xl relative bg-gray-200 animate-pulse">
+        {/* Optional: you can add a gray block inside to simulate loading effect */}
+      </div>
+  
+      {/* Content Skeleton */}
+      <div className="flex flex-col gap-0 md:gap-3 lg:gap-0 lg:w-[80%] w-full h-full px-0 md:px-2 lg:px-4 justify-around md:justify-center lg:justify-between">
+        {/* Top Section: Category, Date, Title, Description */}
+        <div className="flex flex-col gap-0 md:gap-3 lg:gap-3">
+          {/* Category and Date */}
+          <div className="flex items-center gap-3">
+            <div className="h-4 w-24 bg-gray-200 rounded animate-pulse"></div>
+            <div className="h-4 w-20 bg-gray-200 rounded animate-pulse"></div>
+          </div>
+  
+          {/* Title */}
+          <div className="h-6 w-full bg-gray-200 rounded animate-pulse"></div>
+  
+          {/* Description - 2-3 lines */}
+          <div className="space-y-2 mt-1">
+            <div className="h-4 w-full bg-gray-200 rounded animate-pulse"></div>
+            <div className="h-4 w-11/12 bg-gray-200 rounded animate-pulse"></div>
+            <div className="h-4 w-4/5 bg-gray-200 rounded animate-pulse"></div>
+          </div>
+        </div>
+  
+        {/* Read More Button */}
+        <div className="mt-4">
+          <div className="h-8 w-28 bg-gray-200 rounded-full animate-pulse"></div>
+        </div>
+      </div>
+    </div>
+  );
+
+
+
   return (
     <section className="w-full h-full  flex justify-center items-center">
       <div className="w-full h-full flex flex-col items-center justify-around">
@@ -106,21 +146,20 @@ const SearchSection = ({  sendDataToParent,blogs }) => {
         </div>
 
         {/* ---FIRST BLOG SECT---- */}
-        {
+       
+
+            <div className="w-full flex justify-center items-center h-[50vh]  lg:h-[40vh]">
+          <div className="w-full h-full flex justify-center items-center ">
+          {
            !latestBlogData ?
 
            (
-             <section className="w-full h-[50vh]  lg:h-[40vh] flex justify-center items-center py-10">
-             <div className="text-black text-4xl">Loading...</div> {/* You can add a loading state or skeleton screen */}
-           </section>
+            <SkeletonLatestBlog/>
            )
            
      
            :
            (
-
-            <div className="w-full flex justify-center items-center h-[50vh]  lg:h-[40vh]">
-          <div className="w-full h-full flex justify-center items-center ">
             <div className=" w-full h-full flex flex-col gap-6 md:gap-0 justify-around  lg:grid  lg:grid-flow-col  lg:gap-x-6  lg:grid-cols-[0.8fr_1fr]">
               <div className="h-[60vh] lg:h-full w-full flex justify-center items-center  rounded-2xl relative">
                 <Image
@@ -160,11 +199,12 @@ const SearchSection = ({  sendDataToParent,blogs }) => {
                
               </div>
             </div>
+           )
+          }
           </div>
         </div>
 
-           )
-        }
+           
         
       </div>
       
