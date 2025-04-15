@@ -2,6 +2,7 @@ import axios from "axios";
 
 // const BASE_URL = "https://nutro-backend.onrender.com" ;
 const BASE_URL = "https://api.thegpdn.org/api";
+// const BASE_URL = "https://gpdn-global-palliative-doctors-network.onrender.com/api";
 
 const Api = axios.create({
   baseURL: BASE_URL,
