@@ -50,6 +50,10 @@ const route = express.Router();
 route.get("/FetchNewsAndBlogs", (req, res, next) => {
   newsAndblogsController.FetchNewsAndBlogs(req, res, next);
 });
+route.get("/FetchNewsAndBlogsById", (req, res, next) => {
+  newsAndblogsController.FetchNewsAndBlogsById(req, res, next);
+});
+
 route.post("/AddNewsAndBlogs", (req, res, next) => {
   newsAndblogsController.AddNewsAndBlogs(req, res, next);
 });

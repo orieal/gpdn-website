@@ -246,32 +246,10 @@ class UserUsecase {
     }
   }
   
-  async   FetchNewsAndBlogsForm(  ) {
-    try {
 
-      const fetchBlogs = await this.UserRepository.fetchBlogs();
 
-       if(!fetchBlogs){
-        return {
-          success: false,
-          status: 400,
-          data: {
-            message:"Failed to fetch blogs! ,Please try later"
-          }
-        };
-       }else{
-        return {
-          success: false,
-          status: 400,
-          data: fetchBlogs
-        };
-       }
-     
+  
 
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   async   ContactEmailForm(  name:string , email:string , phone:string , message:string ) {
     try {

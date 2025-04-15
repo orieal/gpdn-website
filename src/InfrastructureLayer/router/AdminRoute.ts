@@ -117,6 +117,16 @@ route.patch("/approveORdeclineBlogs", (req, res, next) => {
   adminController.approveORdeclineBlogs(req, res, next);
 });
 
+//----------------------------       Category
+
+
+route.get("/fetchCategory", (req, res, next) => {
+  adminController.fetchCategory(req, res, next);
+});
+route.post("/addCategory", (req, res, next) => {
+  adminController.addCategory(req, res, next);
+});
+
 //----------------------------Palliative Care Units Management
 
 

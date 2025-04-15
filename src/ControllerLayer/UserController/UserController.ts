@@ -194,22 +194,9 @@ return
       }
     }
     
-    async FetchNewsAndBlogs(req:Request , res:Response , next: NextFunction){
-      try{
+   
+
   
-        const fetchNewsAndBlogs = await this.UserUsecase.FetchNewsAndBlogsForm()
-
-        return res.json({
-          success: fetchNewsAndBlogs?.success,
-          status: fetchNewsAndBlogs?.status,
-          data: fetchNewsAndBlogs?.data,
-        });
-
-        
-      }catch(error){
-        console.log(error)
-      }
-    }
 
     
     async ContactEmail(req:Request , res:Response , next: NextFunction){

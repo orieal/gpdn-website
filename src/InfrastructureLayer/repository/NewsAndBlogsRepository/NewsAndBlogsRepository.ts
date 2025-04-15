@@ -16,6 +16,16 @@ class NewsAndBlogsRepository implements NewsAndBlogsRepo {
         }
       }
 
+      async fetchBlogsById(_id:string): Promise<IBlog | any> {
+        try {
+          const fetchBlogs = await BlogSchema.findById(_id);
+          return fetchBlogs;
+        } catch (error) {
+          console.log(error);
+          return error;
+        }
+      }
+
       
       async addNewsAndBlogs(NewsAndBlogs:IBlog): Promise<IBlog | any> {
         try {

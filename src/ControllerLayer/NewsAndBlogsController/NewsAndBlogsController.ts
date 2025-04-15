@@ -23,6 +23,24 @@ class NewsAndBlogsController {
     }
   }
 
+  async FetchNewsAndBlogsById(req:Request , res:Response , next: NextFunction){
+    try{
+
+      const { _id } = req.body;
+      const fetchNewsAndBlogs = await this.NewsAndBlogsUsecase.FetchNewsAndBlogsByIdForm(_id)
+
+      return res.json({
+        success: fetchNewsAndBlogs?.success,
+        status: fetchNewsAndBlogs?.status,
+        data: fetchNewsAndBlogs?.data,
+      });
+
+      
+    }catch(error){
+      console.log(error)
+    }
+  }
+
   async AddNewsAndBlogs(req: Request, res: Response, next: NextFunction){
     try{
        const { title , content ,description , authorId , tags  , imageURL , category} = req.body;

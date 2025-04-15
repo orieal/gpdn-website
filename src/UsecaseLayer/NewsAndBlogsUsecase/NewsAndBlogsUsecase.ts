@@ -59,6 +59,33 @@ class NewsAndBlogsUsecase {
     }
    }
 
+   async   FetchNewsAndBlogsByIdForm( _id:string ) {
+    try {
+
+      const fetchBlogs = await this.NewsAndBlogsRepository.fetchBlogsById(_id);
+
+       if(!fetchBlogs){
+        return {
+          success: false,
+          status: 400,
+          data: {
+            message:"Failed to fetch blogs! ,Please try later"
+          }
+        };
+       }else{
+        return {
+          success: false,
+          status: 400,
+          data: fetchBlogs
+        };
+       }
+     
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
    
    async AddNewAndBlogsForm(title:string , content:string , authorId:string , tags:[string] , description:string , imageURL:string, category:string){
     try{

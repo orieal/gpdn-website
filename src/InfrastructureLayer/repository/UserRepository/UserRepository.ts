@@ -71,16 +71,6 @@ class UserRepository implements UserRepo {
     }
   }
 
-  
-  async fetchBlogs(): Promise<IBlog | any> {
-    try {
-      const fetchBlogs = await BlogSchema.find();
-      return fetchBlogs;
-    } catch (error) {
-      console.log(error);
-      return error;
-    }
-  }
 
   async findUserByNumber(phoneNumber: string): Promise<IUser | any> {
     try{

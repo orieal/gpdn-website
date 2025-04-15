@@ -1,10 +1,13 @@
 import IBlog from "../../../DomainLayer/BlogDomain.";
+import ICategory from "../../../DomainLayer/CategoryDomain";
 import IResource from "../../../DomainLayer/ResourceDomain";
 import IThread from "../../../DomainLayer/ThreadsDomain";
 import IUnit from "../../../DomainLayer/UnitDomain";
 import IUser from "../../../DomainLayer/UserDomain";
 import AdminRepo from "../../../UsecaseLayer/Interface/AdminRepo";
 import BlogSchema from "../../database/BlogSchema";
+import Category from "../../database/CategorySchema";
+import CategorySchema from "../../database/CategorySchema";
 import ResourceSchema from "../../database/ResourceSchema";
 import ThreadSchema from "../../database/ThreadSchema";
 import UnitSchema from "../../database/UnitSchema.";
@@ -244,6 +247,26 @@ class AdminRepository implements AdminRepo {
 
         }catch(error){
             console.log(error)
+        }
+      }
+
+      async fetchCategory(): Promise<ICategory | any>{
+        try{
+          const fetchCategory = await CategorySchema.find();
+          return fetchCategory;
+        }catch(error){
+          console.log(error)
+        }
+      }
+
+      async addCategory(category: string): Promise<ICategory | any> {
+        try {
+          const newCategory = new CategorySchema( {category} );
+          const savedCategory = await newCategory.save();
+          return savedCategory;
+        } catch (error) {
+          console.log(error);
+          throw error; // optional: re-throw if you want to handle it upstream
         }
       }
 

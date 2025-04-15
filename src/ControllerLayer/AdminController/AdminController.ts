@@ -396,6 +396,37 @@ async approveORdeclineBlogs(req: Request, res: Response, next: NextFunction){
   }
 }
 
+async fetchCategory(req: Request, res: Response, next: NextFunction){
+  try{
+
+    const fetchCategory = await this.AdminUsecase.fetchCategoryForm()
+    return res.json({
+      success: fetchCategory?.success,
+      status: fetchCategory?.status,
+      data: fetchCategory?.data,
+    });       
+  }catch(error){
+    console.log(error)
+  }
+}
+
+async addCategory(req: Request, res: Response, next: NextFunction){
+  try{
+
+    const { category } = req.body;
+    const addCategory = await this.AdminUsecase.addCategoryForm(category)
+    return res.json({
+      success: addCategory?.success,
+      status: addCategory?.status,
+      data: addCategory?.data,
+    });       
+  }catch(error){
+    console.log(error)
+  }
+}
+
+
+
 async fetchPalliative(req: Request, res: Response, next: NextFunction){
   try{
 

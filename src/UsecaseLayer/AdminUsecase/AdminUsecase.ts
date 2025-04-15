@@ -599,6 +599,56 @@ class AdminUsecase {
     }
   }
 
+  async fetchCategoryForm(){
+    try{
+
+
+      const fetchCategory = await this.AdminRepository.fetchCategory()
+      if(!fetchCategory){
+        return {
+          success: false,
+          status: 400,
+          data:{
+            message:"Failed to fetch category! ,Please try later"
+          },
+        };
+      }else{
+        return {
+          success: true,
+          status: 200,
+          data:fetchCategory,
+        };
+      }
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+  async addCategoryForm( categroy:string ){
+    try{
+
+
+      const addCategory = await this.AdminRepository.addCategory(categroy)
+      if(!addCategory){
+        return {
+          success: false,
+          status: 400,
+          data:{
+            message:"Failed to add category! ,Please try later"
+          },
+        };
+      }else{
+        return {
+          success: true,
+          status: 200,
+          data:addCategory,
+        };
+      }
+    }catch(error){
+      console.log(error)
+    }
+  }
+
   
   async fetchPalliativeForm(){
     try{
