@@ -1,9 +1,9 @@
 import React from 'react';
 import { Steps } from 'antd';
-const Step = () => (
+
+const Step = ({ current }) => (
   <Steps
-    size="small"
-    current={0}
+    current={current}
     items={[
       {
         title: 'Personal Information',
@@ -12,9 +12,10 @@ const Step = () => (
         title: 'Professional Background',
       },
       {
-        title: 'Palliative Care Profileg',
+        title: 'Palliative Care Profile',
       },
     ]}
   />
 );
+
 export default Step;
