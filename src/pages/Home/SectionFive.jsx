@@ -142,6 +142,7 @@ const SectionFive = () => {
           <div className="relative w-[7rem] h-[7rem]">
             <Image
               src={noBlogs}
+              alt="No blogs available"
               className="w-full h-full object-cover"
               layout="fill"
             />

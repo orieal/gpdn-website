@@ -1,5 +1,6 @@
 import { Urbanist, Poppins } from "next/font/google";
 import "./globals.css";
+import AntdCompatibilityProvider from "@/providers/AntdCompatibilityProvider";
 
 
 const urbanist = Urbanist({
@@ -27,6 +28,13 @@ export default function RootLayout({children}) {
                 <meta name="author" content="Orieal Technologies LLP"/>
                 <meta name="language" content="en"/>
                 <meta name="robots" content="index, follow"/>
+                <link
+                    rel="stylesheet"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+                    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+                    crossOrigin="anonymous"
+                    referrerPolicy="no-referrer"
+                />
 
                 {/* SEO Meta Tags */}
                 <title>GPDN | Connect. Learn. Lead in Palliative Care</title>
@@ -41,11 +49,14 @@ export default function RootLayout({children}) {
                 <meta property="og:url" content="https://gpdnorg.net"/>
                 <meta property="og:type" content="website"/>
             </head>
-            <body className={`${urbanist.className} ${poppins.variable}`}>
-             
-                {children}
-               
-                </body>
+            <body 
+                className={`${urbanist.className} ${poppins.variable}`}
+                suppressHydrationWarning={true} // Add this to suppress hydration warnings
+            >
+                <AntdCompatibilityProvider>
+                    {children}
+                </AntdCompatibilityProvider>
+            </body>
         </html>
     );
 }

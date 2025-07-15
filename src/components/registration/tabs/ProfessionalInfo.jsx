@@ -1,25 +1,31 @@
 "use client"
 import React, { useState, useMemo } from 'react'
-import { ArrowRightOutlined, LockOutlined, UserOutlined } from "@ant-design/icons";
+import { ArrowRightOutlined, UserOutlined } from "@ant-design/icons";
 import { Input } from "antd";
-import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css'
 import Select from 'react-select'
 import countryList from 'react-select-country-list'
-import { MdOutlineEmail } from "react-icons/md";
 
 
 function ProfessionalInfo({ onContinue }) {
-    const [phone, setPhone] = useState("");
     const [country, setCountry] = useState('');
     const [formData, setFormData] = useState({
-        profilePicture: "",
+        photo: "",
         countryOfPractice: "",
-        password: "",
-        confirmPassword: ""
+        medicalQualification: "",
+        yearOfGraduation: "",
+        medicalRegistrationAuthority: "",
+        medicalRegistrationNumber: ""
     });
     const [errors, setErrors] = useState({});
     const options = useMemo(() => countryList().getData(), []);
+
+    const changeHandler = (value) => {
+        setCountry(value);
+        setFormData(prev => ({
+            ...prev,
+            countryOfPractice: value?.label || ""
+        }));
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,36 +37,39 @@ function ProfessionalInfo({ onContinue }) {
 
     const validateForm = () => {
         let tempErrors = {};
-        if (!formData.profilePicture) tempErrors.profilePicture = "Profile picture is required";
+        if (!formData.photo) tempErrors.photo = "Profile picture is required";
         if (!country) tempErrors.country = "Country is required";
-        if (!phone) tempErrors.phone = "Phone number is required";
-        if (!formData.password) {
-            tempErrors.password = "Password is required";
-        } else if (formData.password.length < 6) {
-            tempErrors.password = "Password must be at least 6 characters";
-        }
-        if (formData.password !== formData.confirmPassword) {
-            tempErrors.confirmPassword = "Passwords do not match";
-        }
+        if (!formData.medicalQualification) tempErrors.medicalQualification = "Medical qualification is required";
+        if (!formData.yearOfGraduation) tempErrors.yearOfGraduation = "Year of graduation is required";
+        if (!formData.medicalRegistrationAuthority) tempErrors.medicalRegistrationAuthority = "Medical registration authority is required";
+        if (!formData.medicalRegistrationNumber) tempErrors.medicalRegistrationNumber = "Medical registration number is required";
+        
         setErrors(tempErrors);
         return Object.keys(tempErrors).length === 0;
     };
 
     const handleSubmit = () => {
         if (validateForm()) {
-            onContinue();
+            onContinue({
+                photo: formData.photo, // This will be the File object for upload
+                countryOfPractice: formData.countryOfPractice,
+                medicalQualification: formData.medicalQualification,
+                yearOfGraduation: parseInt(formData.yearOfGraduation),
+                medicalRegistrationAuthority: formData.medicalRegistrationAuthority,
+                medicalRegistrationNumber: formData.medicalRegistrationNumber
+            });
         }
     };
 
     return (
         <div className="w-full flex flex-col gap-5 justify-center items-center">
-            <div className="w-24 h-24 rounded-full flex items-center justify-center bg-gray-200">
+            {/* <div className="w-24 h-24 rounded-full flex items-center justify-center bg-gray-200">
                 <UserOutlined className="text-5xl text-[#00A99D]" />
-            </div>
+            </div> */}
             <div className="flex flex-col gap-2 items-center">
                 <h1 className="text-3xl font-semibold">Tell Us More About You</h1>
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 mt-5">
                 <div className="flex flex-col gap-2">
                     <div className='flex flex-col'>
                         <label className="text-sm font-semibold">Profile Picture</label>
@@ -68,26 +77,23 @@ function ProfessionalInfo({ onContinue }) {
                     </div>
                     <Input
                         size="large"
-                        type="text"
-                        name="profilePicture"
-                        value={formData.profilePicture}
-                        onChange={handleChange}
+                        type="file"
+                        name="file"
+                        onChange={(e) => {
+                            const file = e.target.files[0];
+                            if (file) {
+                                setFormData(prev => ({
+                                    ...prev,
+                                    photo: file
+                                }));
+                            }
+                        }}
                         className="w-96 text-sm"
-                        placeholder="Profile picture URL"
-                        prefix={<UserOutlined className="text-lg mr-1" />}
+                        accept="image/*"
                     />
-                    {errors.profilePicture && <span className="text-red-500 text-xs">{errors.profilePicture}</span>}
+                    {errors.photo && <span className="text-red-500 text-xs">{errors.photo}</span>}
                 </div>
-                <div className="flex flex-col gap-2">
-                    <label className="text-sm font-semibold">Country Or Practice</label>
-                    <Input
-                        size="large"
-                        type="email"
-                        className="w-96 text-sm"
-                        placeholder="example@gmail.com"
-                        prefix={<MdOutlineEmail className="text-lg mr-1" />}
-                    />
-                </div>
+
                 <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold">Country Of Practice</label>
                     <Select
@@ -98,43 +104,72 @@ function ProfessionalInfo({ onContinue }) {
                         classNamePrefix="select"
                         placeholder="Select your country"
                     />
+                    {errors.country && <span className="text-red-500 text-xs">{errors.country}</span>}
                 </div>
+
                 <div className="flex flex-col gap-2">
-                    <label className="text-sm font-semibold">Phone number</label>
-                    <PhoneInput
-                    inputStyle={{width: '100%'}}
-                    country={'us'}
-                    value={phone}
-                    onChange={phone => setPhone(phone)}
-                    />
-                </div>
-                <div className="flex flex-col gap-2">
-                    <label className="text-sm font-semibold">Password</label>
+                    <label className="text-sm font-semibold">Medical Qualification</label>
                     <Input
                         size="large"
-                        type="password"
+                        type="text"
+                        name="medicalQualification"
+                        value={formData.medicalQualification}
+                        onChange={handleChange}
                         className="w-96 text-sm"
-                        placeholder="password"
-                        prefix={<LockOutlined  className="text-lg mr-1" />}
+                        placeholder="e.g., MBBS, MD"
                     />
+                    {errors.medicalQualification && <span className="text-red-500 text-xs">{errors.medicalQualification}</span>}
                 </div>
+
                 <div className="flex flex-col gap-2">
-                    <label className="text-sm font-semibold">Confirm Password</label>
+                    <label className="text-sm font-semibold">Year of Graduation</label>
                     <Input
                         size="large"
-                        type="password"
+                        type="number"
+                        name="yearOfGraduation"
+                        value={formData.yearOfGraduation}
+                        onChange={handleChange}
                         className="w-96 text-sm"
-                        placeholder="password"
-                        prefix={<LockOutlined  className="text-lg mr-1" />}
+                        placeholder="e.g., 2015"
                     />
+                    {errors.yearOfGraduation && <span className="text-red-500 text-xs">{errors.yearOfGraduation}</span>}
                 </div>
+
+                <div className="flex flex-col gap-2">
+                    <label className="text-sm font-semibold">Medical Registration Authority</label>
+                    <Input
+                        size="large"
+                        type="text"
+                        name="medicalRegistrationAuthority"
+                        value={formData.medicalRegistrationAuthority}
+                        onChange={handleChange}
+                        className="w-96 text-sm"
+                        placeholder="e.g., Medical Council of India"
+                    />
+                    {errors.medicalRegistrationAuthority && <span className="text-red-500 text-xs">{errors.medicalRegistrationAuthority}</span>}
+                </div>
+
+                <div className="flex flex-col gap-2">
+                    <label className="text-sm font-semibold">Medical Registration Number</label>
+                    <Input
+                        size="large"
+                        type="text"
+                        name="medicalRegistrationNumber"
+                        value={formData.medicalRegistrationNumber}
+                        onChange={handleChange}
+                        className="w-96 text-sm"
+                        placeholder="Enter your registration number"
+                    />
+                    {errors.medicalRegistrationNumber && <span className="text-red-500 text-xs">{errors.medicalRegistrationNumber}</span>}
+                </div>
+
                 <div 
                     onClick={handleSubmit}
                     className="w-full h-10 rounded-lg font-semibold bg-[#00A99D] flex items-center justify-center text-white cursor-pointer hover:bg-[#008F84] transition-colors"
                 >
                     <h1 className="flex items-center gap-2">Continue <ArrowRightOutlined/></h1>
                 </div>
-            </div>
+            </div> 
         </div>
     );
 }
