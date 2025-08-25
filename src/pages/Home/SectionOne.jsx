@@ -149,7 +149,7 @@ const SectionOne = () => {
                     Expert Doctors
                   </span>
                 </h2>
-                <h2 className="text-secondary font-bold ">
+                <h2 className="text-black font-bold ">
                   83+{" "}
                   <span className="text-[#252525] font-medium uppercase">
                     Countries
