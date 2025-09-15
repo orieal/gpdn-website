@@ -12,7 +12,7 @@ import {
   MdLogout,
 } from "react-icons/md";
 import { FaRegFolder } from "react-icons/fa";
-import { TbUsers } from "react-icons/tb";
+import { TbUser, TbUsers } from "react-icons/tb";
 import { PiBuildings } from "react-icons/pi";
 import { IoNewspaperOutline } from "react-icons/io5";
 import logo from "../app/assets/registation/logo.png"; // Adjust path as needed
@@ -31,7 +31,7 @@ const sidebarMenus = [
     link: "/palliative-units",
   },
   { menu: "News & Blogs", icon: <IoNewspaperOutline />, link: "/news-blogs" },
-  { menu: "Settings", icon: <MdOutlineSettings />, link: "/settings" },
+  { menu: "Profile", icon: <TbUser />, link: "/settings" },
 ];
 
 export default function Sidebar({
@@ -96,14 +96,17 @@ export default function Sidebar({
       >
         <div className=" flex flex-col h-screen justify-between">
           <div>
-            <div className="p-5">
-              <Image
-                alt="GPDN Logo"
-                src={logo}
-                width={100}
-                className="h-auto hidden md:block"
-              />
-            </div>
+            <Link href="/">
+              <div className="p-5">
+                <Image
+                  onClick={handleLogout}
+                  alt="GPDN Logo"
+                  src={logo}
+                  width={100}
+                  className="h-auto hidden md:block"
+                />
+              </div>
+            </Link>
             <nav className="mt-5">
               {sidebarMenus.map((item, index) => {
                 // Active logic: highlights for /forum and /forum/[threadid]
