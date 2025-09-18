@@ -1,7 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import "react-phone-input-2/lib/style.css";
+import PhoneInput from "react-phone-input-2";
 import Image from "next/image";
-import { Input, Modal, message, Select } from "antd";
+import { Input, Modal, message, Select, Checkbox } from "antd";
 import logo from "../../app/assets/registation/logo.png";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdClose, MdDashboard, MdMenu, MdAdd } from "react-icons/md";
@@ -47,6 +49,7 @@ const PalliativeUnits = () => {
     country: "",
     services: "",
     contactDetails: "",
+    actionStatus: false,
   });
 
   // Speciality options
@@ -225,8 +228,18 @@ const PalliativeUnits = () => {
 
     setCreateLoading(true);
     try {
-      console.log("Form data being sent:", formData);
-      const response = await createPalliativeUnit(formData);
+      // Transform the data to match API expectations
+      const apiData = {
+        name: formData.name,
+        state: formData.state,
+        country: formData.country,
+        services: formData.services,
+        contactDetails: formData.contactDetails,
+        actionStatus: formData.actionStatus, // Transform actionStatus to public
+      };
+
+      console.log("Form data being sent:", apiData);
+      const response = await createPalliativeUnit(apiData);
       console.log("Create unit response:", response);
 
       if (response && response.success !== false) {
@@ -238,6 +251,7 @@ const PalliativeUnits = () => {
           country: "",
           services: "",
           contactDetails: "",
+          actionStatus: false, // Reset to default
         });
         // Refresh the list after creation
         await fetchUnits();
@@ -440,6 +454,10 @@ const PalliativeUnits = () => {
   const handleMobileMenuToggle = () => {
     setMobileMenuOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData.actionStatus]);
 
   return (
     <div className="grid md:flex min-h-screen bg-white">
@@ -905,7 +923,7 @@ const PalliativeUnits = () => {
               </div>
 
               {/* Contact Details */}
-              <div>
+              {/* <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Contact Details <span className="text-red-500">*</span>
                 </label>
@@ -921,6 +939,39 @@ const PalliativeUnits = () => {
                 />
                 <p className="text-xs text-gray-500 mt-1">
                   Phone number or contact information
+                </p>
+              </div> */}
+              <div className=" flex flex-col gap-2 ">
+                <label className=" text-sm font-semibold">Phone number</label>
+                <PhoneInput
+                  inputStyle={{ width: "100%", height: "40px" }}
+                  country={"us"}
+                  value={formData.contactDetails}
+                  onChange={(value) =>
+                    handleInputChange("contactDetails", value)
+                  }
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-3">
+                  Do you want to make this palliative unit public?
+                </label>
+                <div className="flex items-center gap-4">
+                  <Checkbox
+                    checked={formData.actionStatus === true}
+                    onChange={(e) =>
+                      handleInputChange("actionStatus", e.target.checked)
+                    }
+                  >
+                    <span className="text-sm text-gray-700">
+                      Yes, make this unit publicly visible
+                    </span>
+                  </Checkbox>
+                </div>
+                <p className="text-xs text-gray-500 mt-2">
+                  {formData.actionStatus
+                    ? "This unit will be visible to all users in the directory."
+                    : "This unit will be private and only visible to authorized users."}
                 </p>
               </div>
             </div>

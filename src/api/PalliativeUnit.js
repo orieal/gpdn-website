@@ -40,6 +40,7 @@ export const createPalliativeUnit = async (unitData) => {
       services: unitData.services,
       contactDetails: unitData.contactDetails,
       authorId: userId,
+      actionStatus: unitData.actionStatus,
     };
 
     console.log("Creating palliative unit with data:", requestBody);
