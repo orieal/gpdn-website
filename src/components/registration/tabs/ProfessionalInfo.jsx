@@ -94,17 +94,7 @@ function ProfessionalInfo({ onContinue }) {
       }
     }
 
-    if (!country) tempErrors.country = "Country is required";
-    if (!formData.medicalQualification)
-      tempErrors.medicalQualification = "Medical qualification is required";
-    if (!formData.yearOfGraduation)
-      tempErrors.yearOfGraduation = "Year of graduation is required";
-    if (!formData.medicalRegistrationAuthority)
-      tempErrors.medicalRegistrationAuthority =
-        "Medical registration authority is required";
-    if (!formData.medicalRegistrationNumber)
-      tempErrors.medicalRegistrationNumber =
-        "Medical registration number is required";
+
 
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
@@ -215,11 +205,11 @@ function ProfessionalInfo({ onContinue }) {
             className="w-96 text-sm"
             placeholder="e.g., 2015"
           />
-          {errors.yearOfGraduation && (
+          {/* {errors.yearOfGraduation && (
             <span className="text-red-500 text-xs">
               {errors.yearOfGraduation}
             </span>
-          )}
+          )} */}
         </div>
 
         <div className="flex flex-col gap-2">
@@ -235,11 +225,11 @@ function ProfessionalInfo({ onContinue }) {
             className="w-96 text-sm"
             placeholder="e.g., Medical Council of India"
           />
-          {errors.medicalRegistrationAuthority && (
+          {/* {errors.medicalRegistrationAuthority && (
             <span className="text-red-500 text-xs">
               {errors.medicalRegistrationAuthority}
             </span>
-          )}
+          )} */}
         </div>
 
         <div className="flex flex-col gap-2">
@@ -255,11 +245,11 @@ function ProfessionalInfo({ onContinue }) {
             className="w-96 text-sm"
             placeholder="Enter your registration number"
           />
-          {errors.medicalRegistrationNumber && (
+          {/* {errors.medicalRegistrationNumber && (
             <span className="text-red-500 text-xs">
               {errors.medicalRegistrationNumber}
             </span>
-          )}
+          )} */}
         </div>
 
         <div
