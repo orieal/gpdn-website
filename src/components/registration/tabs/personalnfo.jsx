@@ -26,6 +26,10 @@ function Personalnfo({ onContinue }) {
     confirmPassword: "",
   });
 
+  // Password visibility states
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const validateForm = () => {
     let isValid = true;
     const newErrors = {};
@@ -150,15 +154,18 @@ function Personalnfo({ onContinue }) {
           <label className=" text-sm font-semibold">
             Password <span className="text-red-500">*</span>
           </label>
-          <Input
+          <Input.Password
             size="large"
-            type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
             className="w-96 text-sm"
-            placeholder="password"
+            placeholder="Enter your password"
             prefix={<LockOutlined className="text-lg mr-1" />}
+            visibilityToggle={{
+              visible: showPassword,
+              onVisibleChange: setShowPassword,
+            }}
           />
           {errors.password && (
             <span className="text-red-500 text-xs">{errors.password}</span>
@@ -168,15 +175,18 @@ function Personalnfo({ onContinue }) {
           <label className=" text-sm font-semibold">
             Confirm Password <span className="text-red-500">*</span>
           </label>
-          <Input
+          <Input.Password
             size="large"
-            type="password"
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
             className="w-96 text-sm"
-            placeholder="password"
+            placeholder="Confirm your password"
             prefix={<LockOutlined className="text-lg mr-1" />}
+            visibilityToggle={{
+              visible: showConfirmPassword,
+              onVisibleChange: setShowConfirmPassword,
+            }}
           />
           {errors.confirmPassword && (
             <span className="text-red-500 text-xs">
