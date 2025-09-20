@@ -94,22 +94,52 @@ function ProfessionalInfo({ onContinue }) {
       }
     }
 
-
-
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
   };
 
   const handleSubmit = () => {
     if (validateForm()) {
-      onContinue({
+      const dataToSend = {
         photo: formData.photo, // This will be the File object for upload
-        countryOfPractice: formData.countryOfPractice,
-        medicalQualification: formData.medicalQualification,
-        yearOfGraduation: parseInt(formData.yearOfGraduation),
-        medicalRegistrationAuthority: formData.medicalRegistrationAuthority,
-        medicalRegistrationNumber: formData.medicalRegistrationNumber,
-      });
+      };
+
+      // Only add optional fields if they have values
+      if (formData.countryOfPractice && formData.countryOfPractice.trim()) {
+        dataToSend.countryOfPractice = formData.countryOfPractice;
+      }
+
+      if (
+        formData.medicalQualification &&
+        formData.medicalQualification.trim()
+      ) {
+        dataToSend.medicalQualification = formData.medicalQualification;
+      }
+
+      if (formData.yearOfGraduation && formData.yearOfGraduation.trim()) {
+        dataToSend.yearOfGraduation = parseInt(formData.yearOfGraduation);
+      }
+
+      if (
+        formData.medicalRegistrationAuthority &&
+        formData.medicalRegistrationAuthority.trim()
+      ) {
+        dataToSend.medicalRegistrationAuthority =
+          formData.medicalRegistrationAuthority;
+      }
+
+      if (
+        formData.medicalRegistrationNumber &&
+        formData.medicalRegistrationNumber.trim()
+      ) {
+        dataToSend.medicalRegistrationNumber =
+          formData.medicalRegistrationNumber;
+      }
+
+      console.log("=== PROFESSIONAL INFO SUBMIT ===");
+      console.log("Data being sent from ProfessionalInfo:", dataToSend);
+
+      onContinue(dataToSend);
     } else {
       message.error({
         content: "Please Upload an image under 1MB",
@@ -129,12 +159,14 @@ function ProfessionalInfo({ onContinue }) {
       <div className="flex flex-col gap-4 mt-5">
         <div className="flex flex-col gap-2">
           <div className="flex flex-col">
-            <label className="text-sm font-semibold">Profile Picture <span className="text-red-500">*</span></label>
+            <label className="text-sm font-semibold">
+              Profile Picture <span className="text-red-500">*</span>
+            </label>
             <label className="text-xs font-semibold text-gray-400">
               This is where people will see your actual face
             </label>
           </div>
-         
+
           <Input
             ref={fileInputRef}
             size="large"
@@ -162,7 +194,9 @@ function ProfessionalInfo({ onContinue }) {
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">Country Of Practice <span className="text-red-500">*</span></label>
+          <label className="text-sm font-semibold">
+            Country Of Practice <span className="text-red-500">*</span>
+          </label>
           <Select
             options={options}
             value={country}
@@ -177,7 +211,9 @@ function ProfessionalInfo({ onContinue }) {
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">Medical Qualification<span className="text-red-500">*</span></label>
+          <label className="text-sm font-semibold">
+            Medical Qualification<span className="text-red-500">*</span>
+          </label>
           <Input
             size="large"
             type="text"

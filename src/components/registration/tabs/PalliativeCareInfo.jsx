@@ -127,14 +127,34 @@ function PalliativeCareInfo({ onContinue }) {
       processedSpecialInterests.push(formData.specialInterestsOther.trim());
     }
 
-    onContinue({
-      bio: formData.bio,
-      hasFormalTrainingInPalliativeCare:
-        formData.hasFormalTrainingInPalliativeCare,
-      affiliatedPalliativeAssociations:
-        formData.affiliatedPalliativeAssociations,
-      specialInterestsInPalliativeCare: processedSpecialInterests,
-    });
+    const dataToSend = {};
+
+    // Only add fields that have values
+    if (formData.bio && formData.bio.trim()) {
+      dataToSend.bio = formData.bio;
+    }
+
+    if (formData.hasFormalTrainingInPalliativeCare !== null) {
+      dataToSend.hasFormalTrainingInPalliativeCare =
+        formData.hasFormalTrainingInPalliativeCare;
+    }
+
+    if (
+      formData.affiliatedPalliativeAssociations &&
+      formData.affiliatedPalliativeAssociations.trim()
+    ) {
+      dataToSend.affiliatedPalliativeAssociations =
+        formData.affiliatedPalliativeAssociations;
+    }
+
+    if (processedSpecialInterests && processedSpecialInterests.length > 0) {
+      dataToSend.specialInterestsInPalliativeCare = processedSpecialInterests;
+    }
+
+    console.log("=== PALLIATIVE CARE INFO SUBMIT ===");
+    console.log("Data being sent from PalliativeCareInfo:", dataToSend);
+
+    onContinue(dataToSend);
   };
 
   return (
@@ -176,7 +196,8 @@ function PalliativeCareInfo({ onContinue }) {
 
         <div className="flex flex-col gap-2">
           <label className="text-sm font-semibold">
-            Affiliated Palliative Associations <span className="text-red-500">*</span>
+            Affiliated Palliative Associations{" "}
+            <span className="text-red-500">*</span>
           </label>
           <Input
             size="large"
