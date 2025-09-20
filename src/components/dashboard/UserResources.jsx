@@ -932,9 +932,9 @@ const UserResources = () => {
                   {resource.description}
                 </p>
                 <hr className="mt-2" />
-                <div className="text-gray-600 mb-4 leading-relaxed mt-5 md:w-4/5">
+                <div className="mb-4 mt-5 md:w-4/5">
                   <div
-                    className="prose"
+                    className="rich-text-content"
                     dangerouslySetInnerHTML={{ __html: resource.content }}
                   />
                 </div>

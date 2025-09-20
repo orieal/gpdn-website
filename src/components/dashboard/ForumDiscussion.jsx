@@ -1228,9 +1228,9 @@ const ForumDiscussion = () => {
 
                     {/* Content */}
                     {post.content && (
-                      <div className="mt-4 mb-4 prose line-clamp-3 max-w-none bg-gray-50 p-4 rounded-lg font-light">
+                      <div className="mt-4 mb-4 bg-gray-50 p-4 rounded-lg">
                         <div
-                          className="text-gray-800 line-clamp-5 leading-relaxed overflow-auto"
+                          className="rich-text-content line-clamp-5 overflow-auto"
                           dangerouslySetInnerHTML={{ __html: post.content }}
                         />
                       </div>

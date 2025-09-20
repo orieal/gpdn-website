@@ -352,8 +352,10 @@ function UploadResource() {
   };
 
   const handleInputConfirm = () => {
-    if (inputValue && !tags.includes(inputValue)) {
-      setTags([...tags, inputValue]);
+    const trimmedValue = inputValue.trim();
+    if (trimmedValue && !tags.includes(trimmedValue)) {
+      // Allow any tag input - no validation restrictions
+      setTags([...tags, trimmedValue]);
     }
     setInputVisible(false);
     setInputValue("");
@@ -506,6 +508,9 @@ function UploadResource() {
       return;
     }
 
+    // Tags are optional - no validation required
+    console.log("Tags validation passed:", tags);
+
     setLoading(true);
     setProcessingFiles(true);
     setUploadProgress(null);
@@ -542,14 +547,20 @@ function UploadResource() {
         console.log(`Added file ${index}:`, file.name, file.size);
       });
 
-      // FIXED: Send tags as individual entries (not JSON string)
+      // Handle tags - send as JSON string array (like forum does)
       if (tags && tags.length > 0) {
-        tags.forEach((tag) => {
-          formData.append("tags", tag);
-        });
+        // Filter out empty tags and trim whitespace
+        const validTags = tags
+          .filter((tag) => tag && tag.trim().length > 0)
+          .map((tag) => tag.trim());
+        if (validTags.length > 0) {
+          formData.append("tags", JSON.stringify(validTags));
+        } else {
+          formData.append("tags", "[]");
+        }
       } else {
-        // Add empty tags field if no tags
-        formData.append("tags", "");
+        // Add empty tags array
+        formData.append("tags", "[]");
       }
 
       // Debug: Log FormData contents
@@ -561,6 +572,10 @@ function UploadResource() {
           console.log(`${key}: ${value}`);
         }
       }
+
+      // Debug: Log tags specifically
+      console.log("Tags being sent:", tags);
+      console.log("Tags as JSON:", JSON.stringify(tags));
 
       const response = await createResource(
         formData,
@@ -609,7 +624,29 @@ function UploadResource() {
             message.error(response.error);
           }
         } else {
-          message.error(response.error || "Failed to upload resource");
+          // Enhanced error message for tag-related issues
+          let errorMessage = response.error || "Failed to upload resource";
+          if (errorMessage.toLowerCase().includes("tag")) {
+            // Ask user if they want to retry without tags
+            message.error({
+              content:
+                "There was an issue with the tags. Would you like to try uploading without tags?",
+              duration: 5,
+              style: {
+                marginTop: "20vh",
+              },
+            });
+
+            // Auto-retry without tags after a short delay
+            setTimeout(() => {
+              if (window.confirm("Retry upload without tags?")) {
+                setTags([]);
+                handleSubmit();
+              }
+            }, 2000);
+            return;
+          }
+          message.error(errorMessage);
         }
       }
     } catch (error) {
@@ -762,7 +799,10 @@ function UploadResource() {
           {/* Category/Tags Field */}
           <div className="mb-8">
             <label className="block text-gray-900 text-base font-semibold mb-3">
-              Tags
+              Tags{" "}
+              <span className="text-gray-500 text-sm font-normal">
+                (Optional)
+              </span>
             </label>{" "}
             <div className="border-2 border-gray-200 rounded-lg p-4 bg-white">
               {" "}
@@ -889,7 +929,6 @@ function UploadResource() {
                   Supported Format: PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, TXT,
                   CSV, JPG, JPEG, PNG
                 </div>
-                
               </div>
               {/* Hidden Upload Component */}
               <div className="hidden" ref={uploadRef}>

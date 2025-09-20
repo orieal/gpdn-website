@@ -21,11 +21,11 @@ const BlogDetails = ({ blogId }) => {
   const renderRichText = (content) => {
     if (!content) return null;
 
-    // If content is already HTML string, render it
+    // If content is already HTML string, render it with our custom styling
     if (typeof content === "string") {
       return (
         <div
-          className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-headings:font-bold prose-p:text-gray-700 prose-p:leading-relaxed prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-li:text-gray-700 prose-blockquote:border-l-blue-500 prose-blockquote:bg-gray-50 prose-blockquote:pl-6 prose-blockquote:py-4 prose-blockquote:rounded-r-lg prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:rounded-lg prose-pre:p-6 prose-img:rounded-lg prose-img:shadow-lg"
+          className="rich-text-content"
           dangerouslySetInnerHTML={{ __html: content }}
         />
       );
@@ -33,14 +33,10 @@ const BlogDetails = ({ blogId }) => {
 
     // If content is an object (from rich text editor), handle it
     if (typeof content === "object") {
-      return (
-        <div className="prose prose-lg max-w-none">
-          {JSON.stringify(content)}
-        </div>
-      );
+      return <div className="rich-text-content">{JSON.stringify(content)}</div>;
     }
 
-    return <p className="text-gray-700 leading-relaxed">{content}</p>;
+    return <p className="rich-text-content">{content}</p>;
   };
 
   useEffect(() => {
@@ -142,7 +138,6 @@ const BlogDetails = ({ blogId }) => {
               {currentBlog.tags && currentBlog.tags.length > 0 && (
                 <div className="mb-8">
                   <div className="flex flex-wrap items-center gap-2">
- 
                     {currentBlog.tags.map((tag, index) => (
                       <span
                         key={index}
@@ -173,7 +168,7 @@ const BlogDetails = ({ blogId }) => {
               <div className="w-24 h-1 bg-blue-600 rounded-full mb-12"></div>
 
               {/* Rich Text Content */}
-              <div className="prose prose-lg max-w-none">
+              <div className="blog-content">
                 {currentBlog.content && renderRichText(currentBlog.content)}
               </div>
 

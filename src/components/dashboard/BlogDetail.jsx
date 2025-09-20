@@ -513,6 +513,7 @@ const BlogDetail = ({ id }) => {
   ];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const handleMobileMenuToggle = () => setMobileMenuOpen((v) => !v);
+
   return (
     <div className="flex min-h-screen bg-white">
       {/* Sidebar */}
@@ -682,17 +683,24 @@ const BlogDetail = ({ id }) => {
             )}
 
             {/* Blog Content */}
-            <div className="prose max-w-none">
+            <div className="prose prose-lg max-w-none">
               {blog.description && (
-                <p className="text-gray-700 mb-6">{blog.description}</p>
+                <p className="text-gray-700 mb-6 text-lg leading-relaxed">
+                  {blog.description}
+                </p>
               )}
 
-              <div className="text-gray-700 mb-6">
+              <div className="blog-content text-gray-700 mb-6">
                 {typeof blog.content === "string" &&
                 blog.content.startsWith("<") ? (
-                  <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+                  <div
+                    dangerouslySetInnerHTML={{ __html: blog.content }}
+                    className="rich-text-content"
+                  />
                 ) : (
-                  <p>{blog.content}</p>
+                  <p className="text-gray-700 leading-relaxed">
+                    {blog.content}
+                  </p>
                 )}
               </div>
             </div>

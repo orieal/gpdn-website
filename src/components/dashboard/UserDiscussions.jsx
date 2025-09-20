@@ -276,7 +276,7 @@ const UserDiscussions = () => {
           thumbnail: Array.isArray(thread.thumbnail) ? thread.thumbnail : [],
           authorId: thread.authorId,
           category: thread.category || "",
-          approvalStatus : thread.approvalStatus
+          approvalStatus: thread.approvalStatus,
         }));
 
         setDiscussions(transformedThreads);
@@ -388,7 +388,7 @@ const UserDiscussions = () => {
       }
 
       // Add files to remove
-        for (let i = 0; i < editForm.removeFiles.length; i++) {
+      for (let i = 0; i < editForm.removeFiles.length; i++) {
         formData.append("removeFiles", editForm.removeFiles[i]);
       }
 
@@ -664,7 +664,15 @@ const UserDiscussions = () => {
             <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
           </svg>
         </div> */}
-        {discussion.approvalStatus === true ? <div className="px-2 py-1 text-sm bg-green-500 text-white rounded-full">Approved</div> : <div className="px-2 py-1 text-sm bg-red-500 text-white rounded-full">Rejected</div>}
+        {discussion.approvalStatus === true ? (
+          <div className="px-2 py-1 text-sm bg-green-500 text-white rounded-full">
+            Approved
+          </div>
+        ) : (
+          <div className="px-2 py-1 text-sm bg-red-500 text-white rounded-full">
+            Rejected
+          </div>
+        )}
       </div>
 
       {/* Content */}
@@ -1129,7 +1137,7 @@ const UserDiscussions = () => {
         {discussionToView && (
           <div className="max-h-[70vh] overflow-y-auto">
             <div
-              className="prose max-w-none mb-4"
+              className="rich-text-content mb-4"
               dangerouslySetInnerHTML={{
                 __html: discussionToView.rawContent || discussionToView.content,
               }}

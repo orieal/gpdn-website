@@ -1081,9 +1081,9 @@ const ResourceLibrary = () => {
 
         {/* HTML Content */}
         {resource.content && (
-          <div className="mb-3 prose max-w-none bg-slate-50 p-4 rounded-2xl">
+          <div className="mb-3 bg-slate-50 p-4 rounded-2xl">
             <div
-              className="text-gray-700 text-sm  font-light leading-relaxed overflow-auto"
+              className="rich-text-content overflow-auto"
               dangerouslySetInnerHTML={{ __html: resource.content }}
             />
           </div>

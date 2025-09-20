@@ -216,8 +216,8 @@ const ThreadDetail = () => {
         handleMobileMenuToggle={handleMobileMenuToggle}
       />
       {/* Main Content */}
-      <div className="md:ml-72 mt-10 md:mt-0">
-        <div className="md:max-w-2xl mx-auto py-10 px-4">
+      <div className="md:ml-72 w-full mt-10 md:mt-0">
+        <div className="md:max-w-7xl  py-10 px-4">
           {/* Author Info */}
           <div className="flex items-center gap-3 mb-3">
             {post.authorImage ? (
@@ -244,9 +244,9 @@ const ThreadDetail = () => {
           </p>
           {/* Content */}
           {post.content && (
-            <div className="mt-4 mb-4 prose max-w-none bg-gray-50 p-4 rounded-lg font-light">
+            <div className="mt-4 mb-4  rounded-lg w-full">
               <div
-                className="text-gray-800 leading-relaxed overflow-auto"
+                className="rich-text-content overflow-auto"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             </div>
@@ -290,7 +290,7 @@ const ThreadDetail = () => {
                           <img
                             src={fileUrl}
                             alt={fileName}
-                            className="rounded-lg w-full h-24 object-cover cursor-pointer hover:opacity-90 transition-opacity"
+                            className="rounded-lg w-full h-24 md:h-52 object-cover cursor-pointer hover:opacity-90 transition-opacity"
                             onClick={() => window.open(fileUrl, "_blank")}
                             onError={(e) => {
                               e.target.style.display = "none";
