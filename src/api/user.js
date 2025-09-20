@@ -724,7 +724,57 @@ export const verifyOTP = async (phone, otp) => {
 };
 
 /**
- * Reset user password using user ID
+ * Send forgot password email to user
+ * @param {string} email - User's email address
+ * @returns {Promise<Object>} - API response or error object
+ */
+export const sendForgotPasswordEmail = async (email) => {
+  try {
+    if (!email) {
+      return {
+        error: { message: "Email is required" },
+        status: HTTP_STATUS.BAD_REQUEST,
+      };
+    }
+
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return {
+        error: { message: "Please enter a valid email address" },
+        status: HTTP_STATUS.BAD_REQUEST,
+      };
+    }
+
+    const response = await Api.post(userRoute.sendForgotPasswordEmail, {
+      email: email,
+    });
+
+    return response;
+  } catch (error) {
+    console.error("Error sending forgot password email:", error);
+
+    // Handle specific error cases
+    if (error.response?.status === HTTP_STATUS.NOT_FOUND) {
+      return {
+        error: {
+          message: "Email not found. Please check your email address.",
+        },
+        status: HTTP_STATUS.NOT_FOUND,
+      };
+    }
+
+    return {
+      error: error.response?.data || {
+        message: "Failed to send reset email. Please try again later.",
+      },
+      status: error.response?.status || HTTP_STATUS.INTERNAL_SERVER_ERROR,
+    };
+  }
+};
+
+/**
+ * Reset user password using user ID and new password
  * @param {string} userId - User ID
  * @param {string} password - New password
  * @returns {Promise<Object>} - API response or error object

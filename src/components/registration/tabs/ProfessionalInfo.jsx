@@ -4,6 +4,7 @@ import { ArrowRightOutlined, UserOutlined } from "@ant-design/icons";
 import { Input, message } from "antd";
 import Select from "react-select";
 import countryList from "react-select-country-list";
+import Link from "next/link";
 
 function ProfessionalInfo({ onContinue }) {
   const [country, setCountry] = useState("");
@@ -192,7 +193,6 @@ function ProfessionalInfo({ onContinue }) {
             <span className="text-red-500 text-xs">{errors.photo}</span>
           )}
         </div>
-
         <div className="flex flex-col gap-2">
           <label className="text-sm font-semibold">
             Country Of Practice <span className="text-red-500">*</span>
@@ -209,7 +209,6 @@ function ProfessionalInfo({ onContinue }) {
             <span className="text-red-500 text-xs">{errors.country}</span>
           )}
         </div>
-
         <div className="flex flex-col gap-2">
           <label className="text-sm font-semibold">
             Medical Qualification<span className="text-red-500">*</span>
@@ -229,7 +228,6 @@ function ProfessionalInfo({ onContinue }) {
             </span>
           )}
         </div>
-
         <div className="flex flex-col gap-2">
           <label className="text-sm font-semibold">Year of Graduation</label>
           <Input
@@ -247,7 +245,6 @@ function ProfessionalInfo({ onContinue }) {
             </span>
           )} */}
         </div>
-
         <div className="flex flex-col gap-2">
           <label className="text-sm font-semibold">
             Medical Registration Authority
@@ -267,7 +264,6 @@ function ProfessionalInfo({ onContinue }) {
             </span>
           )} */}
         </div>
-
         <div className="flex flex-col gap-2">
           <label className="text-sm font-semibold">
             Medical Registration Number
@@ -287,7 +283,6 @@ function ProfessionalInfo({ onContinue }) {
             </span>
           )} */}
         </div>
-
         <div
           onClick={handleSubmit}
           className="w-full h-10 rounded-lg font-semibold bg-[#00A99D] flex items-center justify-center text-white cursor-pointer hover:bg-[#008F84] transition-colors"
@@ -295,7 +290,12 @@ function ProfessionalInfo({ onContinue }) {
           <h1 className="flex items-center gap-2">
             Continue <ArrowRightOutlined />
           </h1>
-        </div>
+        </div>{" "}
+        <Link href="/">
+          <button className="w-full  h-10 rounded-lg font-semibold bg-white flex items-center justify-center text-black border border-gray cursor-pointer hover:bg-[#008F84] hover:text-white transition-colors">
+            <h1 className="flex items-center gap-2 cursor-pointer">Cancel</h1>
+          </button>
+        </Link>
       </div>
     </div>
   );

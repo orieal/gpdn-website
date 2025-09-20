@@ -6,16 +6,14 @@ import { Input, message as antMessage } from "antd";
 import { PiSignInBold } from "react-icons/pi";
 import { useRouter } from "next/navigation";
 import { MdOutlineEmail } from "react-icons/md";
-import { FiLock } from "react-icons/fi";
 import { HiHome } from "react-icons/hi";
-import { loginUser } from "../../api/user";
+import { sendForgotPasswordEmail } from "../../api/user";
 import { EMAIL_REGEX } from "../../utils/constants";
 
-function SignInPage() {
+function ForgotPasswordPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
@@ -62,23 +60,9 @@ function SignInPage() {
       return false;
     }
 
-    if (!formData.password.trim()) {
-      setMessage({ text: "Password is required", type: "error" });
-      return false;
-    }
-
     // Email format validation
     if (!EMAIL_REGEX.test(formData.email)) {
       setMessage({ text: "Please enter a valid email address", type: "error" });
-      return false;
-    }
-
-    // Password length validation
-    if (formData.password.length < 6) {
-      setMessage({
-        text: "Password must be at least 6 characters",
-        type: "error",
-      });
       return false;
     }
 
@@ -86,9 +70,9 @@ function SignInPage() {
   };
 
   /**
-   * Handles the sign-in process
+   * Handles the forgot password process
    */
-  const handleSignIn = async () => {
+  const handleForgotPassword = async () => {
     // Clear previous messages
     setMessage({ text: "", type: "" });
 
@@ -99,53 +83,35 @@ function SignInPage() {
 
     setLoading(true);
     try {
-      const response = await loginUser(formData);
+      const response = await sendForgotPasswordEmail(formData.email);
 
       // Handle different response scenarios
       if (response.error) {
         setMessage({
           text:
             response.error.message ||
-            "Login failed. Please check your credentials.",
+            "Failed to send reset email. Please check your email address.",
           type: "error",
         });
-      }
-      // Handle pending admin approval (status 409)
-      else if (response.status === 409) {
-        if (response.data?.message === "Admin didn't accept request yet.") {
-          setMessage({
-            text: "Waiting for Approval",
-            type: "pending",
-          });
-        } else {
-          setMessage({
-            text: response.data?.message || "Your request is pending approval.",
-            type: "pending",
-          });
-        }
-      }
-      // Handle successful login
-      else if (response.data?.success) {
+      } else if (response.data?.success) {
         setMessage({
-          text: "Login successful! Redirecting...",
+          text: "Password reset email sent successfully! Please check your email inbox and follow the instructions to reset your password.",
           type: "success",
         });
-        antMessage.success("Login successful!");
+        antMessage.success("Password reset email sent!");
 
-        // Redirect to forum page after a short delay
+        // Redirect to sign-in page after a short delay
         setTimeout(() => {
-          router.push("/forum");
-        }, 1500);
-      }
-      // Handle any other unexpected response format
-      else {
+          router.push("/signin");
+        }, 3000);
+      } else {
         setMessage({
-          text: "Login failed. Please check your credentials or try again later.",
+          text: "Failed to send reset email. Please try again later.",
           type: "error",
         });
       }
     } catch (error) {
-      console.error("Unexpected login error:", error);
+      console.error("Unexpected forgot password error:", error);
 
       // Handle network errors separately
       if (error.message?.includes("Network Error")) {
@@ -170,34 +136,27 @@ function SignInPage() {
    */
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && !loading) {
-      handleSignIn();
+      handleForgotPassword();
     }
   };
 
   /**
-   * Navigates to registration page
+   * Navigates back to sign-in page
    */
-  const handleRegisterClick = () => {
-    router.push("/registration");
-  };
-
-  /**
-   * Navigates to forgot password page
-   */
-  const handleForgotPasswordClick = () => {
-    router.push("/forgot-password");
+  const handleBackToSignIn = () => {
+    router.push("/signin");
   };
 
   return (
     <div className="w-full h-screen bg-white flex items-center px-5 md:px-0">
       <div className="md:w-1/2 h-screen bg-gray-100 relative hidden md:block">
         <Image
-          alt="Sign in background"
+          alt="Forgot password background"
           src={bg}
           className="w-full h-full object-cover "
         />
       </div>
-      <div className=" w-full md:w-1/2 h-full flex items-center justify-center relative">
+      <div className="w-full md:w-1/2 h-full flex items-center justify-center relative">
         <button
           onClick={() => router.push("/")}
           className="absolute top-6 right-6 text-gray-600 hover:text-gray-800 transition-colors p-2 rounded-full hover:bg-gray-100"
@@ -206,17 +165,11 @@ function SignInPage() {
           <HiHome className="text-xl" />
         </button>
         <div className="flex flex-col gap-10">
-          <Image
-            alt="Logo"
-            src="/logo-gpdn.png"
-            width={100}
-            height={100}
-            className=" mx-auto md:hidden"
-          />
           <div className="flex flex-col -mt-5 md:-mt-0 items-center md:items-start">
-            <h1 className="text-xl font-semibold">Sign In To Your Account</h1>
+            <h1 className="text-xl font-semibold">Forgot Your Password?</h1>
             <h1 className="text-gray-400 text-sm">
-              Let&apos;s sign in to your account and get started.
+              No worries! Enter your email address and we'll send you a link to
+              reset your password.
             </h1>
           </div>
           <div className="flex flex-col gap-4">
@@ -239,9 +192,9 @@ function SignInPage() {
               <label className="text-sm font-semibold">Email Address</label>
               <Input
                 size="large"
-                className=" w-full md:w-96 text-sm"
+                className="w-full md:w-96 text-sm"
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Enter your email address"
                 value={formData.email}
                 onChange={(e) => handleInputChange("email", e.target.value)}
                 onKeyPress={handleKeyPress}
@@ -252,25 +205,8 @@ function SignInPage() {
                 data-testid="email-input"
               />
             </div>
-            <div className="flex flex-col gap-1 w-full">
-              <label className="text-sm font-semibold">Password</label>
-              <Input
-                size="large"
-                type="password"
-                className="w-full md:w-96 text-sm"
-                placeholder="Enter your password"
-                value={formData.password}
-                onChange={(e) => handleInputChange("password", e.target.value)}
-                onKeyPress={handleKeyPress}
-                prefix={<FiLock className="text-lg mr-1" />}
-                disabled={loading}
-                autoComplete="current-password"
-                aria-label="Password"
-                data-testid="password-input"
-              />
-            </div>
             <button
-              onClick={handleSignIn}
+              onClick={handleForgotPassword}
               disabled={loading}
               className={`rounded-md text-white w-full h-10 flex items-center justify-center gap-2 transition-colors ${
                 loading
@@ -278,26 +214,20 @@ function SignInPage() {
                   : "bg-[#00A99D] hover:bg-[#197364] cursor-pointer"
               }`}
             >
-              <h1>{loading ? "Signing In..." : "Sign In"}</h1>
+              <h1>{loading ? "Sending..." : "Send Reset Link"}</h1>
               {!loading && <PiSignInBold className="text-lg" />}
             </button>
             <div className="flex justify-center w-full font-medium text-sm">
               <div className="flex flex-col items-center">
                 <h1>
-                  Don't have an account?
+                  Remember your password?
                   <span
                     className="text-blue-600 cursor-pointer hover:underline"
-                    onClick={handleRegisterClick}
+                    onClick={handleBackToSignIn}
                   >
                     {" "}
-                    Register Now
+                    Sign In
                   </span>
-                </h1>
-                <h1
-                  className="text-blue-600 cursor-pointer hover:underline"
-                  onClick={handleForgotPasswordClick}
-                >
-                  Forgot Password
                 </h1>
               </div>
             </div>
@@ -308,4 +238,4 @@ function SignInPage() {
   );
 }
 
-export default SignInPage;
+export default ForgotPasswordPage;

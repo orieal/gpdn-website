@@ -887,12 +887,9 @@ function UploadResource() {
                 </div>
                 <div className="text-sm text-gray-500">
                   Supported Format: PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, TXT,
-                  CSV, JPG, JPEG, PNG (Max 25MB each)
+                  CSV, JPG, JPEG, PNG
                 </div>
-                <div className="text-xs text-blue-500 mt-1">
-                  ℹ️ Large images will be automatically compressed to improve
-                  upload speed
-                </div>
+                
               </div>
               {/* Hidden Upload Component */}
               <div className="hidden" ref={uploadRef}>

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Input, Radio, Checkbox, Select } from "antd";
+import Link from "next/link";
 
 function PalliativeCareInfo({ onContinue }) {
   const [formData, setFormData] = useState({
@@ -75,30 +76,8 @@ function PalliativeCareInfo({ onContinue }) {
 
   const validateForm = () => {
     let tempErrors = {};
-    if (formData.hasFormalTrainingInPalliativeCare === null) {
-      tempErrors.hasFormalTrainingInPalliativeCare =
-        "Please select whether you have formal training";
-    }
-    if (!formData.affiliatedPalliativeAssociations.trim()) {
-      tempErrors.affiliatedPalliativeAssociations =
-        "Affiliated associations are required";
-    }
-    if (
-      !formData.specialInterestsInPalliativeCare ||
-      formData.specialInterestsInPalliativeCare.length === 0
-    ) {
-      tempErrors.specialInterestsInPalliativeCare =
-        "Special interests are required";
-    }
-    if (
-      formData.specialInterestsInPalliativeCare.includes("Other") &&
-      !formData.specialInterestsOther.trim()
-    ) {
-      tempErrors.specialInterestsOther = "Please specify your special interest";
-    }
-    if (!formData.bio.trim()) {
-      tempErrors.bio = "Bio is required";
-    }
+
+    // Only validate the required agreement checkboxes
     if (!formData.confirmedMedicalGraduate) {
       tempErrors.confirmedMedicalGraduate =
         "You must confirm that you are a medical graduate";
@@ -107,11 +86,24 @@ function PalliativeCareInfo({ onContinue }) {
       tempErrors.agreedToGuidelines = "You must agree to GPDN guidelines";
     }
 
+    // Optional validation: if "Other" is selected for special interests, require the custom input
+    if (
+      formData.specialInterestsInPalliativeCare.includes("Other") &&
+      !formData.specialInterestsOther.trim()
+    ) {
+      tempErrors.specialInterestsOther = "Please specify your special interest";
+    }
+
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
   };
 
   const handleSubmit = () => {
+    // Validate only the required agreement checkboxes
+    if (!validateForm()) {
+      return;
+    }
+
     // Process special interests array - replace "Other" with the custom value if present
     let processedSpecialInterests = [
       ...formData.specialInterestsInPalliativeCare,
@@ -129,7 +121,7 @@ function PalliativeCareInfo({ onContinue }) {
 
     const dataToSend = {};
 
-    // Only add fields that have values
+    // Only add fields that have values (all fields are now optional except checkboxes)
     if (formData.bio && formData.bio.trim()) {
       dataToSend.bio = formData.bio;
     }
@@ -168,8 +160,7 @@ function PalliativeCareInfo({ onContinue }) {
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
           <label className="text-sm font-semibold">
-            Do you have formal training in palliative care?{" "}
-            <span className="text-red-500">*</span>
+            Do you have formal training in palliative care?
           </label>
           <Radio.Group
             onChange={handleRadioChange}
@@ -196,8 +187,7 @@ function PalliativeCareInfo({ onContinue }) {
 
         <div className="flex flex-col gap-2">
           <label className="text-sm font-semibold">
-            Affiliated Palliative Associations{" "}
-            <span className="text-red-500">*</span>
+            Affiliated Palliative Associations
           </label>
           <Input
             size="large"
@@ -306,9 +296,14 @@ function PalliativeCareInfo({ onContinue }) {
           className="w-full h-10 rounded-lg font-semibold bg-[#00A99D] flex items-center justify-center text-white cursor-pointer hover:bg-[#008F84] transition-colors mt-4"
         >
           <h1 className="flex items-center gap-2">
-            Continue <ArrowRightOutlined />
+            Submit Registration <ArrowRightOutlined />
           </h1>
         </div>
+        <Link href="/">
+          <button className="w-full  h-10 rounded-lg font-semibold bg-white flex items-center justify-center text-black border border-gray cursor-pointer hover:bg-[#008F84] hover:text-white transition-colors">
+            <h1 className="flex items-center gap-2 cursor-pointer">Cancel</h1>
+          </button>
+        </Link>
       </div>
     </div>
   );

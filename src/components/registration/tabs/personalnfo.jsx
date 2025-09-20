@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import {
+  ArrowLeftOutlined,
   ArrowRightOutlined,
   LockOutlined,
   UserOutlined,
@@ -9,6 +10,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { Input } from "antd";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import Link from "next/link";
 
 function Personalnfo({ onContinue }) {
   const [phone, setPhone] = useState("");
@@ -202,6 +204,11 @@ function Personalnfo({ onContinue }) {
             Continue <ArrowRightOutlined />
           </h1>
         </button>
+        <Link href="/">
+          <button className="w-full  h-10 rounded-lg font-semibold bg-white flex items-center justify-center text-black border border-gray cursor-pointer hover:bg-[#008F84] hover:text-white transition-colors">
+            <h1 className="flex items-center gap-2 cursor-pointer">Cancel</h1>
+          </button>
+        </Link>
       </div>
     </div>
   );

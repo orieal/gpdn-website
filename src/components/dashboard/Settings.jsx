@@ -4,12 +4,10 @@ import React, { useState, useEffect } from "react";
 import {
   fetchUserById,
   editUserProfile,
-  sendOTP,
-  verifyOTP,
   requestActivationLink,
 } from "../../api/user";
 import Image from "next/image";
-import { Input, message, Select, Modal, Alert, Button, Tooltip } from "antd";
+import { Input, message, Select, Alert, Button, Tooltip } from "antd";
 import logo from "../../app/assets/registation/logo.png";
 import { MdClose, MdDashboard, MdMenu } from "react-icons/md";
 import { FaRegFolder } from "react-icons/fa6";
@@ -17,8 +15,6 @@ import { TbUsers } from "react-icons/tb";
 import { PiBuildings } from "react-icons/pi";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { MdOutlineSettings } from "react-icons/md";
-import { FiLock } from "react-icons/fi";
-import { PiSignInBold } from "react-icons/pi";
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
@@ -77,12 +73,6 @@ const Settings = () => {
   const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
   const [updating, setUpdating] = useState(false);
-  const [changePasswordVisible, setChangePasswordVisible] = useState(false);
-  const [passwordLoading, setPasswordLoading] = useState(false);
-  const [passwordMessage, setPasswordMessage] = useState({
-    text: "",
-    type: "",
-  });
 
   // Form data state
   const [formData, setFormData] = useState({
@@ -459,246 +449,9 @@ const Settings = () => {
     }
   };
 
-  // Password change state
-  const [currentStep, setCurrentStep] = useState(1); // 1: Send OTP, 2: Verify OTP, 3: Change Password
-  const [passwordData, setPasswordData] = useState({
-    otp: "",
-    newPassword: "",
-    confirmPassword: "",
-  });
-
-  const handlePasswordInputChange = (field, value) => {
-    setPasswordData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-
-    // Clear error messages when user starts typing
-    if (passwordMessage.type === "error") {
-      setPasswordMessage({ text: "", type: "" });
-    }
-  };
-
-  const validateOTP = () => {
-    if (!passwordData.otp.trim()) {
-      setPasswordMessage({ text: "OTP is required", type: "error" });
-      return false;
-    }
-
-    // Basic validation - OTP should be numeric and have a reasonable length
-    if (!/^\d+$/.test(passwordData.otp) || passwordData.otp.length < 4) {
-      setPasswordMessage({ text: "Please enter a valid OTP", type: "error" });
-      return false;
-    }
-
-    return true;
-  };
-
-  const validatePasswordData = () => {
-    if (!passwordData.newPassword) {
-      setPasswordMessage({ text: "New password is required", type: "error" });
-      return false;
-    }
-
-    if (passwordData.newPassword.length < 6) {
-      setPasswordMessage({
-        text: "New password must be at least 6 characters",
-        type: "error",
-      });
-      return false;
-    }
-
-    if (passwordData.newPassword !== passwordData.confirmPassword) {
-      setPasswordMessage({ text: "Passwords do not match", type: "error" });
-      return false;
-    }
-
-    return true;
-  };
-
-  const handleSendOTP = async () => {
-    // Clear previous messages
-    setPasswordMessage({ text: "", type: "" });
-
-    if (!userProfile?.phoneNumber) {
-      setPasswordMessage({
-        text: "No phone number found in your profile. Please update your profile with a phone number first.",
-        type: "error",
-      });
-      return;
-    }
-
-    setPasswordLoading(true);
-    try {
-      // Send OTP to the user's phone number
-      const response = await sendOTP(userProfile.phoneNumber);
-
-      if (response.error) {
-        setPasswordMessage({
-          text:
-            response.error.message || "Failed to send OTP. Please try again.",
-          type: "error",
-        });
-      } else if (response.data?.success) {
-        setPasswordMessage({
-          text: "OTP sent to your phone. Please check your messages.",
-          type: "success",
-        });
-        // Move to OTP verification step
-        setCurrentStep(2);
-      } else {
-        setPasswordMessage({
-          text: "Failed to send OTP. Please try again later.",
-          type: "error",
-        });
-      }
-    } catch (error) {
-      console.error("Unexpected error sending OTP:", error);
-      setPasswordMessage({
-        text: "An unexpected error occurred. Please try again later.",
-        type: "error",
-      });
-    } finally {
-      setPasswordLoading(false);
-    }
-  };
-
-  const handleVerifyOTP = async () => {
-    // Clear previous messages
-    setPasswordMessage({ text: "", type: "" });
-
-    // Validate OTP before submission
-    if (!validateOTP()) {
-      return;
-    }
-
-    setPasswordLoading(true);
-    try {
-      const response = await verifyOTP(
-        userProfile.phoneNumber,
-        passwordData.otp
-      );
-
-      if (response.error) {
-        setPasswordMessage({
-          text:
-            response.error.message ||
-            "Invalid or expired OTP. Please try again.",
-          type: "error",
-        });
-      } else if (response.data?.success) {
-        setPasswordMessage({
-          text: "OTP verified successfully. Please set your new password.",
-          type: "success",
-        });
-        // Move to password change step
-        setCurrentStep(3);
-      } else {
-        setPasswordMessage({
-          text: "Failed to verify OTP. Please try again.",
-          type: "error",
-        });
-      }
-    } catch (error) {
-      console.error("Unexpected error verifying OTP:", error);
-      setPasswordMessage({
-        text: "An unexpected error occurred. Please try again later.",
-        type: "error",
-      });
-    } finally {
-      setPasswordLoading(false);
-    }
-  };
-
-  const handleChangePassword = async () => {
-    // Clear previous messages
-    setPasswordMessage({ text: "", type: "" });
-
-    // Validate password data
-    if (!validatePasswordData()) {
-      return;
-    }
-
-    setPasswordLoading(true);
-    try {
-      const userId = localStorage.getItem("userId");
-      if (!userId) {
-        setPasswordMessage({ text: "User not authenticated", type: "error" });
-        return;
-      }
-
-      // API call would go here
-      // For now, simulate a successful password change
-      setTimeout(() => {
-        setPasswordMessage({
-          text: "Password changed successfully!",
-          type: "success",
-        });
-
-        // Reset form and close modal after success
-        setTimeout(() => {
-          setPasswordData({
-            otp: "",
-            newPassword: "",
-            confirmPassword: "",
-          });
-          setCurrentStep(1);
-          setChangePasswordVisible(false);
-          setPasswordMessage({ text: "", type: "" });
-          message.success("Password changed successfully!");
-        }, 1500);
-      }, 1000);
-    } catch (error) {
-      console.error("Error changing password:", error);
-      setPasswordMessage({
-        text: "Failed to change password. Please try again.",
-        type: "error",
-      });
-    } finally {
-      setPasswordLoading(false);
-    }
-  };
-
   const handleOpenChangePassword = () => {
-    setChangePasswordVisible(true);
-    setCurrentStep(1);
-    setPasswordData({
-      otp: "",
-      newPassword: "",
-      confirmPassword: "",
-    });
-    setPasswordMessage({ text: "", type: "" });
-  };
-
-  const handleCloseChangePassword = () => {
-    setChangePasswordVisible(false);
-    setCurrentStep(1);
-  };
-
-  const renderStepTitle = () => {
-    switch (currentStep) {
-      case 1:
-        return "Send Verification Code";
-      case 2:
-        return "Verify OTP";
-      case 3:
-        return "Change Password";
-      default:
-        return "Change Password";
-    }
-  };
-
-  const renderStepDescription = () => {
-    switch (currentStep) {
-      case 1:
-        return "We'll send a verification code to your phone number";
-      case 2:
-        return "Enter the verification code sent to your phone";
-      case 3:
-        return "Create a new password for your account";
-      default:
-        return "";
-    }
+    // Navigate to forgot password page instead of opening modal
+    window.location.href = "/forgot-password";
   };
 
   const sidebarMenus = [
@@ -1200,188 +953,16 @@ const Settings = () => {
                   <div className="mb-6">
                     <h2 className="text-lg font-medium">Change Password</h2>
                     <p className="text-gray-500 text-sm">
-                      Here you can change the password to your account
+                      Request a password reset email to change your password
                     </p>
                   </div>
                   <button
                     onClick={handleOpenChangePassword}
                     className="px-6 py-2 text-sm text-white bg-[#00A99D] rounded hover:bg-[#008F84] transition-colors"
                   >
-                    Change Password
+                    Reset Password
                   </button>
                 </div>
-
-                {/* Change Password Modal */}
-                <Modal
-                  title={renderStepTitle()}
-                  open={changePasswordVisible}
-                  onCancel={handleCloseChangePassword}
-                  footer={null}
-                  width={500}
-                  centered
-                >
-                  <div className="py-4">
-                    <p className="text-gray-500 text-sm mb-4">
-                      {renderStepDescription()}
-                    </p>
-
-                    {passwordMessage.text && (
-                      <div
-                        className={`mb-4 p-3 rounded ${
-                          passwordMessage.type === "error"
-                            ? "bg-red-50 text-red-700"
-                            : "bg-green-50 text-green-700"
-                        }`}
-                      >
-                        {passwordMessage.text}
-                      </div>
-                    )}
-
-                    <div className="flex flex-col gap-4">
-                      {currentStep === 1 && (
-                        <div className="flex flex-col gap-4">
-                          <div className="flex flex-col w-full">
-                            <p className="text-sm mb-2">
-                              We'll send a verification code to your phone
-                              number:{" "}
-                              <strong>
-                                {userProfile?.phoneNumber || "Not available"}
-                              </strong>
-                            </p>
-                          </div>
-                          <button
-                            onClick={handleSendOTP}
-                            disabled={
-                              passwordLoading || !userProfile?.phoneNumber
-                            }
-                            className={`mt-2 rounded-md text-white w-full h-10 flex items-center justify-center gap-2 transition-colors ${
-                              passwordLoading || !userProfile?.phoneNumber
-                                ? "bg-gray-400 cursor-not-allowed"
-                                : "bg-[#00A99D] hover:bg-[#197364] cursor-pointer"
-                            }`}
-                          >
-                            <span>
-                              {passwordLoading
-                                ? "Sending Code..."
-                                : "Send Verification Code"}
-                            </span>
-                            {!passwordLoading && (
-                              <PiSignInBold className="text-lg" />
-                            )}
-                          </button>
-                        </div>
-                      )}
-
-                      {currentStep === 2 && (
-                        <div className="flex flex-col gap-4">
-                          <div className="flex flex-col w-full">
-                            <label className="text-sm font-semibold mb-1">
-                              Verification Code
-                            </label>
-                            <Input
-                              size="large"
-                              className="text-sm"
-                              type="text"
-                              placeholder="Enter the OTP sent to your phone"
-                              value={passwordData.otp}
-                              onChange={(e) =>
-                                handlePasswordInputChange("otp", e.target.value)
-                              }
-                              disabled={passwordLoading}
-                              maxLength={6}
-                            />
-                          </div>
-                          <button
-                            onClick={handleVerifyOTP}
-                            disabled={passwordLoading}
-                            className={`mt-2 rounded-md text-white w-full h-10 flex items-center justify-center gap-2 transition-colors ${
-                              passwordLoading
-                                ? "bg-gray-400 cursor-not-allowed"
-                                : "bg-[#00A99D] hover:bg-[#197364] cursor-pointer"
-                            }`}
-                          >
-                            <span>
-                              {passwordLoading ? "Verifying..." : "Verify Code"}
-                            </span>
-                            {!passwordLoading && (
-                              <PiSignInBold className="text-lg" />
-                            )}
-                          </button>
-                          <button
-                            onClick={() => setCurrentStep(1)}
-                            disabled={passwordLoading}
-                            className="text-blue-600 text-sm hover:underline text-center"
-                          >
-                            Resend verification code
-                          </button>
-                        </div>
-                      )}
-
-                      {currentStep === 3 && (
-                        <div className="flex flex-col gap-4">
-                          <div className="flex flex-col w-full">
-                            <label className="text-sm font-semibold mb-1">
-                              New Password
-                            </label>
-                            <Input.Password
-                              size="large"
-                              className="text-sm"
-                              placeholder="Enter your new password"
-                              value={passwordData.newPassword}
-                              onChange={(e) =>
-                                handlePasswordInputChange(
-                                  "newPassword",
-                                  e.target.value
-                                )
-                              }
-                              prefix={<FiLock className="text-lg mr-1" />}
-                              disabled={passwordLoading}
-                            />
-                          </div>
-
-                          <div className="flex flex-col w-full">
-                            <label className="text-sm font-semibold mb-1">
-                              Confirm New Password
-                            </label>
-                            <Input.Password
-                              size="large"
-                              className="text-sm"
-                              placeholder="Confirm your new password"
-                              value={passwordData.confirmPassword}
-                              onChange={(e) =>
-                                handlePasswordInputChange(
-                                  "confirmPassword",
-                                  e.target.value
-                                )
-                              }
-                              prefix={<FiLock className="text-lg mr-1" />}
-                              disabled={passwordLoading}
-                            />
-                          </div>
-
-                          <button
-                            onClick={handleChangePassword}
-                            disabled={passwordLoading}
-                            className={`mt-2 rounded-md text-white w-full h-10 flex items-center justify-center gap-2 transition-colors ${
-                              passwordLoading
-                                ? "bg-gray-400 cursor-not-allowed"
-                                : "bg-[#00A99D] hover:bg-[#197364] cursor-pointer"
-                            }`}
-                          >
-                            <span>
-                              {passwordLoading
-                                ? "Changing Password..."
-                                : "Change Password"}
-                            </span>
-                            {!passwordLoading && (
-                              <PiSignInBold className="text-lg" />
-                            )}
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </Modal>
               </>
             )}
           </div>
