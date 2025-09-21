@@ -108,8 +108,11 @@ const PalliativeUnits = () => {
           // If data exists but isn't an array, wrap it in an array
           units = [response.data];
         }
+        // Filter out units where public is false
+        const publicUnits = units.filter((unit) => unit.public === true);
         console.log("Fetched palliative units:", units);
-        setPalliativeUnits(units);
+        console.log("Public units only:", publicUnits);
+        setPalliativeUnits(publicUnits);
       } catch (error) {
         console.error("Error fetching palliative units:", error);
         setPalliativeUnits([]);
@@ -174,7 +177,7 @@ const PalliativeUnits = () => {
     setSelectedSpeciality("");
 
     if (!searchInput.trim()) {
-      // If search input is empty, fetch all units
+      // If search input is empty, fetch all units and filter for public only
       const response = await fetchPalliativeUnits();
       if (response?.data) {
         const units = Array.isArray(response.data)
@@ -182,7 +185,10 @@ const PalliativeUnits = () => {
           : response.data.data && Array.isArray(response.data.data)
           ? response.data.data
           : [response.data];
-        setPalliativeUnits(units);
+
+        // Filter out units where public is false
+        const publicUnits = units.filter((unit) => unit.public === true);
+        setPalliativeUnits(publicUnits);
       }
       setLoading(false);
       return;
@@ -203,8 +209,11 @@ const PalliativeUnits = () => {
           ? [response.data.data]
           : [response.data];
 
+        // Filter out units where public is false
+        const publicUnits = units.filter((unit) => unit.public === true);
         console.log("Processed units:", units);
-        setPalliativeUnits(units);
+        console.log("Public units only:", publicUnits);
+        setPalliativeUnits(publicUnits);
       } else {
         setPalliativeUnits([]);
       }
@@ -230,7 +239,7 @@ const PalliativeUnits = () => {
           services: "",
           contactDetails: "",
         });
-        // Refresh the list after creation
+        // Refresh the list after creation and filter for public units only
         const refreshResponse = await fetchPalliativeUnits();
         if (refreshResponse?.data) {
           const units = Array.isArray(refreshResponse.data)
@@ -239,7 +248,10 @@ const PalliativeUnits = () => {
               Array.isArray(refreshResponse.data.data)
             ? refreshResponse.data.data
             : [refreshResponse.data];
-          setPalliativeUnits(units);
+
+          // Filter out units where public is false
+          const publicUnits = units.filter((unit) => unit.public === true);
+          setPalliativeUnits(publicUnits);
         }
       } else {
         message.error("Failed to create palliative unit.");

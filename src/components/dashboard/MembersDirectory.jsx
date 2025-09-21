@@ -204,31 +204,12 @@ const COUNTRY_DATA = {
 
 const FILTER_OPTIONS = {
   specialization: [
-    "Pain management",
-    "Symptom control",
-    "End-of-life care",
-    "Family support",
-    "Psychological support",
-    "Spiritual care",
-    "Bereavement counseling",
-    "Geriatric care",
-    "Pediatric care",
-    "Oncology",
-    "Respiratory care",
-    "Neurological care",
-    "Cardiac care",
-    "Palliative nursing",
-    "Social work",
-    "Research",
-    "Education",
-    "Policy development",
-  ],
-  expertise: [
-    "Advanced Pain Management",
-    "End-of-Life Care",
-    "Symptom Management",
-    "Family Support",
-    "Psychological Support",
+    "Adult Palliative Care",
+    "Paediatric Palliative Care",
+    "Neuro-palliative care",
+    "Pulmonary palliative care",
+    "Ethics / Legal in Palliative Care",
+    "Research in Palliative Care",
   ],
 };
 
@@ -270,10 +251,7 @@ const buildFilterPayload = (filters) => {
           payload.countryOfPractice = value;
           break;
         case "specialization":
-          payload.specialization = value;
-          break;
-        case "expertise":
-          payload.expertise = value;
+          payload.specialInterestsInPalliativeCare = value;
           break;
         default:
           payload[key] = value;
@@ -299,14 +277,12 @@ const applyFrontendFilters = (members, filters) => {
   if (filters.specialization) {
     filteredMembers = filteredMembers.filter((member) => {
       // Get member fields to search in
-      const memberSpecialInterests = (
-        member.specialInterestsInPalliativeCare || ""
+      const memberSpecialInterests = Array.isArray(
+        member.specialInterestsInPalliativeCare
       )
-        .toLowerCase()
-        .trim();
-      const memberQualification = (member.medicalQualification || "")
-        .toLowerCase()
-        .trim();
+        ? member.specialInterestsInPalliativeCare
+        : [];
+
       const memberAssociations = (member.affiliatedPalliativeAssociations || "")
         .toLowerCase()
         .trim();
@@ -317,55 +293,27 @@ const applyFrontendFilters = (members, filters) => {
       console.log("=== SPECIALIZATION FILTER DEBUG ===");
       console.log("Filtering member:", member.fullName);
       console.log("Search term:", `"${searchTerm}"`);
-      console.log("Member special interests:", `"${memberSpecialInterests}"`);
-      console.log("Member qualification:", `"${memberQualification}"`);
+      console.log("Member special interests array:", memberSpecialInterests);
       console.log("Member associations:", `"${memberAssociations}"`);
 
-      // Simple direct matching first
-      const specialInterestsMatch = memberSpecialInterests.includes(searchTerm);
-      const qualificationMatch = memberQualification.includes(searchTerm);
+      // Check if the specialization matches any of the member's interests (exact match)
+      const specialInterestsMatch = memberSpecialInterests.some((interest) => {
+        const normalizedInterest = interest.toLowerCase().trim();
+        console.log(`Comparing "${normalizedInterest}" with "${searchTerm}"`);
+        return normalizedInterest === searchTerm;
+      });
+
+      // Check associations for partial matches
       const associationsMatch = memberAssociations.includes(searchTerm);
 
-      // Also try individual word matching for more flexibility
-      const searchWords = searchTerm
-        .split(/\s+/)
-        .filter((word) => word.length > 2); // Only words longer than 2 chars
-      const wordMatches =
-        searchWords.length > 0
-          ? searchWords.every((word) => {
-              const wordFound =
-                memberSpecialInterests.includes(word) ||
-                memberQualification.includes(word) ||
-                memberAssociations.includes(word);
-              console.log(`Word "${word}" found:`, wordFound);
-              return wordFound;
-            })
-          : false;
-
-      const finalMatch =
-        specialInterestsMatch ||
-        qualificationMatch ||
-        associationsMatch ||
-        wordMatches;
+      const finalMatch = specialInterestsMatch || associationsMatch;
 
       console.log("Special interests match:", specialInterestsMatch);
-      console.log("Qualification match:", qualificationMatch);
       console.log("Associations match:", associationsMatch);
-      console.log("Word matches:", wordMatches);
       console.log("FINAL RESULT:", finalMatch);
       console.log("================================");
 
       return finalMatch;
-    });
-  }
-
-  // Apply expertise filter on frontend (fallback)
-  if (filters.expertise) {
-    filteredMembers = filteredMembers.filter((member) => {
-      const memberExpertise = member.expertise || member.areasOfExpertise || "";
-      return memberExpertise
-        .toLowerCase()
-        .includes(filters.expertise.toLowerCase());
     });
   }
 
@@ -387,7 +335,6 @@ const MembersDirectory = () => {
   const [selectedFilters, setSelectedFilters] = useState({
     country: "",
     specialization: "",
-    expertise: "",
   });
 
   const pathname = usePathname();
@@ -396,11 +343,9 @@ const MembersDirectory = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [showCountryMenu, setShowCountryMenu] = useState(false);
   const [showSpecializationMenu, setShowSpecializationMenu] = useState(false);
-  const [showExpertiseMenu, setShowExpertiseMenu] = useState(false);
   const [countrySearchInput, setCountrySearchInput] = useState("");
   const [specializationSearchInput, setSpecializationSearchInput] =
     useState("");
-  const [expertiseSearchInput, setExpertiseSearchInput] = useState("");
 
   const debouncedSearchTerm = useDebounce(searchInput, DEBOUNCE_DELAY);
 
@@ -481,7 +426,6 @@ const MembersDirectory = () => {
       setShowFilter(false);
       setShowCountryMenu(false);
       setShowSpecializationMenu(false);
-      setShowExpertiseMenu(false);
       setCountrySearchInput("");
 
       try {
@@ -507,8 +451,12 @@ const MembersDirectory = () => {
         let useAPI = true;
         let filteredMembers = [];
 
-        // For country filter, always use frontend filtering as it's more reliable
-        if (filterType === "country" || useFrontendFiltering) {
+        // For country and specialization filters, always use frontend filtering as it's more reliable
+        if (
+          filterType === "country" ||
+          filterType === "specialization" ||
+          useFrontendFiltering
+        ) {
           useAPI = false;
         }
 
@@ -551,7 +499,16 @@ const MembersDirectory = () => {
             }
           }
 
+          console.log("=== MAIN FILTER DEBUG ===");
+          console.log("Filter type:", filterType);
+          console.log("Filter value:", value);
+          console.log("New filters:", newFilters);
+          console.log("Base members count:", baseMembers.length);
+
           filteredMembers = applyFrontendFilters(baseMembers, newFilters);
+
+          console.log("Filtered members count:", filteredMembers.length);
+          console.log("=========================");
         }
 
         setMembers(filteredMembers);
@@ -582,7 +539,6 @@ const MembersDirectory = () => {
     setSelectedFilters({
       country: "",
       specialization: "",
-      expertise: "",
     });
     setSearchInput("");
     setCountrySearchInput("");
@@ -596,38 +552,26 @@ const MembersDirectory = () => {
     setShowFilter(!showFilter);
     setShowCountryMenu(false);
     setShowSpecializationMenu(false);
-    setShowExpertiseMenu(false);
     setCountrySearchInput("");
     setSpecializationSearchInput("");
-    setExpertiseSearchInput("");
   }, [showFilter]);
 
   const handleCountryClick = useCallback(() => {
     setShowCountryMenu(true);
     setShowFilter(false);
     setShowSpecializationMenu(false);
-    setShowExpertiseMenu(false);
   }, []);
 
   const handleSpecializationClick = useCallback(() => {
     setShowSpecializationMenu(true);
     setShowFilter(false);
     setShowCountryMenu(false);
-    setShowExpertiseMenu(false);
-  }, []);
-
-  const handleExpertiseClick = useCallback(() => {
-    setShowExpertiseMenu(true);
-    setShowFilter(false);
-    setShowCountryMenu(false);
-    setShowSpecializationMenu(false);
   }, []);
 
   const handleBackClick = useCallback(() => {
     setShowCountryMenu(false);
     setShowFilter(true);
     setShowSpecializationMenu(false);
-    setShowExpertiseMenu(false);
     setCountrySearchInput("");
   }, []);
 
@@ -635,14 +579,6 @@ const MembersDirectory = () => {
     setShowSpecializationMenu(false);
     setShowFilter(true);
     setShowCountryMenu(false);
-    setShowExpertiseMenu(false);
-  }, []);
-
-  const handleExpertiseBackClick = useCallback(() => {
-    setShowExpertiseMenu(false);
-    setShowFilter(true);
-    setShowCountryMenu(false);
-    setShowSpecializationMenu(false);
   }, []);
 
   // Effects
@@ -748,22 +684,6 @@ const MembersDirectory = () => {
                     {selectedFilters.specialization.length > 15
                       ? selectedFilters.specialization.substring(0, 15) + "..."
                       : selectedFilters.specialization}
-                  </span>
-                )}
-              </div>
-              <span>›</span>
-            </button>
-
-            {/* Expertise Filter */}
-            <button
-              onClick={handleExpertiseClick}
-              className="w-full px-4 py-2 text-left hover:bg-gray-50 flex justify-between items-center"
-            >
-              <div className="flex items-center gap-2">
-                <span>Expertise</span>
-                {selectedFilters.expertise && (
-                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
-                    {selectedFilters.expertise}
                   </span>
                 )}
               </div>
@@ -882,57 +802,6 @@ const MembersDirectory = () => {
               ) : (
                 <div className="text-center py-2 text-gray-500">
                   No specializations found
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Expertise Submenu */}
-      {showExpertiseMenu && (
-        <div className="absolute right-0 top-12 w-64 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-20">
-          <div className="p-3 border-b border-gray-100 flex items-center gap-2">
-            <button
-              onClick={handleExpertiseBackClick}
-              className="text-gray-600 hover:text-gray-800"
-            >
-              ‹
-            </button>
-            <h3 className="font-medium">Expertise</h3>
-          </div>
-
-          <div className="p-2">
-            <Input
-              placeholder="Search expertise"
-              className="mb-2"
-              value={expertiseSearchInput}
-              onChange={(e) => setExpertiseSearchInput(e.target.value)}
-              prefix={<IoSearchOutline className="text-gray-400" />}
-            />
-
-            <div className="py-1 max-h-64 overflow-y-auto">
-              {FILTER_OPTIONS.expertise.filter((exp) =>
-                exp.toLowerCase().includes(expertiseSearchInput.toLowerCase())
-              ).length > 0 ? (
-                FILTER_OPTIONS.expertise
-                  .filter((exp) =>
-                    exp
-                      .toLowerCase()
-                      .includes(expertiseSearchInput.toLowerCase())
-                  )
-                  .map((exp) => (
-                    <button
-                      key={exp}
-                      onClick={() => handleFilter("expertise", exp)}
-                      className="w-full px-3 py-2 text-left hover:bg-gray-50 rounded text-sm"
-                    >
-                      {exp}
-                    </button>
-                  ))
-              ) : (
-                <div className="text-center py-2 text-gray-500">
-                  No expertise found
                 </div>
               )}
             </div>
@@ -1161,14 +1030,13 @@ const MembersDirectory = () => {
             {renderFilterMenu()}
           </div>
         </div>
-
-        {renderActiveFilters()}
+        <div className=" mt-5">{renderActiveFilters()}</div>
         {renderError()}
 
         {/* Members Table */}
         <div
           className={`p-2 md:p-5 mt-16 md:mt-20 ${
-            hasActiveFilters || isSearchActive ? "pt-2" : "pt-20"
+            hasActiveFilters || isSearchActive ? "pt-2" : "pt-2 0"
           }`}
         >
           <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
