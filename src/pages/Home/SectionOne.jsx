@@ -38,7 +38,7 @@ const SectionOne = () => {
                 <h1 className="text-4xl  md:text-6xl lg:text-[6.1vw] xl:text-[5.5vw] font-light lg:leading-none  w-full lg:w-[150%]  text-[#1E1E1E]">
                   Global Care
                   <br className="hidden lg:block" />
-                  for a <span className="font-medium">Brighter Tomorrow</span>
+                   {" "}for a <span className="font-medium">Brighter Tomorrow</span>
                 </h1>
                 <div className="flex flex-col w-full gap-3 xl:gap-5">
                   <p className="font-normal text-[2vh]  flex-nowrap">
@@ -142,7 +142,7 @@ const SectionOne = () => {
                 alt="Caring"
                 layout="fill"
                 objectFit="cover"
-                className="rounded-2xl"
+                className="rounded-2xl w-full h-full object-cover"
               />
             </div>
           </div>

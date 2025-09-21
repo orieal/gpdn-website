@@ -660,25 +660,66 @@ const ResourceLibrary = () => {
 
   // Add this new component after the utility functions (around line 300)
   const ImageModal = ({ isOpen, onClose, image }) => {
+    // Handle keyboard events
+    useEffect(() => {
+      const handleKeyDown = (event) => {
+        if (event.key === "Escape" && isOpen) {
+          onClose();
+        }
+      };
+
+      if (isOpen) {
+        document.addEventListener("keydown", handleKeyDown);
+        // Prevent body scroll when modal is open
+        document.body.style.overflow = "hidden";
+      }
+
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+        document.body.style.overflow = "unset";
+      };
+    }, [isOpen, onClose]);
+
     if (!isOpen || !image) return null;
 
+    // Handle click on backdrop (outside the image)
+    const handleBackdropClick = (e) => {
+      if (e.target === e.currentTarget) {
+        onClose();
+      }
+    };
+
+    // Handle click on image container
+    const handleImageClick = (e) => {
+      // Close when clicking on the image itself
+      onClose();
+    };
+
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
+        onClick={handleBackdropClick}
+      >
         <div className="relative max-w-4xl max-h-[90vh] mx-4">
           <button
             onClick={onClose}
-            className="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300 transition-colors"
+            className="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300 transition-colors z-10"
           >
             <MdClose />
           </button>
-          <img
-            src={image.url}
-            alt={image.title}
-            className="max-w-full max-h-[90vh] object-contain rounded-lg"
-          />
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 rounded-b-lg">
-            <p className="text-white text-sm font-medium">{image.title}</p>
-            <p className="text-gray-300 text-xs">Image {image.index + 1}</p>
+          <div onClick={handleImageClick} className="cursor-pointer">
+            <img
+              src={image.url}
+              alt={image.title}
+              className="max-w-full max-h-[90vh] object-contain rounded-lg"
+            />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 rounded-b-lg pointer-events-none">
+              <p className="text-white text-sm font-medium">{image.title}</p>
+              <p className="text-gray-300 text-xs">Image {image.index + 1}</p>
+              <p className="text-gray-400 text-xs mt-1">
+                Click anywhere to close
+              </p>
+            </div>
           </div>
         </div>
       </div>

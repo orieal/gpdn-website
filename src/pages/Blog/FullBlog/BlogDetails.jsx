@@ -96,13 +96,13 @@ const BlogDetails = ({ blogId }) => {
 
   return (
     <section className="w-full pb-8 sm:py-12 lg:py-16 xl:py-20 bg-gray-50">
-      <div className="max-w-full mx-auto ">
+      <div className="max-w-full mt-5 md:px-16 lg:px-20 2xl:px-40">
         {!currentBlog ? (
           <SkeletonBlogDetail />
         ) : (
-          <article className="bg-gray-50  overflow-hidden">
+          <article className="bg-gray-50 rounded-3xl  overflow-hidden max-w-8xl">
             {/* Hero Image */}
-            <div className="relative h-64 sm:h-80 lg:h-96 w-full">
+            <div className="relative h-64 sm:h-80 lg:h-[60vh] w-full">
               <Image
                 fill
                 alt={currentBlog.title || "Blog image"}
@@ -111,11 +111,11 @@ const BlogDetails = ({ blogId }) => {
                     ? currentBlog.thumbnail
                     : "/placeholder-image.jpg"
                 }
-                className="object-cover"
+                className="object-cover w-full h-full rounded-3xl"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 rounded-3xl to-transparent"></div>
             </div>
 
             {/* Content */}

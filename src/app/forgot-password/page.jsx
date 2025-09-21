@@ -192,7 +192,7 @@ function ForgotPasswordPage() {
               <label className="text-sm font-semibold">Email Address</label>
               <Input
                 size="large"
-                className="w-full md:w-96 text-sm"
+                className="w-full md:w-full text-sm"
                 type="email"
                 placeholder="Enter your email address"
                 value={formData.email}

@@ -13,7 +13,7 @@ import {
   IoNewspaperOutline,
 } from "react-icons/io5";
 import { MdDashboard, MdOutlineSettings } from "react-icons/md";
-import { FaRegFolder, FaWhatsapp } from "react-icons/fa6";
+import { FaRegFolder } from "react-icons/fa6";
 import { TbUsers } from "react-icons/tb";
 import { PiBuildings } from "react-icons/pi";
 
@@ -591,14 +591,6 @@ const MembersDirectory = () => {
     setMembers(allMembers);
   }, [allMembers]);
 
-  // Handle WhatsApp connection
-  const handleWhatsAppConnect = useCallback((phoneNumber) => {
-    if (phoneNumber) {
-      const cleanNumber = phoneNumber.replace(/\D/g, "");
-      window.open(`https://wa.me/${cleanNumber}`, "_blank");
-    }
-  }, []);
-
   // Filter UI handlers
   const handleFilterClick = useCallback(() => {
     setShowFilter(!showFilter);
@@ -1013,7 +1005,7 @@ const MembersDirectory = () => {
     if (isDataLoading) {
       return (
         <tr>
-          <td colSpan="5" className="py-12 text-center">
+          <td colSpan="4" className="py-12 text-center">
             <div className="flex flex-col items-center justify-center space-y-2">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00A99D]"></div>
               <span className="text-gray-500">Loading members...</span>
@@ -1026,7 +1018,7 @@ const MembersDirectory = () => {
     if (!Array.isArray(members) || members.length === 0) {
       return (
         <tr>
-          <td colSpan="5" className="py-12 text-center">
+          <td colSpan="4" className="py-12 text-center">
             <div className="flex flex-col items-center justify-center space-y-2">
               <div className="text-gray-400 text-4xl">👥</div>
               <span className="text-gray-500 font-medium">
@@ -1110,21 +1102,14 @@ const MembersDirectory = () => {
         </td>
         <td className="py-4 px-6">
           <span className="text-sm text-gray-600">
-            {member.email || "Not provided"}
+            {member.createdAt
+              ? new Date(member.createdAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })
+              : "Not available"}
           </span>
-        </td>
-        <td className="py-4 px-6">
-          {member.phoneNumber ? (
-            <button
-              onClick={() => handleWhatsAppConnect(member.phoneNumber)}
-              className="px-5 py-2 bg-[#00A99D] text-white rounded-md hover:bg-[#008F84] transition-colors duration-150 flex items-center gap-2 text-sm font-medium shadow-sm hover:shadow"
-            >
-              <FaWhatsapp className="text-base" />
-              <span>Connect</span>
-            </button>
-          ) : (
-            <span className="text-sm text-gray-400">No contact</span>
-          )}
         </td>
       </tr>
     ));
@@ -1227,10 +1212,7 @@ const MembersDirectory = () => {
                         Location
                       </th>
                       <th className="text-left py-4 px-6 font-semibold text-sm text-gray-600 tracking-wider">
-                        Email Address
-                      </th>
-                      <th className="text-left py-4 px-6 font-semibold text-sm text-gray-600 tracking-wider">
-                        Contact
+                        Registration Date
                       </th>
                     </tr>
                   </thead>
@@ -1331,26 +1313,18 @@ const MembersDirectory = () => {
                                 </span>
                               </div>
                               <div className="text-sm text-gray-500 mb-3">
-                                {member.email || "Not provided"}
+                                Registered:{" "}
+                                {member.createdAt
+                                  ? new Date(
+                                      member.createdAt
+                                    ).toLocaleDateString("en-US", {
+                                      year: "numeric",
+                                      month: "short",
+                                      day: "numeric",
+                                    })
+                                  : "Not available"}
                               </div>
                             </div>
-                          </div>
-                          <div className="flex-shrink-0 ml-3">
-                            {member.phoneNumber ? (
-                              <button
-                                onClick={() =>
-                                  handleWhatsAppConnect(member.phoneNumber)
-                                }
-                                className="px-2 py-2 bg-[#00A99D] text-white rounded-lg hover:bg-[#008F84] transition-colors duration-150 flex items-center gap-2 text-sm font-medium shadow-sm hover:shadow"
-                              >
-                                <FaWhatsapp className="text-base" />
-                                <span>Connect</span>
-                              </button>
-                            ) : (
-                              <span className="text-sm text-gray-400">
-                                No contact
-                              </span>
-                            )}
                           </div>
                         </div>
                       </div>

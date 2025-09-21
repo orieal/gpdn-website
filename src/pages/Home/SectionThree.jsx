@@ -18,7 +18,7 @@ const SectionThree = () => {
           </h1>
           <p className="text-[#525252] text-sm md:text-lg lg:text-center md:placeholder md:w-[800px]">
             Experience the power of a caring community dedicated to well-being,
-            support, and joy. GPDN fosters friendships, mentorships, and global
+            support, and collaboration. GPDN fosters friendships, mentorships, and global
             unity among doctors who care.
           </p>
         </div>

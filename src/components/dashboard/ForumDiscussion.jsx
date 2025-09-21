@@ -1283,7 +1283,7 @@ const ForumDiscussion = () => {
                                     <img
                                       src={fileUrl}
                                       alt={fileName}
-                                      className="rounded-lg w-full h-24 object-cover cursor-pointer hover:opacity-90 transition-opacity"
+                                      className="rounded-lg w-full h-24 md:h-52 object-cover cursor-pointer hover:opacity-90 transition-opacity"
                                       onClick={() =>
                                         openImageModal(fileUrl, fileName)
                                       }
