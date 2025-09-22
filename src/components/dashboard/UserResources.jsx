@@ -896,9 +896,13 @@ const UserResources = () => {
 
                   {/* Action buttons */}
 
-                  {resource.approvalStatus === true ? (
+                  {resource.approvalStatus === "approved" ? (
                     <div className="px-2 py-1 text-sm bg-green-500 text-white rounded-full">
                       Approved
+                    </div>
+                  ) : resource.approvalStatus === "rejected" ? (
+                    <div className="px-2 py-1 text-sm bg-red-500 text-white rounded-full">
+                      Rejected
                     </div>
                   ) : (
                     <div className="px-2 py-1 text-sm bg-yellow-500 bg-opacity-50 text-yellow-700 rounded-full">
