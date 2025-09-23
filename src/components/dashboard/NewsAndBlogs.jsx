@@ -455,12 +455,12 @@ const NewsAndBlogs = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
               allowClear
             />
-            <button
+            {/* <button
               onClick={handleFilterClick}
               className="px-2 md:px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-md hover:bg-gray-50 flex items-center gap-2"
             >
               <IoFilterOutline /> Filter
-            </button>
+            </button> */}
 
             {/* Filter Dropdown */}
             {showFilter && (
