@@ -450,10 +450,11 @@ const PalliativeUnits = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 ">
       {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="md:p-5 md:px-10 p-5">
+
+      <div className="bg-white shadow-sm px-7 pt-8 md:px-16 lg:px-20 2xl:px-40">
+        <div className="">
           <Navbar />
         </div>
       </div>

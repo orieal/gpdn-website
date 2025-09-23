@@ -438,7 +438,7 @@ export default function Sidebar({
           ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
           md:translate-x-0 md:block`}
       >
-        <div className="flex flex-col h-screen justify-between">
+        <div className="flex flex-col h-screen gap-10 md:justify-between">
           <div>
             {/* Header with Logo and Notification */}
             <div className="p-5 relative flex items-center justify-between">
@@ -505,10 +505,10 @@ export default function Sidebar({
           <div>
             <button
               onClick={() => setLogoutModalOpen(true)}
-              className="w-full flex items-center justify-between gap-3 px-4 py-3 text-black border-t text-base shadow-md hover:from-[#008F84] hover:to-[#00A99D] transition-all duration-200"
+              className="w-full flex items-center justify-between gap-3 px-4 py-3 text-black border-t text-base  hover:from-[#008F84] hover:to-[#00A99D] transition-all duration-200"
               style={{
                 letterSpacing: "0.03em",
-                boxShadow: "0 2px 12px 0 rgba(0,169,157,0.08)",
+                
               }}
             >
               <MdLogout size={22} />

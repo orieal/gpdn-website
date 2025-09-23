@@ -1176,8 +1176,8 @@ const ForumDiscussion = () => {
           </div>
         </div>
 
-        <div className="flex  md:pt-20">
-          <div className="md:w-4/5 w-full flex justify-center md:block p-5 md:border-r border-gray-200 min-h-screen">
+        <div className="md:flex  md:pt-20">
+          <div className="md:w-4/5 w-full justify-center   p-5 md:border-r border-gray-200 min-h-screen">
             {loading ? (
               <div className="space-y-6">
                 {[1, 2, 3, 4, 5].map((i) => (
@@ -1452,7 +1452,7 @@ const ForumDiscussion = () => {
                         {post.upvotes || 0}
                       </button>
 
-                      <button
+                      {/* <button
                         onClick={() => handleDownvote(post.id)}
                         disabled={actionLoading[`downvote-${post.id}`]}
                         className="flex items-center justify-center md:justify-start gap-1 border border-gray-200 w-1/5 md:w-auto text-xs md:text-sm md:px-3 py-1 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
@@ -1466,7 +1466,7 @@ const ForumDiscussion = () => {
                         />
                         <span className=" hidden md:block">Downvote · </span>
                         {post.downvotes || 0}
-                      </button>
+                      </button> */}
 
                       <button
                         onClick={() => {

@@ -77,10 +77,10 @@ const MobileMenu = ({ isShowMenu, setIsShowMenu }) => {
         </div>
 
         {/* Sign In Button */}
-        <div className="pt-8 border-t border-gray-200 flex flex-col gap-4">
+        <div className="pt- border-t border-gray-200 flex flex-col gap-4">
           <Link onClick={() => setIsShowMenu(!isShowMenu)} href="/registration">
             <button className="w-full bg-black hover:bg-[#039187] cursor-pointer transition-all duration-300 ease-in text-white text-base font-medium py-4 px-6 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
-              Join The Network
+              Join Us
               <GoChevronRight className="text-xl" />
             </button>
           </Link>

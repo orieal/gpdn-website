@@ -145,7 +145,7 @@ const FAQSection = () => {
                     sx={{ borderColor: "white" }}
                     className="border-none"
                   >
-                    <div className="flex flex-col gap-3 w-[60%]">
+                    <div className="flex flex-col gap-3 w-full md:w-[60%]">
                       {data.a.split("\n\n").map((para, i) => (
                         <Typography
                           key={i}

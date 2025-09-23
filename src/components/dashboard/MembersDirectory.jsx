@@ -813,7 +813,7 @@ const MembersDirectory = () => {
 
   const renderActiveFilters = () =>
     (hasActiveFilters || isSearchActive) && (
-      <div className="px-5 pt-20 pb-2 flex gap-2 flex-wrap items-center">
+      <div className="px-5 pt-28 md:pt-20 pb-2 flex gap-2 flex-wrap items-center">
         {isSearchActive && (
           <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm bg-green-100 text-green-800">
             Search: "{searchInput}"
@@ -849,7 +849,7 @@ const MembersDirectory = () => {
             onClick={clearAllFilters}
             className="text-sm text-gray-600 hover:text-gray-900 font-medium"
           >
-            Clear all
+            Clear All
           </button>
         )}
       </div>
@@ -1012,9 +1012,9 @@ const MembersDirectory = () => {
 
             <button
               onClick={handleFilterClick}
-              className={`px-4 py-2 border border-gray-200 rounded-md hover:bg-gray-50 flex items-center gap-2 transition-colors ${
+              className={`px-3 md:px-4 py-2 border border-gray-200 rounded-md hover:bg-gray-50 flex items-center gap-2 transition-colors ${
                 hasActiveFilters
-                  ? "bg-[#00A99D] text-white border-[#00A99D]"
+                  ? "bg-[#00A99D] text-white text-xs border-[#00A99D]"
                   : "bg-white text-gray-700"
               }`}
             >
@@ -1035,8 +1035,8 @@ const MembersDirectory = () => {
 
         {/* Members Table */}
         <div
-          className={`p-2 md:p-5 mt-16 md:mt-20 ${
-            hasActiveFilters || isSearchActive ? "pt-2" : "pt-2 0"
+          className={`p-2 md:p-5 mt-14 md:mt-20 ${
+            hasActiveFilters || isSearchActive ? "pt-2" : "pt-2"
           }`}
         >
           <div className="bg-white rounded-lg border border-gray-200 shadow-sm">

@@ -9,7 +9,7 @@ import countryList from "react-select-country-list";
 import logo from "../../app/assets/registation/logo.png";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdClose, MdDashboard, MdMenu, MdAdd } from "react-icons/md";
-import { FaRegFolder } from "react-icons/fa6";
+import { FaRegFolder, FaWhatsapp } from "react-icons/fa6";
 import { TbUsers } from "react-icons/tb";
 import { PiBuildings } from "react-icons/pi";
 import { FiPhone } from "react-icons/fi";
@@ -490,6 +490,7 @@ const PalliativeUnits = () => {
   return (
     <div className="grid md:flex min-h-screen bg-white">
       {/* Sidebar */}
+
       <Sidebar
         mobileMenuOpen={mobileMenuOpen}
         handleMobileMenuToggle={handleMobileMenuToggle}
@@ -498,77 +499,161 @@ const PalliativeUnits = () => {
       {/* Main Content */}
       <div className="md:flex-1 md:ml-64 mt-16 md:mt-0">
         {/* Header */}
-        <div className="p-5 md:flex justify-between items-center border-b border-gray-200 bg-white fixed md:w-[calc(100%-256px)] z-10">
-          <div className="flex items-center gap-4">
-            <h1 className="text-xl font-semibold">
-              Palliative Units Directory
-            </h1>
-            <div className="flex items-center gap-2">
-              {selectedSpeciality && (
-                <div className="flex items-center gap-2">
-                  <span className="px-3 py-1 bg-[#00A99D] text-white text-sm rounded-full">
-                    {selectedSpeciality}
-                  </span>
-                  <button
-                    onClick={clearSpecialityFilter}
-                    className="text-gray-400 hover:text-gray-600 text-sm"
-                  >
-                    ✕
-                  </button>
-                </div>
-              )}
-              {selectedSpecialization && (
-                <div className="flex items-center gap-2">
-                  <span className="px-3 py-1 bg-[#1976D2] text-white text-sm rounded-full">
-                    {selectedSpecialization}
-                  </span>
-                  <button
-                    onClick={clearSpecializationFilter}
-                    className="text-gray-400 hover:text-gray-600 text-sm"
-                  >
-                    ✕
-                  </button>
-                </div>
-              )}
-              {selectedExpertise && (
-                <div className="flex items-center gap-2">
-                  <span className="px-3 py-1 bg-[#FF6B35] text-white text-sm rounded-full">
-                    {selectedExpertise}
-                  </span>
-                  <button
-                    onClick={clearExpertiseFilter}
-                    className="text-gray-400 hover:text-gray-600 text-sm"
-                  >
-                    ✕
-                  </button>
-                </div>
-              )}
+        <div className="p-4 md:p-5 border-b border-gray-200 bg-white fixed w-full md:w-[calc(100%-256px)] z-10 ">
+          {/* Mobile Layout */}
+          <div className="md:hidden space-y-4">
+            {/* Title and Active Filters */}
+            <div className="flex flex-col gap-3">
+              <h1 className="text-lg font-semibold text-gray-900">
+                Palliative Units Directory
+              </h1>
+
+              {/* Active Filters */}
+              <div className="flex flex-wrap gap-2">
+                {selectedSpeciality && (
+                  <div className="flex items-center gap-1">
+                    <span className="px-2 py-1 bg-[#00A99D] text-white text-xs rounded-full">
+                      {selectedSpeciality}
+                    </span>
+                    <button
+                      onClick={clearSpecialityFilter}
+                      className="text-gray-400 hover:text-gray-600 text-xs ml-1"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                )}
+                {selectedSpecialization && (
+                  <div className="flex items-center gap-1">
+                    <span className="px-2 py-1 bg-[#1976D2] text-white text-xs rounded-full">
+                      {selectedSpecialization}
+                    </span>
+                    <button
+                      onClick={clearSpecializationFilter}
+                      className="text-gray-400 hover:text-gray-600 text-xs ml-1"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                )}
+                {selectedExpertise && (
+                  <div className="flex items-center gap-1">
+                    <span className="px-2 py-1 bg-[#FF6B35] text-white text-xs rounded-full">
+                      {selectedExpertise}
+                    </span>
+                    <button
+                      onClick={clearExpertiseFilter}
+                      className="text-gray-400 hover:text-gray-600 text-xs ml-1"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-          <div className="flex gap-3 relative filter-container">
+
+            {/* Search and Create Button Row */}
+            <div className="flex gap-2">
+              <Input
+                placeholder="Search units..."
+                className="flex-1 h-10"
+                prefix={<IoSearchOutline className="text-gray-400" />}
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                onPressEnter={handleSearch}
+              />
+              <button
+                onClick={handleSearch}
+                className="px-3 py-2 h-10 bg-white border border-gray-200 text-gray-700 rounded-md hover:bg-gray-50 flex items-center gap-1"
+              >
+                <IoSearchOutline className="text-sm" />
+                <span className="hidden">Search</span>
+              </button>
+            </div>
+
             {/* Create Button */}
             <button
               onClick={openCreateModal}
-              className="px-4 py-2 bg-[#00A99D] text-white rounded-lg hover:bg-[#008F84] transition-colors duration-150 flex items-center gap-2 font-medium shadow-sm"
+              className="w-full px-4 py-3 bg-[#00A99D] text-white rounded-lg hover:bg-[#008F84] transition-colors duration-150 flex items-center justify-center gap-2 font-medium shadow-sm"
             >
               <MdAdd className="text-lg" />
-              Create Unit
+              Create New Unit
             </button>
+          </div>
 
-            <Input
-              placeholder="Search Palliative Units..."
-              className="md:w-64 h-9 md:h-10 "
-              prefix={<IoSearchOutline className="text-gray-400" />}
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-              onPressEnter={handleSearch}
-            />
-            <button
-              onClick={handleSearch}
-              className="px-2 md:px-4 py-2 mt-1 md:mt-0 h-9 md:h-10 bg-white border border-gray-200 text-gray-700 rounded-md hover:bg-gray-50 flex items-center gap-2"
-            >
-              <IoSearchOutline /> Search
-            </button>
+          {/* Desktop Layout */}
+          <div className="hidden md:flex justify-between items-center">
+            <div className="flex items-center gap-4">
+              <h1 className="text-xl font-semibold">
+                Palliative Units Directory
+              </h1>
+              <div className="flex items-center gap-2">
+                {selectedSpeciality && (
+                  <div className="flex items-center gap-2">
+                    <span className="px-3 py-1 bg-[#00A99D] text-white text-sm rounded-full">
+                      {selectedSpeciality}
+                    </span>
+                    <button
+                      onClick={clearSpecialityFilter}
+                      className="text-gray-400 hover:text-gray-600 text-sm"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                )}
+                {selectedSpecialization && (
+                  <div className="flex items-center gap-2">
+                    <span className="px-3 py-1 bg-[#1976D2] text-white text-sm rounded-full">
+                      {selectedSpecialization}
+                    </span>
+                    <button
+                      onClick={clearSpecializationFilter}
+                      className="text-gray-400 hover:text-gray-600 text-sm"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                )}
+                {selectedExpertise && (
+                  <div className="flex items-center gap-2">
+                    <span className="px-3 py-1 bg-[#FF6B35] text-white text-sm rounded-full">
+                      {selectedExpertise}
+                    </span>
+                    <button
+                      onClick={clearExpertiseFilter}
+                      className="text-gray-400 hover:text-gray-600 text-sm"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="flex gap-3 relative filter-container">
+              {/* Create Button */}
+              <button
+                onClick={openCreateModal}
+                className="px-4 py-2 bg-[#00A99D] text-white rounded-lg hover:bg-[#008F84] transition-colors duration-150 flex items-center gap-2 font-medium shadow-sm"
+              >
+                <MdAdd className="text-lg" />
+                Create Unit
+              </button>
+
+              <Input
+                placeholder="Search Palliative Units..."
+                className="w-64 h-10"
+                prefix={<IoSearchOutline className="text-gray-400" />}
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                onPressEnter={handleSearch}
+              />
+              <button
+                onClick={handleSearch}
+                className="px-4 py-2 h-10 bg-white border border-gray-200 text-gray-700 rounded-md hover:bg-gray-50 flex items-center gap-2"
+              >
+                <IoSearchOutline /> Search
+              </button>
+            </div>
 
             {/* Filter Button */}
             {/* <button
@@ -581,7 +666,7 @@ const PalliativeUnits = () => {
 
             {/* Main Filter Menu */}
             {showFilter && (
-              <div className="absolute right-0 top-12 w-64 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-20">
+              <div className="absolute right-0 top-12 w-64 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-10">
                 <div className="p-3 border-b border-gray-100">
                   <h3 className="font-medium">Add Filters</h3>
                 </div>
@@ -610,7 +695,7 @@ const PalliativeUnits = () => {
 
             {/* Location Submenu */}
             {showLocationMenu && (
-              <div className="absolute right-0 top-12 w-64 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-20">
+              <div className="absolute right-0 top-12 w-64 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-10">
                 <div className="p-3 border-b border-gray-100 flex items-center gap-2">
                   <button
                     onClick={handleBackClick}
@@ -643,7 +728,7 @@ const PalliativeUnits = () => {
 
             {/* Speciality Submenu */}
             {showSpecialityMenu && (
-              <div className="absolute right-0 top-12 w-64 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-20">
+              <div className="absolute right-0 top-12 w-64 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-10">
                 <div className="p-3 border-b border-gray-100 flex items-center gap-2">
                   <button
                     onClick={handleSpecialityBackClick}
@@ -669,7 +754,7 @@ const PalliativeUnits = () => {
 
             {/* Specialization Submenu */}
             {showSpecializationMenu && (
-              <div className="absolute right-0 top-12 w-64 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-20">
+              <div className="absolute right-0 top-12 w-64 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-10">
                 <div className="p-3 border-b border-gray-100 flex items-center gap-2">
                   <button
                     onClick={handleSpecializationBackClick}
@@ -695,7 +780,7 @@ const PalliativeUnits = () => {
 
             {/* Expertise Submenu */}
             {showExpertiseMenu && (
-              <div className="absolute right-0 top-12 w-64 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-20">
+              <div className="absolute right-0 top-12 w-64 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-10">
                 <div className="p-3 border-b border-gray-100 flex items-center gap-2">
                   <button
                     onClick={handleExpertiseBackClick}
@@ -722,7 +807,7 @@ const PalliativeUnits = () => {
         </div>
 
         {/* Palliative Units Grid */}
-        <div className="pt-20 p-5 mt-10">
+        <div className="pt-[10rem] md:pt-20 p-4 md:p-5 mt-10">
           <div className="grid md:grid-cols-2 2xl:grid-cols-3 gap-4">
             {loading ? (
               // Skeleton loading UI
@@ -786,53 +871,58 @@ const PalliativeUnits = () => {
                           </p>
                           <div className="flex flex-wrap gap-3">
                             <div className="flex flex-wrap gap-3">
-
-                            {unit.services ? (
-                              Array.isArray(unit.services) ? (
-                                unit.services.map((service, idx) => (
-                                  <span
-                                    key={idx}
-                                    className="px-4 py-1 bg-[#E3F2FD] text-[#1976D2] rounded text-sm font-medium"
-                                  >
-                                    {typeof service === "object"
-                                      ? service.service || "Unknown Service"
-                                      : service}
+                              {unit.services ? (
+                                Array.isArray(unit.services) ? (
+                                  unit.services.map((service, idx) => (
+                                    <span
+                                      key={idx}
+                                      className="px-4 py-1 bg-[#E3F2FD] text-[#1976D2] rounded text-sm font-medium"
+                                    >
+                                      {typeof service === "object"
+                                        ? service.service || "Unknown Service"
+                                        : service}
+                                    </span>
+                                  ))
+                                ) : typeof unit.services === "object" ? (
+                                  // Handle case when services is a single object
+                                  <span className="px-4 py-1 bg-[#E3F2FD] text-[#1976D2] rounded- text-sm font-medium">
+                                    {unit.services.service || "Unknown Service"}
                                   </span>
-                                ))
-                              ) : typeof unit.services === "object" ? (
-                                // Handle case when services is a single object
-                                <span className="px-4 py-1 bg-[#E3F2FD] text-[#1976D2] rounded- text-sm font-medium">
-                                  {unit.services.service || "Unknown Service"}
-                                </span>
+                                ) : (
+                                  <span className="px-4 py-1 bg-[#E3F2FD] text-[#1976D2] rounded text-sm font-medium">
+                                    {String(unit.services)}
+                                  </span>
+                                )
                               ) : (
-                                <span className="px-4 py-1 bg-[#E3F2FD] text-[#1976D2] rounded text-sm font-medium">
-                                  {String(unit.services)}
+                                <span className="text-gray-500">
+                                  No services available
                                 </span>
-                              )
-                            ) : (
-                              <span className="text-gray-500">
-                                No services available
-                              </span>
-                            )}
+                              )}
                             </div>
                           </div>
                         </div>
 
                         {/* Contact Section */}
-                        <div className="flex my-2 items-center gap-2 text-gray-600">
+                        {/* <div className="flex my-2 items-center gap-2 text-gray-600">
                           <FiPhone className="text-xl text-[#1976D2]" />
                           <span className="text-base font-medium">
                             {unit.contactDetails || "No contact information"}
                           </span>
-                        </div>
+                        </div> */}
 
                         {/* Divider */}
-                        <div className="border-t border-gray-200"></div>
+                        <div className="border-t mt-2 border-gray-200 "></div>
 
                         {/* Contact Button */}
-                        <button className="w-fit px-6 py-3 mt-2 bg-[#00A99D] text-white rounded-xl hover:bg-[#008F84] transition-colors duration-150 text-sm font-medium shadow-sm">
-                          Contact
-                        </button>
+                        <a
+                          href={`https://wa.me/${unit.contactDetails}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 w-fit px-6 py-3 mt-2 bg-[#00A99D] text-white rounded-xl hover:bg-[#008F84] transition-colors duration-150 text-sm font-medium shadow-sm"
+                        >
+                          <FaWhatsapp className="text-xl" />
+                          <span>Contact</span>
+                        </a>
                       </div>
                     </div>
                   </div>
