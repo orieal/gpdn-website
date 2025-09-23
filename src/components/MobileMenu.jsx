@@ -60,7 +60,7 @@ const MobileMenu = ({ isShowMenu, setIsShowMenu }) => {
                   : "text-gray-800 text-xl"
               } font-medium hover:text-primary transition-colors duration-200`}
             >
-              Palliative
+              Directory
             </button>
           </Link>
           <Link onClick={() => setIsShowMenu(!isShowMenu)} href={"/contact"}>
