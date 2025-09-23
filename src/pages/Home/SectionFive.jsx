@@ -79,16 +79,17 @@ const SectionFive = () => {
     <section className="w-full py-8 sm:py-12 lg:py-16 xl:py-20">
       <div className="max-w mx-auto sm:px-6 md:px-0 ">
         {/* Section Header */}
-        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4">
-            Latest News & Blogs
-          </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
-            Stay updated with the latest insights, news, and updates from our
-            community
-          </p>
-        </div>
-
+        {blogs && blogs.length > 0 && (
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4">
+              Latest News & Blogs
+            </h2>
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
+              Stay updated with the latest insights, news, and updates from our
+              community
+            </p>
+          </div>
+        )}
         {isLoading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             <SkeletonBlogCard />

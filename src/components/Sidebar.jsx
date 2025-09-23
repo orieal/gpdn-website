@@ -33,7 +33,7 @@ const sidebarMenus = [
   },
   { menu: "Members", icon: <TbUsers />, link: "/members" },
   {
-    menu: "Palliative Units",
+    menu: "Directory",
     icon: <PiBuildings />,
     link: "/palliative-units",
   },

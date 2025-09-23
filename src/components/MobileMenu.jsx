@@ -9,7 +9,7 @@ const MobileMenu = ({ isShowMenu, setIsShowMenu }) => {
 
   return (
     <section
-      className={`z-20 fixed lg:hidden top-0 bg-white w-[75%] h-screen border-r-4 border-primary shadow-2xl ${
+      className={`z-50 fixed lg:hidden top-0 bg-white w-[75%] h-screen border-r-4 border-primary shadow-2xl ${
         isShowMenu ? "left-0" : "-left-[80vw]"
       } transition-all duration-500 ease-in-out`}
     >
@@ -77,7 +77,13 @@ const MobileMenu = ({ isShowMenu, setIsShowMenu }) => {
         </div>
 
         {/* Sign In Button */}
-        <div className="pt-8 border-t border-gray-200">
+        <div className="pt-8 border-t border-gray-200 flex flex-col gap-4">
+          <Link onClick={() => setIsShowMenu(!isShowMenu)} href="/registration">
+            <button className="w-full bg-black hover:bg-[#039187] cursor-pointer transition-all duration-300 ease-in text-white text-base font-medium py-4 px-6 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
+              Join The Network
+              <GoChevronRight className="text-xl" />
+            </button>
+          </Link>
           <Link onClick={() => setIsShowMenu(!isShowMenu)} href="/signin">
             <button className="w-full bg-teal-500 hover:bg-[#039187] cursor-pointer transition-all duration-300 ease-in text-white text-base font-medium py-4 px-6 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
               Sign In

@@ -41,7 +41,7 @@ const Navbar = () => {
               <button className="">Blog</button>
             </Link>
             <Link href={"/Palliative-home"}>
-              <button className="">Palliative</button>
+              <button className="">Directory</button>
             </Link>
             <Link href={"/contact"}>
               <button className="">Contact</button>
@@ -58,6 +58,7 @@ const Navbar = () => {
             Sign up
             <GoChevronRight className="text-xl" />
           </Link> */}
+
           <Link
             href="/signin"
             className="bg-teal-500 hover:bg-[#039187] cursor-pointer transition-all duration-300 ease-in text-white text-sm font-poppins py-3 px-5 rounded-xl hidden items-center justify-around md:flex gap-2"
