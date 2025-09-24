@@ -778,7 +778,7 @@ const ResourceLibrary = () => {
   );
 
   const renderHeader = () => (
-    <div className="p-5 md:flex justify-between items-center md:border-b border-gray-200 bg-white fixed md:w-[calc(100%-256px)] z-10 shadow-sm">
+    <div className="p-5 md:flex justify-between items-center md:border-b w-full border-gray-200 bg-white fixed md:w-[calc(100%-256px)] z-10 shadow-sm">
       <div className="flex items-center gap-3">
         <h1 className="text-xl md:text-2xl font-bold text-gray-800">
           Resource Library

@@ -160,6 +160,10 @@ export const faqData = [
     q: "Are there membership charges for joining the platform?",
     a: "No, membership is free of charge and provides access to resources that support your professional growth.",
   },
+  {
+    q: "How can I contribute to GPDN Blog?",
+    a: " You can share your blog content related to palliative care by sending it directly to our official email: gpdnofficial@gmail.com. Our team will review your submission and post it on the GPDN Blog if it is relevant and meets our specific terms and conditions."
+  }
 ];
 
 export const teamMembersData = [
