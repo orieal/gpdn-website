@@ -492,7 +492,7 @@ const ResourceLibrary = () => {
       const approvedResources = resourcesArray.filter(
         (resource) =>
           resource &&
-          (resource.approvalStatus === true ||
+          (resource.approvalStatus === "approved" ||
             resource.registrationStatus === "approved" ||
             resource.status === "approved")
       );

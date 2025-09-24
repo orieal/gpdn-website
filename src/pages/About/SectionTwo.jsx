@@ -39,7 +39,7 @@ const SectionTwo = () => {
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                   <h6 className="font-poppins text-primary text-2xl md:text-3xl lg:text-4xl font-semibold w-[50%]">
-                    602+
+                    624+
                   </h6>
                   <p className="font-normal text-lg lg:text-xl text-[#525252] w-[50%]">
                     Palliative Care
@@ -49,7 +49,7 @@ const SectionTwo = () => {
                 </div>
                 <div className="flex items-center justify-between">
                   <h6 className="font-poppins text-primary text-2xl md:text-3xl lg:text-4xl font-semibold w-[50%]">
-                    83+
+                    59+
                   </h6>
                   <p className="font-normal text-lg lg:text-xl text-[#525252] w-[50%]">
                     Countries &<br />
