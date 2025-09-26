@@ -1066,7 +1066,7 @@ const ResourceLibrary = () => {
   const renderResourceCard = (resource) => (
     <div
       key={resource._id}
-      className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
+      className="bg-white w-screen md:w-full  rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
     >
       {/* Header with author info */}
       <div className="flex items-center gap-3 p-4 border-b border-gray-100">
@@ -1095,7 +1095,7 @@ const ResourceLibrary = () => {
         </div>
         <div className="flex-1">
           <h3 className="font-medium text-gray-900 text-sm">
-            {resource.authorId?.fullName || "Anonymous"}
+            {resource.authorId?.fullName || "Admin"}
           </h3>
           <span className="text-xs text-gray-500">
             {new Date(resource.createdAt).toLocaleDateString("en-US", {

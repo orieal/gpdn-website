@@ -486,27 +486,27 @@ function UploadResource() {
       return;
     }
 
-    if (!title.trim()) {
-      message.error("Please enter a title");
-      return;
-    }
+    // if (!title.trim()) {
+    //   message.error("Please enter a title");
+    //   return;
+    // }
 
-    if (!description.trim()) {
-      message.error("Please enter a description");
-      return;
-    }
+    // if (!description.trim()) {
+    //   message.error("Please enter a description");
+    //   return;
+    // }
 
-    // Get content from rich text editor
+    // // Get content from rich text editor
     const editorContent = editorRef.current?.getContent();
-    if (!editorContent) {
-      message.error("Please enter content");
-      return;
-    }
+    // if (!editorContent) {
+    //   message.error("Please enter content");
+    //   return;
+    // }
 
-    if (fileList.length === 0) {
-      message.error("Please upload at least one file");
-      return;
-    }
+    // if (fileList.length === 0) {
+    //   message.error("Please upload at least one file");
+    //   return;
+    // }
 
     // Tags are optional - no validation required
     console.log("Tags validation passed:", tags);
