@@ -843,10 +843,10 @@ const PalliativeUnits = () => {
             ) : palliativeUnits.length > 0 ? (
               palliativeUnits.map((unit, index) => (
                 <div className="">
-                  <div className="max-w-2xl">
+                  <div className="max-w-2xl h-full">
                     <div
                       key={unit._id || index}
-                      className="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm"
+                      className="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm h-full"
                     >
                       <div className="flex flex-col gap-2">
                         {/* Header Section */}

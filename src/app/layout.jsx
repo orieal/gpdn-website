@@ -1,7 +1,6 @@
 import { Urbanist, Poppins } from "next/font/google";
-import "./globals.css";
 import AntdCompatibilityProvider from "@/providers/AntdCompatibilityProvider";
-
+import "./globals.css";
 
 const urbanist = Urbanist({
     subsets: ["latin"],
@@ -16,10 +15,6 @@ const poppins = Poppins({
 });
 
 export default function RootLayout({children}) {
-
-   
-
-
     return (
         <html lang="en">
             <head>
@@ -28,13 +23,7 @@ export default function RootLayout({children}) {
                 <meta name="author" content="Orieal Technologies LLP"/>
                 <meta name="language" content="en"/>
                 <meta name="robots" content="index, follow"/>
-                <link
-                    rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-                    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-                    crossOrigin="anonymous"
-                    referrerPolicy="no-referrer"
-                />
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"  integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="  crossOrigin="anonymous" referrerPolicy="no-referrer" />
 
                 {/* SEO Meta Tags */}
                 <title>GPDN | Connect. Learn. Lead in Palliative Care</title>
@@ -45,17 +34,17 @@ export default function RootLayout({children}) {
                 {/* Open Graph (Facebook, LinkedIn) */}
                 <meta property="og:title" content="GPDN | Connect. Learn. Lead in Palliative Care"/>
                 <meta property="og:description" content="GPDN – Global Palliative Doctors Network – is a collaborative platform for palliative care doctors worldwide. Share insights, access expert resources, and engage in discussions to enhance compassionate care for individuals with serious illnesses across the globe."/>
-                <meta property="og:image" content="https://gpdnorg.net/og-image.jpg"/>
-                <meta property="og:url" content="https://gpdnorg.net"/>
+                <meta property="og:image" content="https://thegpdn.org/og-image.jpg"/>
+                <meta property="og:url" content="https://thegpdn.org"/>
                 <meta property="og:type" content="website"/>
             </head>
-            <body 
+            <body
                 className={`${urbanist.className} ${poppins.variable}`}
-                suppressHydrationWarning={true} // Add this to suppress hydration warnings
+                suppressHydrationWarning={true}
             >
-                <AntdCompatibilityProvider>
-                    {children}
-                </AntdCompatibilityProvider>
+            <AntdCompatibilityProvider>
+                {children}
+            </AntdCompatibilityProvider>
             </body>
         </html>
     );

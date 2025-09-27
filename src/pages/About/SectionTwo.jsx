@@ -39,7 +39,7 @@ const SectionTwo = () => {
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                   <h6 className="font-poppins text-primary text-2xl md:text-3xl lg:text-4xl font-semibold w-[50%]">
-                    624+
+                    628+
                   </h6>
                   <p className="font-normal text-lg lg:text-xl text-[#525252] w-[50%]">
                     Palliative Care
@@ -49,7 +49,7 @@ const SectionTwo = () => {
                 </div>
                 <div className="flex items-center justify-between">
                   <h6 className="font-poppins text-primary text-2xl md:text-3xl lg:text-4xl font-semibold w-[50%]">
-                    59+
+                    60+
                   </h6>
                   <p className="font-normal text-lg lg:text-xl text-[#525252] w-[50%]">
                     Countries &<br />
@@ -68,8 +68,8 @@ const SectionTwo = () => {
                 </div>
               </div>
               <p className="font-normal text-lg text-tertiary">
-                A growing global collective of 602 palliative care physicians
-                across 83 countries, guided by a core team of 8 dedicated
+                A growing global collective of 628 palliative care physicians
+                across 60 countries, guided by a core team of 8 dedicated
                 experts.
               </p>
             </div>

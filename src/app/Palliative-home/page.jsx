@@ -5,7 +5,7 @@ import { Input, Modal, message, Select } from "antd";
 import logo from "../../app/assets/registation/logo.png";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdClose, MdDashboard, MdMenu, MdAdd } from "react-icons/md";
-import { FaRegFolder } from "react-icons/fa6";
+import { FaRegFolder, FaWhatsapp } from "react-icons/fa6";
 import { TbUsers } from "react-icons/tb";
 import { PiBuildings } from "react-icons/pi";
 import { FiPhone } from "react-icons/fi";
@@ -461,7 +461,7 @@ const PalliativeUnits = () => {
 
       {/* Search and Filter Section */}
       <div className="bg-white border-b border-gray-200 sticky top-0 z-20">
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="max-w-8xl mx-auto px-7 md:px-16 lg:px-20 2xl:px-40 py-5">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             {/* Active Filters */}
             {/* <div className="flex flex-wrap items-center gap-2">
@@ -513,6 +513,7 @@ const PalliativeUnits = () => {
                 <Input
                   placeholder="Search Palliative Units..."
                   className="w-full sm:w-80 h-10"
+                  allowClear
                   prefix={<IoSearchOutline className="text-gray-400" />}
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
@@ -769,7 +770,7 @@ const PalliativeUnits = () => {
                     <div className="flex items-center gap-2 text-gray-600">
                       <IoLocationOutline className="text-lg text-gray-500" />
                       <span className="text-sm font-medium">
-                        {unit.country || unit.state || "Location not specified"}
+                        {unit.state}, {unit.country || "Location not specified"}
                       </span>
                     </div>
                   </div>
@@ -809,21 +810,14 @@ const PalliativeUnits = () => {
                     </div>
                   </div>
 
-                  {/* Contact Section */}
-                  <div className="flex items-center gap-2 text-gray-600">
-                    <FiPhone className="text-lg text-[#1976D2]" />
-                    <span className="text-sm font-medium">
-                      {unit.contactDetails || "No contact information"}
-                    </span>
-                  </div>
-
                   {/* Divider */}
                   <div className="border-t border-gray-100"></div>
 
                   {/* Contact Button */}
-                  <button className="w-full px-4 py-3 bg-[#00A99D] text-white rounded-xl hover:bg-[#008F84] transition-colors duration-200 text-sm font-semibold shadow-sm hover:shadow-md">
+                  <Link href={`https://wa.me/${unit.contactDetails}`} target="_blank" className="flex align-middle justify-center gap-2 w-full px-4 py-3 bg-[#00A99D] text-white rounded-xl hover:bg-[#008F84] transition-colors duration-200 text-sm font-semibold shadow-sm hover:shadow-md">
+                    <FaWhatsapp size={21} />
                     Contact Unit
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))
