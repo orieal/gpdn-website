@@ -19,7 +19,9 @@ const SectionFive = () => {
 
         const blogsData =
           response.data.blogs || response.data.data || response.data;
-        setBlogs(Array.isArray(blogsData) ? blogsData.slice(-3) : []);
+        setBlogs(
+          Array.isArray(blogsData) ? blogsData.slice(0, 3) : []
+        );
       } catch (error) {
         console.error("Error fetching blogs:", {
           message: error.message,
