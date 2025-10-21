@@ -10,7 +10,9 @@ import { MdOutlineEmail } from "react-icons/md";
 import { Input } from "antd";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import CryptoJS from "crypto-js";
 
 function Personalnfo({ onContinue }) {
   const [phone, setPhone] = useState("");
@@ -27,6 +29,24 @@ function Personalnfo({ onContinue }) {
     password: "",
     confirmPassword: "",
   });
+
+  const searchParams = useSearchParams();
+  const phoneFromUrl = searchParams.get("phone");
+
+  let originalText = "";
+
+  if (phoneFromUrl) {
+    try {
+      const decode = decodeURIComponent(phoneFromUrl);
+      const bytes = CryptoJS.AES.decrypt(decode, "secretKey");
+      originalText = bytes.toString(CryptoJS.enc.Utf8); // Changed to Utf8
+      console.log("Decrypted phone:", originalText);
+    } catch (error) {
+      console.error("Decryption error:", error);
+    }
+  }
+
+  console.log(originalText);
 
   // Password visibility states
   const [showPassword, setShowPassword] = useState(false);
@@ -49,11 +69,10 @@ function Personalnfo({ onContinue }) {
       isValid = false;
     }
 
-    if (!phone.trim()) {
+    if (!phone.trim() && !originalText) {
       newErrors.phone = "Phone number is required";
       isValid = false;
     }
-
     if (!formData.password) {
       newErrors.password = "Password is required";
       isValid = false;
@@ -145,8 +164,9 @@ function Personalnfo({ onContinue }) {
           <PhoneInput
             inputStyle={{ width: "100%" }}
             country={"us"}
-            value={phone}
+            value={originalText ? originalText : phone}
             onChange={(phone) => setPhone(phone)}
+            disabled={!!originalText}
           />
           {errors.phone && (
             <span className="text-red-500 text-xs">{errors.phone}</span>
