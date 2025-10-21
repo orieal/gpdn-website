@@ -18,6 +18,9 @@ function RegistrationContent() {
   const searchParams = useSearchParams();
   const phoneFromUrl = searchParams.get("phone");
 
+  console.log(phoneFromUrl);
+  
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const userId = localStorage.getItem("userId");
@@ -165,13 +168,17 @@ function RegistrationContent() {
     try {
       const response = await registerUser(formData);
       console.log("Registration response:", response);
-
       if (response.error) {
         console.error("Registration failed:", response.error);
         return;
       }
 
       if (response.success || response.data) {
+        
+        {
+          phoneFromUrl &&
+            localStorage.setItem("userId", response.data.data.data._id);
+        }
         console.log("Registration successful, redirecting...");
         router.push(`${phoneFromUrl ? "/forum" : "/registration/submitted"}`);
       } else {
