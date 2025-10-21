@@ -19,7 +19,6 @@ function RegistrationContent() {
   const phoneFromUrl = searchParams.get("phone");
 
   console.log(phoneFromUrl);
-  
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -173,16 +172,17 @@ function RegistrationContent() {
         return;
       }
 
-      if (response.success || response.data) {
-        
-        {
-          phoneFromUrl &&
-            localStorage.setItem("userId", response.data.data.data._id);
+      const userId = response?.data?.data?._id || response?.data?._id;
+
+      if (userId) {
+        if (phoneFromUrl) {
+          localStorage.setItem("userId", userId);
         }
         console.log("Registration successful, redirecting...");
-        router.push(`${phoneFromUrl ? "/forum" : "/registration/submitted"}`);
+        router.push(phoneFromUrl ? "/forum" : "/registration/submitted");
       } else {
-        console.error("Registration failed - no success flag:", response);
+        console.error("Registration failed - no user ID:", response);
+        alert("Registration failed - please try again");
       }
     } catch (error) {
       console.error("Registration error:", error);
