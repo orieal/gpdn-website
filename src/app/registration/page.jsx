@@ -8,11 +8,15 @@ import Personalnfo from "@/components/registration/tabs/personalnfo";
 import ProfessionalInfo from "@/components/registration/tabs/ProfessionalInfo";
 import PalliativeCareInfo from "@/components/registration/tabs/PalliativeCareInfo";
 import { registerUser } from "@/api/user";
+import { useSearchParams } from "next/navigation";
 
 function RegistrationContent() {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   const [registrationData, setRegistrationData] = useState({});
+
+  const searchParams = useSearchParams();
+  const phoneFromUrl = searchParams.get("phone");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -169,7 +173,7 @@ function RegistrationContent() {
 
       if (response.success || response.data) {
         console.log("Registration successful, redirecting...");
-        router.push("/registration/submitted");
+        router.push(`${phoneFromUrl ? "/forum" : "/registration/submitted"}`);
       } else {
         console.error("Registration failed - no success flag:", response);
       }
