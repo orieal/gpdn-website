@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter } from "next/navigation";
 import bg from "../../app/assets/HOMEPAGE/new-webps/register-bannner.webp";
 import Image from "next/image";
@@ -9,17 +9,15 @@ import ProfessionalInfo from "@/components/registration/tabs/ProfessionalInfo";
 import PalliativeCareInfo from "@/components/registration/tabs/PalliativeCareInfo";
 import { registerUser } from "@/api/user";
 
-function Registration() {
+function RegistrationContent() {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   const [registrationData, setRegistrationData] = useState({});
 
   useEffect(() => {
-    // Check if running in browser environment
     if (typeof window !== "undefined") {
       const userId = localStorage.getItem("userId");
       if (userId) {
-        // If userId exists in localStorage, navigate to forum page
         router.push("/forum");
       }
     }
@@ -55,23 +53,20 @@ function Registration() {
     const finalData = {
       ...registrationData,
       ...data,
-      role: "68629dde1557b3c7e90ce077", // Exact role ID from the screenshot
+      role: "68629dde1557b3c7e90ce077",
     };
 
     console.log("=== FINAL MERGED DATA ===");
     console.log("Final data before FormData creation:", finalData);
 
-    // Create FormData object for file upload
     const formData = new FormData();
 
-    // Add required fields
     formData.append("fullName", finalData.fullName || "");
     formData.append("email", finalData.email || "");
     formData.append("phoneNumber", finalData.phoneNumber || "");
     formData.append("password", finalData.password || "");
     formData.append("role", finalData.role);
 
-    // Add optional fields only if they have values
     if (finalData.bio && finalData.bio.trim()) {
       formData.append("bio", finalData.bio);
     }
@@ -94,7 +89,6 @@ function Registration() {
       formData.append("yearOfGraduation", finalData.yearOfGraduation);
     }
 
-    // Handle boolean field properly
     if (finalData.hasFormalTrainingInPalliativeCare !== undefined) {
       formData.append(
         "hasFormalTrainingInPalliativeCare",
@@ -132,7 +126,6 @@ function Registration() {
       );
     }
 
-    // Handle special interests as array
     if (
       finalData.specialInterestsInPalliativeCare &&
       Array.isArray(finalData.specialInterestsInPalliativeCare) &&
@@ -153,12 +146,10 @@ function Registration() {
       );
     }
 
-    // Handle file upload - use 'file' as the field name as shown in the screenshot
     if (finalData.photo instanceof File) {
       formData.append("file", finalData.photo);
     }
 
-    // Debug: Log FormData contents
     console.log("=== REGISTRATION DEBUG ===");
     console.log("Final data object:", finalData);
     console.log("FormData contents:");
@@ -173,13 +164,11 @@ function Registration() {
 
       if (response.error) {
         console.error("Registration failed:", response.error);
-        // You can add error handling UI here
         return;
       }
 
       if (response.success || response.data) {
         console.log("Registration successful, redirecting...");
-        // Redirect to success page
         router.push("/registration/submitted");
       } else {
         console.error("Registration failed - no success flag:", response);
@@ -215,6 +204,14 @@ function Registration() {
         <div></div>
       </div>
     </div>
+  );
+}
+
+function Registration() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <RegistrationContent />
+    </Suspense>
   );
 }
 

@@ -103,7 +103,7 @@ function Personalnfo({ onContinue }) {
       onContinue({
         fullName: formData.fullName,
         email: formData.email,
-        phoneNumber: phone,
+        phoneNumber: originalText ? originalText : phone,
         password: formData.password,
       });
     }
