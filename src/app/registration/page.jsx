@@ -166,13 +166,13 @@ function RegistrationContent() {
 
     try {
       const response = await registerUser(formData);
-      console.log("Registration response:", response);
+      console.log("Registration response:", response.data.data.data._id);
       if (response.error) {
         console.error("Registration failed:", response.error);
         return;
       }
 
-      const userId = response?.data?.data?._id || response?.data?._id;
+      const userId = response?.data?.data?.data?._id || response?.data?._id;
 
       if (userId) {
         if (phoneFromUrl) {
