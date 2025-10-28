@@ -18,6 +18,7 @@ import {
   MdDashboard,
   MdOutlineSettings,
 } from "react-icons/md";
+import logo from "../../app/gpdn-icon.png";
 import { FaRegFolder } from "react-icons/fa6";
 import { TbUsers, TbUser } from "react-icons/tb";
 import { PiBuildings } from "react-icons/pi";
@@ -25,7 +26,7 @@ import { IoNewspaperOutline } from "react-icons/io5";
 import { usePathname } from "next/navigation"; // Add this import
 
 // Import your assets
-import logo from "../../app/assets/registation/logo.png";
+
 import azeem from "../../app/assets/registation/Frame.png";
 
 // Import API functions
@@ -344,7 +345,7 @@ const ForumDiscussion = () => {
 
       return {
         id: thread._id,
-        author: thread.authorId?.fullName || "Anonymous",
+        author: thread.authorId?.fullName || "Admin",
         title: thread.title,
         time: formatTime(thread.createdAt),
         content: thread.content,
@@ -1201,11 +1202,13 @@ const ForumDiscussion = () => {
                           className="w-10 h-10 rounded-full object-cover"
                         />
                       ) : (
-                        <Image
-                          alt="User avatar"
-                          src={azeem}
-                          className="w-10 h-10 rounded-full object-cover"
-                        />
+                        <div className=" w-10 h-10 flex items-center justify-between">
+                          <Image
+                            alt="User avatar"
+                            src={logo}
+                            className="w-full h-full rounded-full object-cover"
+                          />
+                        </div>
                       )}
                       <div className="flex items-center gap-5 md:flex md:flex-col md:gap-0 md:items-start">
                         <div className="flex items-center gap-2">

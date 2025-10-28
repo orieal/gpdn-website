@@ -8,11 +8,17 @@ import Personalnfo from "@/components/registration/tabs/personalnfo";
 import ProfessionalInfo from "@/components/registration/tabs/ProfessionalInfo";
 import PalliativeCareInfo from "@/components/registration/tabs/PalliativeCareInfo";
 import { registerUser } from "@/api/user";
+import { useSearchParams } from "next/navigation";
 
 function RegistrationContent() {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   const [registrationData, setRegistrationData] = useState({});
+
+  const searchParams = useSearchParams();
+  const phoneFromUrl = searchParams.get("phone");
+
+  console.log(phoneFromUrl);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -160,18 +166,23 @@ function RegistrationContent() {
 
     try {
       const response = await registerUser(formData);
-      console.log("Registration response:", response);
-
+      console.log("Registration response:", response.data.data.data._id);
       if (response.error) {
         console.error("Registration failed:", response.error);
         return;
       }
 
-      if (response.success || response.data) {
+      const userId = response?.data?.data?.data?._id || response?.data?._id;
+
+      if (userId) {
+        if (phoneFromUrl) {
+          localStorage.setItem("userId", userId);
+        }
         console.log("Registration successful, redirecting...");
-        router.push("/registration/submitted");
+        router.push(phoneFromUrl ? "/forum" : "/registration/submitted");
       } else {
-        console.error("Registration failed - no success flag:", response);
+        console.error("Registration failed - no user ID:", response);
+        alert("Registration failed - please try again");
       }
     } catch (error) {
       console.error("Registration error:", error);

@@ -39,18 +39,6 @@ function ProfessionalInfo({ onContinue }) {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Check file size (1MB = 1024 * 1024 bytes)
-      const maxSize = 1 * 1024 * 1024; // 1MB
-
-      if (file.size > maxSize) {
-        message.error("Image is too large. Try to upload an image under 1MB.");
-        // Reset the file input by setting its value to null
-        if (fileInputRef.current) {
-          fileInputRef.current.value = null;
-        }
-        return;
-      }
-
       // Check if it's an image file
       if (!file.type.startsWith("image/")) {
         message.error("Please select a valid image file.");
@@ -80,20 +68,7 @@ function ProfessionalInfo({ onContinue }) {
   const validateForm = () => {
     let tempErrors = {};
 
-    // Validate photo
-    if (!formData.photo) {
-      tempErrors.photo = "Profile picture is required";
-    } else if (formData.photo instanceof File) {
-      // Check file size again during validation
-      const maxSize = 1 * 1024 * 1024; // 1MB
-      if (formData.photo.size > maxSize) {
-        tempErrors.photo = "Image must be under 1MB";
-      }
-      // Check file type
-      if (!formData.photo.type.startsWith("image/")) {
-        tempErrors.photo = "Please select a valid image file";
-      }
-    }
+    // Photo is now optional - no validation needed
 
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
@@ -101,9 +76,12 @@ function ProfessionalInfo({ onContinue }) {
 
   const handleSubmit = () => {
     if (validateForm()) {
-      const dataToSend = {
-        photo: formData.photo, // This will be the File object for upload
-      };
+      const dataToSend = {};
+
+      // Only add photo if it exists
+      if (formData.photo) {
+        dataToSend.photo = formData.photo;
+      }
 
       // Only add optional fields if they have values
       if (formData.countryOfPractice && formData.countryOfPractice.trim()) {
@@ -143,7 +121,7 @@ function ProfessionalInfo({ onContinue }) {
       onContinue(dataToSend);
     } else {
       message.error({
-        content: "Please Upload an image under 1MB",
+        content: "Please fix the errors in the form",
         duration: 3,
       });
     }
@@ -160,9 +138,7 @@ function ProfessionalInfo({ onContinue }) {
       <div className="flex flex-col gap-4 mt-5">
         <div className="flex flex-col gap-2">
           <div className="flex flex-col">
-            <label className="text-sm font-semibold">
-              Profile Picture <span className="text-red-500">*</span>
-            </label>
+            <label className="text-sm font-semibold">Profile Picture</label>
             <label className="text-xs font-semibold text-gray-400">
               This is where people will see your actual face
             </label>
@@ -178,7 +154,7 @@ function ProfessionalInfo({ onContinue }) {
             accept="image/*"
           />
           <div className="text-xs text-gray-500 mt-1">
-            Maximum file size: 1MB. Supported formats: JPG, PNG, GIF, WebP
+            Supported formats: JPG, PNG, GIF, WebP
           </div>
           {formData.photo && formData.photo instanceof File && (
             <div className="text-xs text-green-600 mt-1 flex items-center gap-1">
